@@ -43,7 +43,7 @@ class CartModal extends React.Component {
                         ))}
                     </ul>
                     <div className={cb('footer')}>
-                        <Button size={'large'} shape={'pill'} color={'red'} to={config.routes.payment}>
+                        <Button size={'large'} shape={'pill'} color={'red'} to={config.routes.checkout}>
                             Thanh toán
                         </Button>
                     </div>

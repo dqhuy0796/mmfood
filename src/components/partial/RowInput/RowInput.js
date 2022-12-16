@@ -2,7 +2,6 @@ import classNames from 'classnames/bind';
 import React from 'react';
 import { RiEye2Line, RiEyeCloseLine, RiUploadCloud2Line } from 'react-icons/ri';
 import styles from './RowInput.module.scss';
-import Button from '~/components/shared/buttons/Button';
 
 const cb = classNames.bind(styles);
 
@@ -39,7 +38,6 @@ class RowInput extends React.Component {
                     option: {
                         ...this.props.option,
                         title: 'Số điện thoại phải theo định dạng Việt Nam 0xxx xxx xxx (ví dụ: 0912 345 678).',
-                        placeholder: '09xx xxx xxx',
                         pattern: '0+[0-9]{9}',
                     },
                 }));
@@ -59,7 +57,6 @@ class RowInput extends React.Component {
                     option: {
                         ...this.props.option,
                         title: 'Mật khẩu phải dài hơn 8 ký tự, bao gồm chữ thường, chữ hoa và chữ số.',
-                        pattern: '(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}',
                     },
                 }));
                 break;

@@ -17,7 +17,7 @@ class PaymentDetail extends React.Component {
                             <input placeholder="Nhập mã giảm giá..." />
                         </div>
                         <div className={cb('voucher-btn')}>
-                            <Button size={'tiny'} color={'primary'}>
+                            <Button size={'tiny'} shape={'pill'} color={'red'}>
                                 <span>Áp dụng</span>
                             </Button>
                         </div>

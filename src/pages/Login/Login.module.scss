@@ -1,0 +1,119 @@
+.background {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--gradient-pink),
+        url(https://res.cloudinary.com/dqhuy/image/upload/v1667639893/MMFood/Food/banh-canh-dacbiet_nkjhsy.jpg);
+    background-size: cover;
+    background-position: center;
+}
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: 480px;
+    width: 100%;
+    height: 100%;
+    max-height: 100vh;
+    background-color: var(--color-white);
+    overflow: hidden;
+    -webkit-animation: float-down ease-out 0.3s;
+    -moz-animation: float-down ease-out 0.3s;
+    -ms-animation: float-down ease-out 0.3s;
+    -o-animation: float-down ease-out 0.3s;
+    animation: float-down ease-out 0.3s;
+    ul {
+        padding: 16px;
+        margin: 0 auto;
+        max-width: 400px;
+        width: 100%;
+        li + li {
+            margin-top: 16px;
+        }
+    }
+    .header {
+        flex-shrink: 0;
+        padding: 32px 16px 0;
+        h2 {
+            text-align: center;
+            font-size: 3rem;
+        }
+        .message {
+            height: 2rem;
+            text-align: center;
+            font-weight: 500;
+            color: var(--color-red);
+        }
+    }
+    .body {
+        flex: 1;
+        overflow-y: overlay;
+        .condition {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            label {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+                width: 24px;
+                height: 24px;
+                border-radius: 6px;
+                border: 1px solid var(--color-border);
+                flex-shrink: 0;
+                span {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    font-size: 3rem;
+                    color: var(--color-blue);
+                    background-color: transparent;
+                }
+            }
+            p {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+                background-color: transparent;
+            }
+        }
+    }
+    .footer {
+        flex-shrink: 0;
+        margin-top: auto;
+        li {
+            p {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+                font-size: 1.4rem;
+            }
+        }
+    }
+}
+
+@media (min-width: 480px) {
+    .wrapper {
+        padding: 16px 0;
+        height: initial;
+        border-radius: 16px;
+        box-shadow: 0 0 8px var(--color-shadow);
+    }
+}
+
+@keyframes float-down {
+    0% {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

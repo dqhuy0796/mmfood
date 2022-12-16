@@ -22,7 +22,7 @@
     /* --color-background: #eaf0f8; */
     --gradient-primary: linear-gradient(to bottom, #ffa534 0%, #ff5221b3 100%);
     --gradient-brown: linear-gradient(45deg, #c68e39, #fbfbbb);
-    --gradient-pink: linear-gradient(45deg, #fde8e7, #fff5f4);
+    --gradient-pink: linear-gradient(to bottom, #ff999a 0%, #fff5f4b3 100%);
 
     --toastify-color-light: #ffffff !important;
     --toastify-color-dark: #191919 !important;

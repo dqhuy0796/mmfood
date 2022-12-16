@@ -7,17 +7,11 @@ const routes = {
     promotion: '/promotion',
     about: '/about',
     login: '/login',
+    register: '/register',
     search: '/search',
-    payment: '/payment',
+    checkout: '/checkout',
 
     account: '/account',
-
-    dashboard: '/admin/dashboard',
-    customers: '/admin/customers',
-    products: '/admin/products',
-    orders: '/admin/orders',
-    users: '/admin/users',
-    posts: '/admin/posts',
 };
 
 export default routes;

@@ -66,22 +66,20 @@
 
 // COLOR
 
-.wrapper.white {
-    color: var(--color-text);
-    background-color: var(--color-white);
-    border: 1px solid var(--color-border);
-}
 .wrapper.black {
     color: var(--color-white);
     background-color: var(--color-black);
+    border-color: transparent;
 }
 .wrapper.primary {
     color: var(--color-white);
     background-color: var(--color-primary);
+    border-color: transparent;
 }
 .wrapper.red {
     color: var(--color-white);
     background-color: var(--color-red);
+    border-color: transparent;
 }
 
 // TYPE
