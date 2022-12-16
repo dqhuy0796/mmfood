@@ -1,0 +1,77 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 48px;
+    height: 48px;
+    cursor: pointer;
+    -webkit-transition: ease-out 0.3s;
+    -moz-transition: ease-out 0.3s;
+    -ms-transition: ease-out 0.3s;
+    -o-transition: ease-out 0.3s;
+    transition: ease-out 0.3s;
+}
+.wrapper.white {
+    span {
+        background-color: var(--color-white);
+        &::before,
+        &::after {
+            background-color: var(--color-white);
+        }
+    }
+}
+.wrapper span {
+    display: block;
+    position: relative;
+    width: 32px;
+    height: 3px;
+    background-color: var(--color-text);
+    border-radius: 3px;
+    border: none;
+
+    -webkit-transition: ease-out 0.3s;
+    -moz-transition: ease-out 0.3s;
+    -ms-transition: ease-out 0.3s;
+    -o-transition: ease-out 0.3s;
+    transition: ease-out 0.3s;
+}
+.wrapper span::before,
+.wrapper span::after {
+    content: '';
+    position: absolute;
+    height: 3px;
+    left: 0;
+    right: 0;
+    background-color: var(--color-text);
+    border-radius: 3px;
+    border: none;
+
+    -webkit-transition: ease-out 0.3s;
+    -moz-transition: ease-out 0.3s;
+    -ms-transition: ease-out 0.3s;
+    -o-transition: ease-out 0.3s;
+    transition: ease-out 0.3s;
+}
+.wrapper span::before {
+    transform: translateY(12px);
+}
+.wrapper span::after {
+    transform: translateY(-12px);
+}
+.wrapper.open span {
+    transform: translateX(-48px);
+    background-color: transparent;
+}
+.wrapper.open span::before {
+    transform: rotate(45deg) translate(34px, -34px);
+}
+.wrapper.open span::after {
+    transform: rotate(-45deg) translate(34px, 34px);
+}
+
+// @media (min-width: 1024px) {
+//     .wrapper {
+//         display: none;
+//     }
+// }

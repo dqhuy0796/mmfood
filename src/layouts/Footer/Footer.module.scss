@@ -1,0 +1,194 @@
+.wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1200px;
+    gap: 32px;
+    .directions {
+        padding: 16px;
+        width: 100%;
+    }
+    .more {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 16px;
+        width: 100%;
+        gap: 32px;
+    }
+    ul {
+        list-style: none;
+        height: 240px;
+        overflow-y: scroll;
+        li + li {
+            margin-top: 12px;
+        }
+    }
+}
+.direction-item {
+    display: flex;
+    align-items: center;
+    .icon {
+        padding: 8px 8px 8px 0;
+        font-size: 3.2rem;
+        color: var(--color-green);
+    }
+    .content {
+        font-size: 1.4rem;
+        color: #333;
+        .address {
+            display: flex;
+            flex-wrap: wrap;
+            text-overflow: ellipsis;
+            white-space: normal;
+            overflow: hidden;
+            span {
+                &:first-child {
+                    font-weight: 600;
+                }
+                &:nth-child(2) {
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 1;
+                    overflow: hidden;
+                }
+            }
+        }
+        .phone {
+            font-weight: 400;
+        }
+    }
+}
+.contact {
+    width: 100%;
+    li {
+        p {
+            font-size: 1.4rem;
+            font-weight: 400;
+            color: #333;
+        }
+    }
+    .input {
+        display: flex;
+        gap: 8px;
+        width: 100%;
+        max-width: 400px;
+        input {
+            padding: 8px 16px;
+            flex-grow: 1;
+            flex-shrink: 1;
+            font-size: 1.4rem;
+            color: #333;
+            border-radius: 4px;
+            border: 1px solid #3333;
+            outline: none;
+        }
+        button {
+            padding: 8px 16px;
+            flex-shrink: 0;
+            font-size: 1.4rem;
+            font-weight: 600;
+            background-color: #0c713d;
+            color: #fff;
+            text-transform: uppercase;
+            border-radius: 4px;
+            border: 1px solid #3333;
+        }
+    }
+}
+.about {
+    width: 100%;
+    .social-media {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        font-size: 3rem;
+        .icon {
+            &:nth-child(1) {
+                color: #046ce2;
+            }
+            &:nth-child(2) {
+                color: #f70000;
+            }
+            &:nth-child(3) {
+                color: #00a7e6;
+            }
+            &:nth-child(4) {
+                color: #ec5257;
+            }
+        }
+    }
+    .image {
+        width: 100%;
+        height: 64px;
+        margin-top: 32px;
+        img {
+            height: 100%;
+            object-fit: contain;
+        }
+    }
+}
+.title {
+    margin-bottom: 16px;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #0c713d;
+}
+.copyright {
+    padding: 8px;
+    width: 100%;
+    background-color: #0c713d;
+    color: #fff;
+    font-size: 1.4rem;
+    font-weight: 500;
+    text-align: center;
+}
+@media (min-width: 540px) and (max-width: 767px) {
+    .wrapper {
+        .more {
+            .contact {
+                width: auto;
+            }
+            .about {
+                padding-right: 16px;
+                width: auto;
+                text-align: right;
+                .social-media {
+                    justify-content: end;
+                }
+            }
+        }
+    }
+}
+@media (min-width: 768px) and (max-width: 1199px) {
+    .wrapper {
+        .directions {
+            width: calc(50% - 16px);
+        }
+        .more {
+            width: calc(50% - 16px);
+        }
+    }
+}
+@media (min-width: 1200px) {
+    .wrapper {
+        .directions {
+            width: calc(50% - 16px);
+        }
+        .more {
+            width: calc(50% - 16px);
+            .contact {
+                width: auto;
+            }
+            .about {
+                padding-right: 16px;
+                width: auto;
+                text-align: right;
+                .social-media {
+                    justify-content: end;
+                }
+            }
+        }
+    }
+}

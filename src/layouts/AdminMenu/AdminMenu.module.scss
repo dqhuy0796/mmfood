@@ -1,0 +1,98 @@
+.menu {
+    height: 100vh;
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-right-color: var(--color-border);
+    background: var(--gradient-primary),
+        url(https://res.cloudinary.com/dqhuy/image/upload/v1667639893/MMFood/Food/banh-canh-dacbiet_nkjhsy.jpg);
+    background-size: cover;
+    background-position: center;
+    .navbar {
+        position: relative;
+        height: 100%;
+        ul {
+            display: flex;
+            flex-direction: column;
+            list-style: none;
+            width: 240px;
+            height: 100%;
+            overflow: hidden;
+
+            -webkit-transition: ease-out 0.3s;
+            -moz-transition: ease-out 0.3s;
+            -ms-transition: ease-out 0.3s;
+            -o-transition: ease-out 0.3s;
+            transition: ease-out 0.3s;
+            li {
+                display: flex;
+                align-items: center;
+                padding: 4px 8px;
+                &:last-child {
+                    margin-top: auto;
+                    margin-bottom: 32px;
+                    .menu-link {
+                        color: var(--color-white);
+                        background-color: #393939cc;
+                        &:hover {
+                            background-color: var(--color-hover);
+                        }
+                    }
+                }
+                .logo {
+                    margin-left: 16px;
+                    font-size: 2.4rem;
+                    font-weight: 900;
+                    text-transform: uppercase;
+                    color: var(--color-white);
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 1;
+                    overflow: hidden;
+                }
+            }
+        }
+    }
+}
+.menu.collapse {
+    ul {
+        width: 64px;
+        li {
+            .title,
+            .logo {
+                display: none;
+            }
+        }
+    }
+}
+
+.menu-link {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    text-decoration: none;
+    color: var(--color-white);
+    text-transform: uppercase;
+    border-radius: 4px;
+    &:hover {
+        background-color: var(--color-hover);
+    }
+    .icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 48px;
+        height: 48px;
+        font-size: 3rem;
+    }
+    .title {
+        font-size: 1.6rem;
+        font-weight: 500;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1;
+        overflow: hidden;
+    }
+}
+.menu-link.actived {
+    box-shadow: 0 0 4px 1px var(--color-white);
+}

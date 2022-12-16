@@ -1,0 +1,144 @@
+.wrapper {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    .container {
+        display: flex;
+        flex-direction: column;
+        padding: 16px;
+        width: 100%;
+        height: 100%;
+        background-color: var(--color-light);
+        overflow: hidden;
+        .title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 16px;
+            background-color: var(--color-white);
+            box-shadow: 0 0 8px 1px var(--color-border);
+            border-radius: 4px;
+            h6 {
+                font-size: 2rem;
+                font-weight: 600;
+                color: var(--color-text);
+            }
+        }
+        .content {
+            flex: 1;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            padding: 8px;
+            margin-top: 16px;
+            background-color: var(--color-white);
+            box-shadow: 0 0 8px 1px var(--color-border);
+            border-radius: 4px;
+            overflow: hidden;
+            .header {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+                gap: 8px;
+                padding-bottom: 8px;
+                margin-bottom: 8px;
+                border-bottom: 1px solid var(--color-border);
+                li {
+                    span + span {
+                        margin-left: 8px;
+                    }
+                }
+            }
+            .body {
+                flex: 1;
+                width: 100%;
+                height: 100%;
+                overflow: auto;
+            }
+        }
+    }
+}
+
+.main-table {
+    border-collapse: collapse;
+    width: 100%;
+    height: 100%;
+    thead {
+        tr {
+            background-color: var(--color-secondary);
+        }
+        th {
+            padding: 12px 0;
+            min-width: 48px;
+            color: var(--color-white);
+            border: 1px solid var(--color-shadow);
+        }
+    }
+    tr {
+        &:last-child {
+            td {
+                border-bottom: 1px solid var(--color-shadow);
+            }
+        }
+    }
+    .row {
+        &:hover {
+            background-color: var(--color-light);
+        }
+        td {
+            border-width: 1px;
+            border-style: solid;
+            border-color: transparent var(--color-shadow);
+            padding: 8px;
+            vertical-align: middle;
+            &:nth-child(1),
+            &:nth-child(2) {
+                text-align: center;
+            }
+        }
+        .action {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            button {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 40px;
+                height: 40px;
+                font-size: 2rem;
+                color: var(--color-text);
+                background-color: transparent;
+                border-radius: 6px;
+                outline: none;
+                border: none;
+                cursor: pointer;
+                &:first-child {
+                    &:hover {
+                        color: var(--color-white);
+                        background-color: var(--color-blue);
+                        box-shadow: 0 0 2px 1px var(--color-shadow);
+                    }
+                }
+                &:last-child {
+                    &:hover {
+                        color: var(--color-white);
+                        background-color: var(--color-red);
+                        box-shadow: 0 0 2px 1px var(--color-shadow);
+                    }
+                }
+            }
+        }
+        .avatar {
+            height: 80px;
+            width: 80px;
+            border-radius: 50%;
+            overflow: hidden;
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+    }
+}

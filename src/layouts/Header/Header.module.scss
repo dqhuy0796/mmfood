@@ -1,0 +1,25 @@
+.header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 99;
+    height: 64px;
+    background-color: var(--color-white);
+    box-shadow: 0 2px 4px 1px var(--color-shadow);
+}
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    margin: 0 auto;
+    height: 100%;
+    width: 100%;
+    max-width: 1200px;
+}
+@media (min-width: 1024px) {
+    .hamburger-btn {
+        display: none;
+    }
+}

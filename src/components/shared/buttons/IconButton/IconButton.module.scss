@@ -1,0 +1,89 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
+    box-shadow: none;
+    outline: none;
+    border: none;
+    border-radius: 4px;
+    transition: ease-out 0.3s;
+    animation: Slide linear 2s infinite;
+    overflow: hidden;
+    cursor: pointer;
+    &::before {
+        content: '';
+        position: absolute;
+        inset: -10%;
+        background: linear-gradient(125deg, transparent 40%, #ffffff55 60%, transparent 80%);
+        background-size: 400%;
+        transition: ease-out 0.3s;
+    }
+    &:hover {
+        box-shadow: 0 0 5px 1px var(--color-shadow);
+    }
+    &:hover::before {
+        animation: Slide linear 5s infinite;
+    }
+}
+.wrapper.tiny {
+    width: 32px;
+    height: 32px;
+    font-size: 3rem;
+}
+.wrapper.medium {
+    width: 40px;
+    height: 40px;
+    font-size: 3rem;
+}
+.wrapper.large {
+    width: 48px;
+    height: 48px;
+    font-size: 3rem;
+}
+.wrapper.rect {
+    border-radius: 0;
+}
+.wrapper.rounded {
+    border-radius: 6px;
+}
+.wrapper.round {
+    border-radius: 50%;
+}
+.wrapper.transparent {
+    color: var(--color-text);
+    background-color: transparent;
+    box-shadow: none;
+    &:hover {
+        border: 1px solid var(--color-border);
+    }
+}
+.wrapper.white {
+    color: var(--color-text);
+    background-color: var(--color-white);
+    border: 1px solid var(--color-border);
+}
+.wrapper.black {
+    color: var(--color-white);
+    background-color: var(--color-black);
+}
+.wrapper.primary {
+    color: var(--color-white);
+    background-color: var(--color-primary);
+}
+.wrapper.red {
+    color: var(--color-white);
+    background-color: var(--color-red);
+}
+
+@keyframes Slide {
+    from {
+        background-position: 400%;
+    }
+    to {
+        background-position: 0%;
+    }
+}

@@ -1,0 +1,69 @@
+.modal {
+    position: fixed;
+    inset: 0;
+    height: 100vh;
+    z-index: 999;
+
+    .overlay {
+        position: absolute;
+        inset: 0;
+        background-color: #00000022;
+        -webkit-animation: fade-in ease-out 0.3s;
+        -moz-animation: fade-in ease-out 0.3s;
+        -ms-animation: fade-in ease-out 0.3s;
+        -o-animation: fade-in ease-out 0.3s;
+        animation: fade-in ease-out 0.3s;
+    }
+    .wrapper {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        max-width: 500px;
+        height: 100%;
+        max-height: 100vh;
+        background: var(--color-white);
+        box-shadow: 0 0 8px var(--color-shadow);
+        -webkit-animation: float-right-to-left ease-out 0.3s;
+        -moz-animation: float-right-to-left ease-out 0.3s;
+        -ms-animation: float-right-to-left ease-out 0.3s;
+        -o-animation: float-right-to-left ease-out 0.3s;
+        animation: float-right-to-left ease-out 0.3s;
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px;
+            height: 64px;
+            span {
+                padding-left: 6px;
+                font-size: 2rem;
+                font-weight: 600;
+                color: var(--color-text);
+                letter-spacing: 0;
+            }
+        }
+        .body {
+            height: calc(100% - 64px);
+        }
+    }
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes float-right-to-left {
+    0% {
+        right: -100%;
+    }
+    100% {
+        right: 0;
+    }
+}

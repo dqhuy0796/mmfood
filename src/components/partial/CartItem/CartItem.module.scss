@@ -1,0 +1,104 @@
+.cart-item {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    gap: 8px;
+    width: 100%;
+    background-color: var(--color-light);
+    border-radius: 4px;
+    border: 1px solid var(--color-border);
+    .image {
+        flex-shrink: 0;
+        width: 20%;
+        height: 100%;
+        border-radius: 4px;
+        border: 1px solid var(--color-border);
+        overflow: hidden;
+        .image-link {
+            display: block;
+            position: relative;
+            width: 100%;
+            padding-top: 100%;
+            img {
+                position: absolute;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+    }
+    .info {
+        flex-grow: 1;
+        flex-shrink: 1;
+        p {
+            font-size: 1.4rem;
+            font-weight: 400;
+            color: var(--color-shadow);
+        }
+        p + p {
+            margin-top: 12px;
+        }
+        .name {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--color-text);
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+        }
+        .size {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            span {
+                &:last-child {
+                    text-transform: capitalize;
+                    font-weight: 600;
+                    color: var(--color-text);
+                }
+            }
+        }
+        .price {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            span {
+                color: var(--color-red);
+                &:first-child {
+                    font-weight: 600;
+                }
+                &:last-child {
+                    color: var(--color-shadow);
+                    text-decoration: line-through;
+                }
+            }
+        }
+    }
+    .quantity {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        flex-shrink: 0;
+        span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            &:nth-child(odd) {
+                cursor: pointer;
+                &:hover {
+                    background-color: var(--color-white);
+                }
+            }
+            &:nth-child(even) {
+                font-weight: 600;
+                color: var(--color-red);
+                background-color: var(--color-white);
+                border: 1px solid var(--color-border);
+                user-select: none;
+            }
+        }
+    }
+}

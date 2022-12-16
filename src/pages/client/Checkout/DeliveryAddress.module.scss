@@ -1,0 +1,21 @@
+.address {
+    padding: 16px;
+    background-color: var(--color-white);
+    border: none;
+    .header {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        margin-bottom: 16px;
+        .title {
+            font-weight: 600;
+            color: var(--color-text);
+        }
+    }
+    .body {
+        color: var(--color-text);
+        li + li {
+            margin-top: 12px;
+        }
+    }
+}

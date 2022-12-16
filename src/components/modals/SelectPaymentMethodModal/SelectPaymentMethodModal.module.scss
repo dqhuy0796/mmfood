@@ -1,0 +1,109 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    .body {
+        flex: 1;
+        padding: 16px;
+        overflow-y: overlay;
+        list-style: none;
+        li {
+            width: 100%;
+            p {
+                margin-bottom: 4px;
+                font-weight: 600;
+            }
+        }
+        li + li {
+            margin-top: 8px;
+        }
+    }
+    .footer {
+        flex-shrink: 0;
+        padding: 16px;
+        width: 100%;
+    }
+}
+
+.method {
+    display: flex;
+    align-items: center;
+    background-color: var(--color-white);
+    border-radius: 6px;
+    border: 1.5px solid var(--color-border);
+    cursor: pointer;
+    .image {
+        position: relative;
+        width: 64px;
+        height: 64px;
+        flex-shrink: 0;
+        img {
+            position: absolute;
+            inset: 8px;
+            width: calc(100% - 16px);
+            height: calc(100% - 16px);
+            object-fit: contain;
+        }
+    }
+    .text {
+        flex: 1;
+        padding: 8px 0;
+        width: 100%;
+        p {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 1;
+            overflow: hidden;
+            font-size: 14px;
+            color: var(--color-text);
+            font-weight: 600;
+            &:last-child {
+                margin-top: 8px;
+                color: var(--color-shadow);
+                font-weight: 400;
+            }
+        }
+    }
+    .payment-list {
+        width: fit-content;
+        display: flex;
+        align-items: center;
+        margin-right: 6px;
+        img {
+            height: 26px;
+        }
+    }
+    .button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 40px;
+        height: 100%;
+        font-size: 2rem;
+        color: var(--color-text);
+        background-color: transparent;
+        border: none;
+        outline: none;
+        border-bottom-right-radius: 6px;
+        border-top-right-radius: 6px;
+        cursor: pointer;
+        &:hover {
+            background-color: var(--color-light);
+        }
+    }
+    &:hover {
+        background: linear-gradient(135deg, var(--color-white), #7ce69e1c);
+        border-color: var(--color-green);
+    }
+}
+
+.method + .method {
+    margin-top: 8px;
+}
+
+@media (min-width: 1024px) {
+    .method {
+        height: 80px;
+    }
+}

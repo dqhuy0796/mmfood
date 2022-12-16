@@ -1,0 +1,19 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    background: transparent;
+    font-size: 1.4rem;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+    color: var(--color-green);
+    box-shadow: inset 0 0 0 0 var(--color-green);
+    outline: none;
+    border: none;
+    cursor: pointer;
+    &:hover {
+        box-shadow: inset 0 -1.5px 0 0 var(--color-green);
+        color: #0c713ddd;
+    }
+}
