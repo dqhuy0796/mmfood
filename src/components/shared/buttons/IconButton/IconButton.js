@@ -51,6 +51,9 @@ class IconButton extends React.Component {
         return (
             <this.state.element className={cb(...this.state.className)} {...this.state.options}>
                 {this.props.children}
+                {this.props.value > 0 && (
+                    <span className={cb('tag')}>{this.props.value < 10 ? this.props.value : '9+'}</span>
+                )}
             </this.state.element>
         );
     }

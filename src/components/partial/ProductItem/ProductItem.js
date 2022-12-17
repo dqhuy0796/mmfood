@@ -3,7 +3,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Button from '~/components/shared/buttons/Button';
 import styles from './ProductItem.module.scss';
-
+import { connect } from 'react-redux';
+import { cartItemAdd } from '~/redux/actions/cartActions';
 const cb = classNames.bind(styles);
 
 const calcDiscount = (newPrice, oldPrice) => Math.round(((newPrice - oldPrice) / oldPrice) * 100);
@@ -38,7 +39,12 @@ class ProductItem extends React.Component {
                 </div>
                 <div className={cb('overlay')}>
                     <div>
-                        <Button size={'large'} shape={'pill'} color={'red'}>
+                        <Button
+                            size={'tiny'}
+                            shape={'pill'}
+                            color={'red'}
+                            onClick={() => this.props.itemAdd(this.props.data)}
+                        >
                             <span>Đặt món</span>
                         </Button>
                     </div>
@@ -50,4 +56,12 @@ class ProductItem extends React.Component {
 
 const ItemPrice = (props) => <span>{props.value.toLocaleString('vn-VI', { style: 'currency', currency: 'VND' })}</span>;
 
-export default ProductItem;
+const mapStateToProps = (state) => ({
+    cart: state.cart,
+});
+
+const mapActionsToProps = (action) => ({
+    itemAdd: (item) => action(cartItemAdd(item)),
+});
+
+export default connect(mapStateToProps, mapActionsToProps)(ProductItem);

@@ -1,15 +1,25 @@
 import classNames from 'classnames/bind';
 import React from 'react';
 import { HiOutlineShoppingBag } from 'react-icons/hi';
+import CartModal from '~/components/modals/CartModal';
 import Navbar from '~/components/partial/Navbar';
 import HamburgerButton from '~/components/shared/buttons/HamburgerButton';
-import LogoFull from '~/components/shared/Logo/LogoFull';
 import IconButton from '~/components/shared/buttons/IconButton';
-import CartModal from '~/components/modals/CartModal';
+import LogoFull from '~/components/shared/Logo/LogoFull';
 import styles from './Header.module.scss';
 
-const cb = classNames.bind(styles);
+import { connect } from 'react-redux';
 
+const mapStateToProps = (state) => ({
+    cart: state.cart,
+});
+
+const mapActionsToProps = (action) => ({
+    // cartAdd,
+    // cartRemove,
+});
+
+const cb = classNames.bind(styles);
 class Header extends React.Component {
     state = {
         isModalActive: false,
@@ -44,9 +54,8 @@ class Header extends React.Component {
                     <IconButton
                         size={'large'}
                         shape={'round'}
-                        color={'transparent'}
                         onClick={this.handleCollapseModal}
-                        value={22}
+                        value={this.props.cart.quantity}
                     >
                         <HiOutlineShoppingBag />
                     </IconButton>
@@ -57,4 +66,4 @@ class Header extends React.Component {
     }
 }
 
-export default Header;
+export default connect(mapStateToProps, mapActionsToProps)(Header);

@@ -6,13 +6,13 @@
     font-weight: 500;
     text-transform: uppercase;
     font-family: 'Montserrat', sans-serif;
+    background-color: transparent;
     box-shadow: none;
     outline: none;
     border: none;
     border-radius: 4px;
     transition: ease-out 0.3s;
     animation: Slide linear 2s infinite;
-    overflow: hidden;
     cursor: pointer;
     &::before {
         content: '';
@@ -27,6 +27,20 @@
     }
     &:hover::before {
         animation: Slide linear 5s infinite;
+    }
+    .tag {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 24px;
+        top: -2px;
+        right: -2px;
+        padding: 4px;
+        color: var(--color-white);
+        font-size: 1.4rem;
+        background-color: var(--color-red);
+        border-radius: 999px;
     }
 }
 .wrapper.tiny {
@@ -56,9 +70,9 @@
 .wrapper.transparent {
     color: var(--color-text);
     background-color: transparent;
-    box-shadow: none;
     &:hover {
-        border: 1px solid var(--color-border);
+        color: var(--color-shadow);
+        box-shadow: none;
     }
 }
 .wrapper.white {

@@ -1,26 +1,14 @@
 import classNames from 'classnames/bind';
 import React from 'react';
+import { BsChevronDown, BsChevronUp } from 'react-icons/bs';
+import { MdDeleteOutline } from 'react-icons/md';
+import { connect } from 'react-redux';
+import { cartItemDescrease, cartItemIncrease, cartItemRemove } from '~/redux/actions/cartActions';
 import styles from './CartItem.module.scss';
-import { BsChevronUp, BsChevronDown } from 'react-icons/bs';
 
 const cb = classNames.bind(styles);
 
 class CartItem extends React.Component {
-    state = {
-        quantity: 1,
-    };
-    handleOnClickIncreaseQuantity = () => {
-        this.setState((prevState) => ({
-            ...prevState,
-            quantity: prevState.quantity + 1,
-        }));
-    };
-    handleOnClickDecreaseQuantity = () => {
-        this.setState((prevState) => ({
-            ...prevState,
-            quantity: prevState.quantity <= 1 ? 1 : prevState.quantity - 1,
-        }));
-    };
     render() {
         return (
             <div className={cb('cart-item')}>
@@ -43,12 +31,17 @@ class CartItem extends React.Component {
                     </p>
                 </div>
                 <div className={cb('quantity')}>
-                    <span onClick={this.handleOnClickIncreaseQuantity}>
+                    <span onClick={() => this.props.itemIncrease(this.props.data)}>
                         <BsChevronUp />
                     </span>
-                    <span>{this.state.quantity}</span>
-                    <span onClick={this.handleOnClickDecreaseQuantity}>
+                    <span>{this.props.data.quantity}</span>
+                    <span onClick={() => this.props.itemDescrease(this.props.data)}>
                         <BsChevronDown />
+                    </span>
+                </div>
+                <div className={cb('action')}>
+                    <span onClick={() => this.props.itemRemove(this.props.data)}>
+                        <MdDeleteOutline />
                     </span>
                 </div>
             </div>
@@ -57,4 +50,14 @@ class CartItem extends React.Component {
 }
 const ItemPrice = (props) => <span>{props.value.toLocaleString('vn-VI', { style: 'currency', currency: 'VND' })}</span>;
 
-export default CartItem;
+const mapStateToProps = (state) => ({
+    cart: state.cart,
+});
+
+const mapActionsToProps = (action) => ({
+    itemRemove: (item) => action(cartItemRemove(item)),
+    itemIncrease: (item) => action(cartItemIncrease(item)),
+    itemDescrease: (item) => action(cartItemDescrease(item)),
+});
+
+export default connect(mapStateToProps, mapActionsToProps)(CartItem);
