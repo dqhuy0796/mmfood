@@ -1,15 +1,18 @@
+import classNames from 'classnames/bind';
 import React from 'react';
 import RowInput from '~/components/partial/RowInput';
 import Button from '~/components/shared/buttons/Button';
 import TransparentButton from '~/components/shared/buttons/TransparentButton';
-import config from '~/config';
 import { userService } from '~/services';
+import _ from 'lodash';
+import config from '~/config';
 // redux and actions
 import { connect } from 'react-redux';
 import { login } from '~/redux/actions/authActions';
-//style
-import classNames from 'classnames/bind';
+// styles
 import styles from './Login.module.scss';
+import { withRouter } from './withRouter';
+
 const cb = classNames.bind(styles);
 class Login extends React.Component {
     state = {
@@ -48,7 +51,10 @@ class Login extends React.Component {
                 ...prevState,
                 message: response.message,
             }));
-            this.props.login(response.result);
+            if (!_.isEmpty(response.result)) {
+                this.props.login(response.result);
+                this.props.navigate(config.routes.home);
+            }
         }
     };
 
@@ -108,12 +114,12 @@ class Login extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    isLoggedIn: state.isLoggedIn,
-    user: state.user,
+    isLoggedIn: state.auth.isLoggedIn,
+    user: state.auth.user,
 });
 
 const mapActionsToProps = (dispatch) => ({
     login: (user) => dispatch(login(user)),
 });
 
-export default connect(mapStateToProps, mapActionsToProps)(Login);
+export default connect(mapStateToProps, mapActionsToProps)(withRouter(Login));

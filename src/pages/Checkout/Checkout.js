@@ -7,30 +7,13 @@ import DeliveryAddress from './DeliveryAddress';
 import DeliveryMethod from './DeliveryMethod';
 import PaymentDetail from './PaymentDetail';
 import PaymentMethod from './PaymentMethod';
+//redux
+import { connect } from 'react-redux';
+import { login } from '~/redux/actions/authActions';
+
 import styles from './Checkout.module.scss';
 
 const cb = classNames.bind(styles);
-
-const cartItems = [
-    {
-        id: 1003,
-        name: 'bánh canh ghẹ (đặt biệt)',
-        oldPrice: 85000,
-        newPrice: 75000,
-        size: 'vừa',
-        description: 'ngon vl',
-        url: 'https://res.cloudinary.com/dqhuy/image/upload/v1667639893/MMFood/Food/banh-canh-dacbiet_nkjhsy.jpg',
-    },
-    {
-        id: 2004,
-        name: "trà sữa trân châu M'M",
-        oldPrice: 35000,
-        newPrice: 35000,
-        size: 'vừa',
-        description: 'ngon vắt lưỡi',
-        url: 'https://res.cloudinary.com/dqhuy/image/upload/v1667640606/MMFood/Drink/trasua-tranchau_lcaggq.jpg',
-    },
-];
 
 class Checkout extends React.Component {
     render() {
@@ -42,7 +25,7 @@ class Checkout extends React.Component {
                         <div className={cb('left')}>
                             <DeliveryAddress />
                             <DeliveryMethod />
-                            <DeliveryPackage />
+                            <DeliveryPackage items={this.props.cart.items} />
                         </div>
 
                         <div className={cb('right')}>
@@ -57,19 +40,33 @@ class Checkout extends React.Component {
     }
 }
 
-export default Checkout;
+const mapStateToProps = (state) => ({
+    cart: state.cart,
+});
+
+const mapActionsToProps = (action) => ({
+    //
+});
+
+export default connect(mapStateToProps, mapActionsToProps)(Checkout);
 
 const DeliveryPackage = (props) => (
     <div className={cb('cart')}>
         <p className={cb('title')}>
-            <span>Địa chỉ giao hàng</span>
+            <span>Đơn hàng</span>
         </p>
         <ul>
-            {cartItems.map((item, index) => (
-                <li key={index}>
-                    <CartItem data={item} />
+            {props.items && props.items.length > 0 ? (
+                props.items.map((item, index) => (
+                    <li key={index}>
+                        <CartItem data={item} />
+                    </li>
+                ))
+            ) : (
+                <li className={cb('empty-cart')}>
+                    <p>Chưa có sản phẩm</p>
                 </li>
-            ))}
+            )}
         </ul>
     </div>
 );

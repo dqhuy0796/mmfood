@@ -12,7 +12,6 @@ class Drink extends React.Component {
         this.props.fetchProducts(2);
     }
     render() {
-        console.log(this.props.products);
         return (
             <>
                 <Header />

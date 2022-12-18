@@ -1,12 +1,14 @@
-import classNames from 'classnames/bind';
 import React from 'react';
 import emptyCartImage from '~/assets/images/empty-cart.png';
 import CartItem from '~/components/partial/CartItem';
 import Button from '~/components/shared/buttons/Button';
 import config from '~/config';
 import BaseRightSideModal from '../BaseRightSideModal';
-import styles from './CartModal.module.scss';
+//redux
 import { connect } from 'react-redux';
+//style
+import classNames from 'classnames/bind';
+import styles from './CartModal.module.scss';
 
 const cb = classNames.bind(styles);
 

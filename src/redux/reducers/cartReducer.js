@@ -70,12 +70,11 @@ const cartReducer = (state = initState, action) => {
             // eslint-disable-next-line array-callback-return
             state.items.map((item, index) => {
                 if (item.id === action.payload.id) {
-                    state.items[index].quantity = state.items[index].quantity > 1 ? state.items[index].quantity - 1 : 1;
-                    state.quantity = state.quantity > 1 ? state.quantity - 1 : 1;
-                    state.subtotal =
-                        state.subtotal > state.items[index].newPrice
-                            ? state.subtotal - state.items[index].newPrice
-                            : state.items[index].newPrice;
+                    if (state.items[index].quantity > 1) {
+                        state.items[index].quantity = state.items[index].quantity - 1;
+                        state.quantity = state.quantity - 1;
+                        state.subtotal = state.subtotal - state.items[index].newPrice;
+                    }
                 }
             });
             return {
