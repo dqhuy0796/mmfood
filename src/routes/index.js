@@ -23,10 +23,10 @@ const publicRoutes = [
     { path: config.routes.search, Component: Search },
     { path: config.routes.login, Component: Login },
     { path: config.routes.register, Component: Register },
-    { path: config.routes.checkout, Component: Checkout },
 ];
 const privateRoutes = [
     // cmt
+    { path: config.routes.checkout, Component: Checkout },
     { path: config.routes.account, Component: Account },
 ];
 export { publicRoutes, privateRoutes };

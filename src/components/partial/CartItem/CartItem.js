@@ -1,9 +1,11 @@
-import classNames from 'classnames/bind';
 import React from 'react';
 import { BsChevronDown, BsChevronUp } from 'react-icons/bs';
 import { MdDeleteOutline } from 'react-icons/md';
+//redux and action
 import { connect } from 'react-redux';
 import { cartItemDescrease, cartItemIncrease, cartItemRemove } from '~/redux/actions/cartActions';
+//styles
+import classNames from 'classnames/bind';
 import styles from './CartItem.module.scss';
 
 const cb = classNames.bind(styles);
@@ -14,7 +16,7 @@ class CartItem extends React.Component {
             <div className={cb('cart-item')}>
                 <div className={cb('image')}>
                     <div className={cb('image-link')}>
-                        <img src={this.props.data.url} alt={this.props.data.name} />
+                        <img src={this.props.data.imageUrl} alt={this.props.data.name} />
                     </div>
                 </div>
                 <div className={cb('info')}>

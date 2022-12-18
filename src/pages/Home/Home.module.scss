@@ -1,37 +1,19 @@
-.home {
-    .img-bg {
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-    }
-    .main {
-        position: relative;
+.background {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background: var(--gradient-pink),
+        url(https://res.cloudinary.com/dqhuy/image/upload/v1667639893/MMFood/Food/banh-canh-dacbiet_nkjhsy.jpg);
+    background-size: cover;
+    background-position: center;
+    .wrapper {
+        padding: 16px 8px;
+        margin: 0 auto;
         width: 100%;
-        overflow: hidden;
-        .background {
-            position: absolute;
-            inset: 0;
-            z-index: -1;
-            background-image: url(http://file.hstatic.net/1000075078/article/2_40694d37404e49319f9d46392cebdf28.jpg);
-            background-attachment: fixed;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            filter: blur(8px);
-            -webkit-filter: blur(8px);
-        }
-        .wrapper {
-            z-index: 2;
-            padding: 16px 8px;
-            margin: 0 auto;
-            width: 100%;
-            max-width: 1200px;
-        }
+        max-width: 1200px;
     }
 }
-
 .content-section {
     display: flex;
     align-items: center;

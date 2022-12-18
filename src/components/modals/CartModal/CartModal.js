@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind';
 import React from 'react';
-import EMPTY_CART_IMAGE from '~/assets/images/empty-cart.png';
+import emptyCartImage from '~/assets/images/empty-cart.png';
 import CartItem from '~/components/partial/CartItem';
 import Button from '~/components/shared/buttons/Button';
 import config from '~/config';
@@ -29,7 +29,7 @@ class CartModal extends React.Component {
                         ) : (
                             <li className={cb('empty-cart')}>
                                 <div className={cb('image')}>
-                                    <img src={EMPTY_CART_IMAGE} alt={'Chưa có sản phẩm'} />
+                                    <img src={emptyCartImage} alt={'Chưa có sản phẩm'} />
                                 </div>
                                 <h2>Chưa có sản phẩm</h2>
                             </li>

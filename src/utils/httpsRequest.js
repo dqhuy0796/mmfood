@@ -4,11 +4,6 @@ const request = axios.create({
     baseURL: 'http://localhost:8000/api/',
 });
 
-export const login = async (path, payload) => {
-    const response = await request.post(path, payload);
-    return response.data;
-};
-
 export const getApi = async (url, payload) => {
     const response = await request.get(url, { params: payload });
     return response.data;

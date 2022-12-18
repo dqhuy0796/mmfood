@@ -1,14 +1,16 @@
-import classNames from 'classnames/bind';
 import React from 'react';
 import RowInput from '~/components/partial/RowInput';
 import Button from '~/components/shared/buttons/Button';
 import TransparentButton from '~/components/shared/buttons/TransparentButton';
 import config from '~/config';
 import { userService } from '~/services';
+// redux and actions
+import { connect } from 'react-redux';
+import { login } from '~/redux/actions/authActions';
+//style
+import classNames from 'classnames/bind';
 import styles from './Login.module.scss';
-
 const cb = classNames.bind(styles);
-
 class Login extends React.Component {
     state = {
         content: [
@@ -40,12 +42,13 @@ class Login extends React.Component {
     };
 
     handleLogin = async (data) => {
-        let response = await userService.LoginService(data);
+        let response = await userService.loginService(data);
         if (response) {
             this.setState((prevState) => ({
                 ...prevState,
                 message: response.message,
             }));
+            this.props.login(response.result);
         }
     };
 
@@ -104,4 +107,13 @@ class Login extends React.Component {
     }
 }
 
-export default Login;
+const mapStateToProps = (state) => ({
+    isLoggedIn: state.isLoggedIn,
+    user: state.user,
+});
+
+const mapActionsToProps = (dispatch) => ({
+    login: (user) => dispatch(login(user)),
+});
+
+export default connect(mapStateToProps, mapActionsToProps)(Login);

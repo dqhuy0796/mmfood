@@ -78,7 +78,7 @@ class Register extends React.Component {
 
     //process api
     handleRegister = async (data) => {
-        let response = await userService.RegisterService(data);
+        let response = await userService.registerService(data);
         if (response) {
             this.setState((prevState) => ({
                 ...prevState,

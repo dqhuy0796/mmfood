@@ -24,7 +24,7 @@ const cartReducer = (state = initState, action) => {
                 // eslint-disable-next-line array-callback-return
                 state.items.map((item, index) => {
                     if (item.id === action.payload.id) {
-                        state.items[index].quantity++;
+                        state.items[index].quantity = state.items[index].quantity + 1;
                         isExistItem = true;
                     }
                 });
