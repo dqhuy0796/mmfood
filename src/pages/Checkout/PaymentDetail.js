@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from '~/components/shared/buttons/Button';
+import DialogMessage from '~/components/partial/DialogMessage/DialogMessage';
 //redux
 import { connect } from 'react-redux';
 import { login } from '~/redux/actions/authActions';
@@ -10,7 +11,24 @@ import styles from './PaymentDetail.module.scss';
 const cb = classNames.bind(styles);
 
 class PaymentDetail extends React.Component {
-    state = {};
+    state = {
+        dialog: {
+            active: false,
+        },
+    };
+
+    handleActiveDialog = (data) => {
+        this.setState((prevState) => ({
+            ...prevState,
+            dialog: {
+                ...prevState.dialog,
+                active: !prevState.dialog.active,
+                title: 'Hệ thống',
+                message: 'Không khả dụng. Vui lòng quay lại sau.',
+            },
+        }));
+    };
+
     render() {
         return (
             <div className={cb('wrapper')}>
@@ -53,9 +71,15 @@ class PaymentDetail extends React.Component {
                         </p>
                     </div>
                     {this.props.cart.subtotal > 0 && (
-                        <Button size={'large'} shape={'pill'} color={'red'}>
+                        <Button size={'large'} shape={'pill'} color={'red'} onClick={() => this.handleActiveDialog()}>
                             <span>Đặt hàng</span>
                         </Button>
+                    )}
+                </div>
+
+                <div className={cb('modal-container')}>
+                    {this.state.dialog.active && (
+                        <DialogMessage {...this.state.dialog} handleActiveDialog={this.handleActiveDialog} />
                     )}
                 </div>
             </div>

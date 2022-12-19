@@ -46,7 +46,12 @@ class CartModal extends React.Component {
                                         <ItemPrice value={this.props.cart.subtotal} />
                                     </span>
                                 </p>
-                                <Button size={'large'} shape={'pill'} color={'error'} to={config.routes.checkout}>
+                                <Button
+                                    size={'large'}
+                                    shape={'pill'}
+                                    color={'error'}
+                                    to={this.props.isLoggedIn ? config.routes.checkout : config.routes.login}
+                                >
                                     Thanh toán
                                 </Button>
                             </>
@@ -62,6 +67,7 @@ const ItemPrice = (props) => <span>{props.value.toLocaleString('vn-VI', { style:
 
 const mapStateToProps = (state) => ({
     cart: state.cart,
+    isLoggedIn: state.auth.isLoggedIn,
 });
 
 const mapActionsToProps = (action) => ({
