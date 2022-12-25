@@ -6,8 +6,6 @@
     font-weight: 500;
     text-transform: uppercase;
     font-family: 'Montserrat', sans-serif;
-    color: var(--color-text);
-    background-color: transparent;
     box-shadow: none;
     outline: none;
     border: none;
@@ -34,25 +32,28 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        top: 0px;
+        left: calc(100% - 24px);
+        padding: 3px 6px;
         min-width: 24px;
-        top: -2px;
-        right: -2px;
-        padding: 4px;
         color: var(--color-white);
         font-size: 1.4rem;
         background-color: var(--color-red);
         border-radius: 999px;
     }
 }
+.wrapper.overflow-hidden {
+    overflow: hidden;
+}
 .wrapper.tiny {
     width: 32px;
     height: 32px;
-    font-size: 3rem;
+    font-size: 2rem;
 }
 .wrapper.medium {
     width: 40px;
     height: 40px;
-    font-size: 3rem;
+    font-size: 2.5rem;
 }
 .wrapper.large {
     width: 48px;
@@ -71,10 +72,10 @@
 .wrapper.transparent {
     color: var(--color-text);
     background-color: transparent;
-    &:hover {
-        color: var(--color-shadow);
-        box-shadow: none;
-    }
+}
+.wrapper.blur {
+    color: var(--color-dark);
+    background-color: #ffffff55;
 }
 .wrapper.white {
     color: var(--color-text);

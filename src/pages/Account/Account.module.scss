@@ -1,0 +1,208 @@
+.background {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background: var(--gradient-pink),
+        url(https://res.cloudinary.com/dqhuy/image/upload/v1667639893/MMFood/Food/banh-canh-dacbiet_nkjhsy.jpg);
+    background-size: cover;
+    background-position: center;
+    .wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        width: 100%;
+        max-width: 1200px;
+        height: 100%;
+        background-color: transparent;
+        // overflow: hidden;
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            gap: 16px;
+            width: 100%;
+            background-color: var(--color-white);
+            box-shadow: 0px 2px 4px 1px var(--color-shadow);
+            border: 1px solid var(--color-border);
+            border-radius: 4px;
+            .avatar {
+                flex-shrink: 0;
+                position: relative;
+                width: 100px;
+                padding-top: 100px;
+                background-color: var(--color-shadow);
+                border-radius: 50%;
+                overflow: hidden;
+                img {
+                    position: absolute;
+                    inset: 0;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    background-color: var(--color-shadow);
+                    border-radius: 50%;
+                }
+            }
+            .detail {
+                flex: 1;
+                border-radius: 4px;
+                ul + ul {
+                    margin-top: 12px;
+                }
+                ul {
+                    list-style: none;
+                    &:first-child {
+                        li {
+                            padding: 2px 4px;
+                            p {
+                                font-size: 1.2rem;
+                                font-weight: 400;
+                                color: var(--color-shadow);
+                                display: -webkit-box;
+                                -webkit-box-orient: vertical;
+                                line-clamp: 1;
+                                -webkit-line-clamp: 1;
+                                text-overflow: ellipsis;
+                                white-space: normal;
+                                overflow: hidden;
+                            }
+                            &:first-child {
+                                p {
+                                    font-size: 1.6rem;
+                                    font-weight: 600;
+                                    color: var(--color-text);
+                                }
+                            }
+                        }
+                    }
+                    &:last-child {
+                        display: flex;
+                        align-items: center;
+                        justify-content: flex-end;
+                        padding-top: 8px;
+                        gap: 8px;
+                        border-top: 1px solid var(--color-border);
+                        button {
+                            font-size: 2rem;
+                        }
+                    }
+                }
+            }
+        }
+        .body {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+            background-color: var(--color-white);
+            box-shadow: 0px 3px 4px 1px var(--color-shadow);
+            border-radius: 4px;
+            overflow: hidden;
+            .order-nav {
+                display: flex;
+                border-bottom: 1px solid var(--color-border);
+                li {
+                    width: 20%;
+                    p {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        position: relative;
+                        padding: 16px 0;
+                        width: 100%;
+                        height: 100%;
+                        cursor: pointer;
+                        &::before {
+                            content: '';
+                            position: absolute;
+                            bottom: 0;
+                            left: 50%;
+                            right: 50%;
+                            height: 3px;
+                            background-color: var(--color-primary);
+                            -webkit-transition: ease-out 0.3s;
+                            -moz-transition: ease-out 0.3s;
+                            -ms-transition: ease-out 0.3s;
+                            -o-transition: ease-out 0.3s;
+                            transition: ease-out 0.3s;
+                        }
+                        &:hover {
+                            background-color: #eeeeee;
+                        }
+                    }
+                    .selected {
+                        &::before {
+                            left: 0;
+                            right: 0;
+                        }
+                    }
+                }
+            }
+            .list {
+                flex: 1;
+                padding: 8px;
+                width: 100%;
+                height: 100%;
+                max-height: 200vh;
+                overflow: overlay;
+                .empty {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 100%;
+                    height: 100%;
+                    font-size: 1.6rem;
+                    font-weight: 600;
+                    color: var(--color-shadow);
+                }
+                .order-item + .order-item {
+                    margin-top: 8px;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 1024px) {
+    .background {
+        padding: 16px 0;
+        .wrapper {
+            .header {
+                .avatar {
+                    width: 200px;
+                    padding-top: 200px;
+                }
+                .detail {
+                    ul {
+                        &:first-child {
+                            li {
+                                padding: 4px;
+                                p {
+                                    font-size: 1.4rem;
+                                    font-weight: 500;
+                                }
+                                &:first-child {
+                                    p {
+                                        font-size: 2rem;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@keyframes Slide {
+    from {
+        background-position: 400%;
+    }
+    to {
+        background-position: 0%;
+    }
+}

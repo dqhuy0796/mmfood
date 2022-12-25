@@ -17,6 +17,11 @@
     height: 100%;
     width: 100%;
     max-width: 1200px;
+    .action {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
 }
 @media (min-width: 1024px) {
     .hamburger-btn {

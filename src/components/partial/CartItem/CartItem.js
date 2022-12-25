@@ -56,10 +56,10 @@ const mapStateToProps = (state) => ({
     cart: state.cart,
 });
 
-const mapActionsToProps = (action) => ({
-    itemRemove: (item) => action(cartItemRemove(item)),
-    itemIncrease: (item) => action(cartItemIncrease(item)),
-    itemDescrease: (item) => action(cartItemDescrease(item)),
+const mapActionsToProps = (dispatch) => ({
+    itemRemove: (item) => dispatch(cartItemRemove(item)),
+    itemIncrease: (item) => dispatch(cartItemIncrease(item)),
+    itemDescrease: (item) => dispatch(cartItemDescrease(item)),
 });
 
 export default connect(mapStateToProps, mapActionsToProps)(CartItem);

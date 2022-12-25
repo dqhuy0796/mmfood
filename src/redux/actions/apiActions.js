@@ -20,3 +20,13 @@ export const fetchProducts = (id) => async (dispatch) => {
     const response = await systemService.fetchProductService(id);
     dispatch(mapProducts(response.result));
 };
+
+export const mapHistoryOrders = (data) => ({
+    type: apiActionTypes.getHistoryOrders,
+    payload: data,
+});
+
+export const fetchHistoryOrders = (id) => async (dispatch) => {
+    const response = await systemService.fetchHistoryOrderService(id);
+    dispatch(mapHistoryOrders(response.result));
+};

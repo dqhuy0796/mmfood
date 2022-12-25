@@ -1,6 +1,7 @@
 import classNames from 'classnames/bind';
 import React from 'react';
 import { MdCheckCircle, MdRadioButtonUnchecked } from 'react-icons/md';
+import Subtitle from './Subtitle';
 import styles from './DeliveryMethod.module.scss';
 
 const cb = classNames.bind(styles);
@@ -23,22 +24,11 @@ class DeliveryMethod extends React.Component {
         let year = currentDate.getFullYear();
         return `${day}/${month}/${year}`;
     };
-    handleSelectDeliveryService = (index) => {
-        let temp = this.state.deliveryServices;
-        temp.map((item) => (item.selected = false));
-        // temp[index].selected = true;
-        this.setState((prevState) => ({
-            ...prevState,
-            deliveryServices: temp,
-        }));
-    };
 
     render() {
         return (
             <div className={cb('delivery')}>
-                <p className={cb('title')}>
-                    <span>Tùy chọn giao hàng</span>
-                </p>
+                <Subtitle text={'Tùy chọn giao hàng'} />
                 <div className={cb('container')}>
                     <DeliveryServiceItem
                         selected={true}

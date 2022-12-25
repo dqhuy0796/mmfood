@@ -17,6 +17,7 @@
 .wrapper {
     width: 100%;
     max-width: 1200px;
+    min-height: 100vh;
     margin: 0 auto;
     padding: 32px 16px;
     .list {
@@ -25,10 +26,10 @@
         gap: 8px;
     }
 }
-@media (min-width: 768px) {
-    .wrapper {
-        .list {
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-        }
-    }
-}
+// @media (min-width: 768px) {
+//     .wrapper {
+//         .list {
+//             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+//         }
+//     }
+// }

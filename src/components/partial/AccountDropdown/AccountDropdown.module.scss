@@ -1,0 +1,88 @@
+.wrapper {
+    position: relative;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid transparent;
+    .icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        font-size: 2.5rem;
+        color: var(--color-text);
+    }
+    .avatar {
+        display: block;
+        position: relative;
+        padding-top: 100%;
+        background-color: var(--color-light);
+        border-radius: 50%;
+        overflow: hidden;
+        img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+    }
+    .dropdown {
+        display: none;
+        position: absolute;
+        z-index: 2;
+        top: calc(100% + 14px);
+        right: -4px;
+        background-color: var(--color-white);
+        box-shadow: 0px 1px 4px 1px var(--color-shadow);
+        border: 2px solid var(--color-border);
+        border-radius: 6px;
+        &::before {
+            content: '';
+            position: absolute;
+            top: -24px;
+            right: 6px;
+            width: 0;
+            background-color: transparent;
+            border-width: 12px 16px;
+            border-color: transparent transparent var(--color-border) transparent;
+            border-style: solid;
+        }
+        ul {
+            list-style: none;
+            width: max-content;
+            min-width: 160px;
+            li {
+                width: 100%;
+                .dropdown-link {
+                    display: block;
+                    padding: 16px 8px;
+                    width: 100%;
+                    height: 100%;
+                    text-align: center;
+                    font-size: 1.6rem;
+                    font-weight: 500;
+                    color: var(--color-text);
+                    outline: none;
+                    border: none;
+                    overflow: hidden;
+                    user-select: none;
+                    cursor: pointer;
+                    &:hover {
+                        text-decoration: underline;
+                        color: var(--color-blue);
+                    }
+                }
+            }
+        }
+    }
+    &:hover {
+        box-shadow: 0px 0px 4px 1px var(--color-shadow);
+        border-color: var(--color-white);
+        .dropdown {
+            display: initial;
+        }
+    }
+}

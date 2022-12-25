@@ -3,6 +3,7 @@
         url(https://res.cloudinary.com/dqhuy/image/upload/v1667639893/MMFood/Food/banh-canh-dacbiet_nkjhsy.jpg);
     background-size: cover;
     background-position: center;
+    min-height: 100vh;
     .wrapper {
         display: flex;
         justify-content: space-between;
@@ -18,25 +19,6 @@
     }
 }
 
-.cart {
-    padding: 16px;
-    background-color: var(--color-white);
-    .title {
-        margin-bottom: 16px;
-        font-weight: 600;
-        color: var(--color-text);
-    }
-    ul {
-        list-style: none;
-        li {
-            width: 100%;
-        }
-        li + li {
-            padding-top: 16px;
-        }
-    }
-}
-
 @media (min-width: 1024px) {
     .background {
         .wrapper {
@@ -44,9 +26,11 @@
             gap: 12px;
             .left {
                 width: calc(60% - 6px);
+                height: 100%;
             }
             .right {
                 width: calc(40% - 6px);
+                height: 100%;
             }
         }
     }

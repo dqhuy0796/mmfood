@@ -12,7 +12,6 @@ class RowInput extends React.Component {
     }
 
     state = {
-        value: '',
         option: {},
     };
 
@@ -106,7 +105,6 @@ class RowInput extends React.Component {
                 ...prevState,
                 value: this.imageUrlRef.value,
             }));
-            console.log('image', this.state.option.value);
         }
     };
 
@@ -137,15 +135,12 @@ class RowInput extends React.Component {
                                     onFocus={this.props.onChange}
                                     onBlur={this.props.onChange}
                                 />
-                                {/* <Button size={'tiny'} color={'primary'}>
-                                    Load
-                                </Button> */}
                             </div>
                         </div>
                     ) : (
                         <input
                             {...this.state.option}
-                            value={this.props.value}
+                            value={this.props.value || ''}
                             onChange={this.props.onChange}
                             onFocus={this.props.onChange}
                             onBlur={this.props.onChange}

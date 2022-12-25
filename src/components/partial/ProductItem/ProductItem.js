@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { BiPlus } from 'react-icons/bi';
 import { BsHeartFill } from 'react-icons/bs';
+import IconButton from '~/components/shared/buttons/IconButton';
 // redux and action
 import { connect } from 'react-redux';
 import { cartItemAdd } from '~/redux/actions/cartActions';
@@ -17,7 +18,7 @@ class ProductItem extends React.Component {
 
     render() {
         return (
-            <Link className={cb('product-item')}>
+            <Link className={cb('product-item')} title={this.props.name}>
                 {this.props.data.oldPrice > this.props.data.newPrice && (
                     <div className={cb('discount')}>
                         <p>
@@ -27,12 +28,24 @@ class ProductItem extends React.Component {
                     </div>
                 )}
                 <div className={cb('header')}>
-                    <button className={cb('favourite')}>
+                    <IconButton
+                        className={cb('favourite')}
+                        size={'medium'}
+                        shape={'rect'}
+                        color={'blur'}
+                        onClick={() => this.props.handleActiveDialog(this.props.data)}
+                    >
                         <BsHeartFill />
-                    </button>
-                    <button className={cb('add-to-cart')} onClick={() => this.props.itemAdd(this.props.data)}>
+                    </IconButton>
+                    <IconButton
+                        className={cb('add-to-cart')}
+                        size={'medium'}
+                        shape={'rect'}
+                        color={'blur'}
+                        onClick={() => this.props.itemAdd(this.props.data)}
+                    >
                         <BiPlus />
-                    </button>
+                    </IconButton>
                     <img src={this.props.data.imageUrl} alt={this.props.data.name} />
                 </div>
                 <div className={cb('body')}>
@@ -59,8 +72,8 @@ const mapStateToProps = (state) => ({
     cart: state.cart,
 });
 
-const mapActionsToProps = (action) => ({
-    itemAdd: (item) => action(cartItemAdd(item)),
+const mapActionsToProps = (dispatch) => ({
+    itemAdd: (item) => dispatch(cartItemAdd(item)),
 });
 
 export default connect(mapStateToProps, mapActionsToProps)(ProductItem);

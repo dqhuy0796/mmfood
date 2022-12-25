@@ -11,6 +11,7 @@ const paymentMethods = [
     {
         title: 'Thanh toán khi nhận hàng',
         description: 'Cash On Delivery',
+        selected: true,
         imageUrl:
             'https://lzd-img-global.slatic.net/g/tps/tfs/TB1ZP8kM1T2gK0jSZFvXXXnFXXa-96-96.png_2200x2200q80.jpg_.webp',
     },
@@ -76,7 +77,10 @@ class PaymentMethod extends React.Component {
     }
 }
 const PaymentItem = (props) => (
-    <div className={cb('payment-item')}>
+    <div className={cb('payment-item', props.data.selected && 'selected')}>
+        <div className={cb('check')}>
+            {props.data.selected ? <MdCheckCircle className={cb('checked')} /> : <MdRadioButtonUnchecked />}
+        </div>
         <div className={cb('content')}>
             <div className={cb('header')}>
                 <img src={props.data.imageUrl} alt={props.data.description} />
@@ -92,7 +96,6 @@ const PaymentItem = (props) => (
                 </div>
             </div>
         </div>
-        <div className={cb('check')}>{props.selected ? <MdCheckCircle /> : <MdRadioButtonUnchecked />}</div>
     </div>
 );
 

@@ -3,9 +3,9 @@
     display: block;
     padding: 6px;
     text-align: center;
-    box-shadow: 0 0 5px #aaa;
+    box-shadow: 0 2px 4px 0px var(--color-shadow);
     border-radius: 6px;
-    background-color: #fff;
+    background-color: var(--color-white);
     overflow: hidden;
     &:hover {
         img {
@@ -68,34 +68,22 @@
         z-index: 2;
         position: absolute;
         bottom: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 40px;
-        height: 40px;
-        background-color: transparent;
-        border: none;
-        outline: none;
-        overflow: hidden;
-        cursor: pointer;
         -webkit-transition: ease-out 0.3s;
         -moz-transition: ease-out 0.3s;
         -ms-transition: ease-out 0.3s;
         -o-transition: ease-out 0.3s;
         transition: ease-out 0.3s;
-        &:hover {
-            color: var(--color-primary);
-        }
     }
     .favourite {
         left: -100%;
-        font-size: 2.5rem;
-        color: var(--color-red);
+        font-size: 2rem !important;
+        color: var(--color-red) !important;
+        border-top-right-radius: 6px !important;
     }
     .add-to-cart {
         right: -100%;
-        font-size: 5rem;
-        color: var(--color-text);
+        color: var(--color-blue) !important;
+        border-top-left-radius: 6px !important;
     }
 }
 .body {
@@ -127,11 +115,11 @@
         font-weight: 600;
         span {
             &:nth-child(1) {
-                color: #f70000;
+                color: var(--color-red);
             }
             &:nth-child(2) {
                 text-decoration: line-through;
-                color: #aaa;
+                color: var(--color-border);
             }
         }
         span + span {

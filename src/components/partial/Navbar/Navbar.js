@@ -1,11 +1,9 @@
 import classNames from 'classnames/bind';
 import React from 'react';
-import { BiUser } from 'react-icons/bi';
 import { FiSearch } from 'react-icons/fi';
-import IconButton from '~/components/shared/buttons/IconButton';
+import config from '~/config';
 import styles from './Navbar.module.scss';
 import NavbarItem from './NavbarItem';
-import config from '~/config';
 
 const cb = classNames.bind(styles);
 
@@ -30,7 +28,6 @@ class Navbar extends React.Component {
                             <NavbarItem path={item.path} title={item.title} />
                         </li>
                     ))}
-                    {/* <IconButton icon={<BiUser />} /> thay đổi thứ tự của nút này */}
                 </ul>
             </div>
         );

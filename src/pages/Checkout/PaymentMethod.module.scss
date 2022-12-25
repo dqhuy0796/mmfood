@@ -25,7 +25,9 @@
 
 .payment-item {
     position: relative;
-    border: 1px solid var(--color-border);
+    background-color: var(--color-white);
+    box-shadow: 0 4px 4px -1px var(--color-border);
+    border: 1.5px solid var(--color-border);
     border-radius: 6px;
     cursor: pointer;
     .content {
@@ -34,7 +36,7 @@
         .header {
             display: flex;
             align-items: center;
-            justify-content: start;
+            justify-content: flex-start;
             padding-bottom: 8px;
             img {
                 height: 28px;
@@ -74,5 +76,12 @@
         top: 0;
         padding: 8px;
         color: var(--color-shadow);
+    }
+}
+
+.payment-item.selected {
+    border-color: var(--color-blue);
+    .check {
+        color: var(--color-blue);
     }
 }

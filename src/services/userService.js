@@ -30,3 +30,46 @@ export const registerService = async (user) => {
         console.log(error);
     }
 };
+
+export const updateAddressService = async (phone, addressArray) => {
+    const path = 'customer/update/address';
+    const payload = {
+        phone: phone,
+        address: JSON.stringify(addressArray),
+    };
+    try {
+        const result = await httpsRequest.postApi(path, payload);
+        return result;
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export const fetchOrderService = async (customerId) => {
+    try {
+        const path = 'order/get';
+        const payload = {
+            id: customerId,
+        };
+        const data = await httpsRequest.getApi(path, payload);
+        return data;
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export const createOrderService = async (customerId, receiverDetails, items, paymentDetails) => {
+    const path = 'order/create';
+    const payload = {
+        customerId: customerId,
+        receiverDetails: JSON.stringify(receiverDetails),
+        items: JSON.stringify(items),
+        paymentDetails: JSON.stringify(paymentDetails),
+    };
+    try {
+        const result = await httpsRequest.postApi(path, payload);
+        return result;
+    } catch (error) {
+        console.log(error);
+    }
+};

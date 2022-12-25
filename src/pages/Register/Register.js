@@ -85,7 +85,6 @@ class Register extends React.Component {
                 message: response.message,
             }));
         }
-        console.log(data);
     };
     handleShowErrorMessage = (code) => {
         switch (code) {

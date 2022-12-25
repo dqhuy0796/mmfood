@@ -11,6 +11,18 @@
         padding: 16px;
         overflow-y: overlay;
         list-style: none;
+        -webkit-transition: ease-out 0.3s;
+        -moz-transition: ease-out 0.3s;
+        -ms-transition: ease-out 0.3s;
+        -o-transition: ease-out 0.3s;
+        transition: ease-out 0.3s;
+        .message {
+            padding: 4px;
+            text-align: center;
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: var(--color-red);
+        }
         li {
             width: 100%;
         }
@@ -22,48 +34,9 @@
         flex-shrink: 0;
         padding: 16px;
         width: 100%;
-    }
-}
-
-// ADDRESS DETAIL
-
-.address-detail {
-    position: relative;
-    padding: 12px;
-    border: 1px solid var(--color-border);
-    border-radius: 6px;
-    .check {
-        position: absolute;
-        top: 8px;
-        right: 8px;
-        color: var(--color-shadow);
-    }
-    .detail {
-        .title {
-            margin-bottom: 6px;
-            span {
-                margin-right: 12px;
-            }
-        }
-        ul {
-            li {
-                p {
-                    font-size: 14px;
-                    font-weight: 400;
-                    text-align: justify;
-                    color: var(--color-text);
-                }
-                .default-address {
-                    font-size: 1.2rem;
-                    color: var(--color-blue);
-                    padding: 2px 5px;
-                    border-radius: 4px;
-                    border: 1px solid var(--color-blue);
-                }
-            }
-            li + li {
-                margin-top: 16px;
-            }
+        label {
+            display: block;
+            margin-bottom: 16px;
         }
     }
 }

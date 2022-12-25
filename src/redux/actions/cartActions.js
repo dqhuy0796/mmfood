@@ -19,3 +19,7 @@ export const cartItemDescrease = (item) => ({
     type: cartActionTypes.descreaseItem,
     payload: { ...item, quantity: 1 },
 });
+
+export const cartItemRemoveAll = () => ({
+    type: cartActionTypes.removeAll,
+});

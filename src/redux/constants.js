@@ -8,6 +8,7 @@ export const cartActionTypes = Object.freeze({
     removeItem: 'REMOVE_ITEM',
     increaseItem: 'INCREASE_ITEM',
     descreaseItem: 'DESCREASE_ITEM',
+    removeAll: 'REMOVE_ALL_ITEMS',
 });
 
 export const apiActionTypes = Object.freeze({

@@ -81,6 +81,13 @@ const cartReducer = (state = initState, action) => {
                 ...state,
             };
 
+        case cartActionTypes.removeAll:
+            return {
+                quantity: 0,
+                subtotal: 0,
+                items: [],
+            };
+
         default:
             return state;
     }

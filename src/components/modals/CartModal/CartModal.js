@@ -70,7 +70,7 @@ const mapStateToProps = (state) => ({
     isLoggedIn: state.auth.isLoggedIn,
 });
 
-const mapActionsToProps = (action) => ({
+const mapActionsToProps = (dispatch) => ({
     //
 });
 

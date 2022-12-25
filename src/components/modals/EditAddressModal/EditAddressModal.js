@@ -1,91 +1,93 @@
 import classNames from 'classnames/bind';
 import React from 'react';
-import { MdAddLocation, MdCheckCircle, MdRadioButtonUnchecked } from 'react-icons/md';
+import { MdAddLocation } from 'react-icons/md';
+import Button from '~/components/shared/buttons/Button';
 import TransparentButton from '~/components/shared/buttons/TransparentButton';
 import BaseRightSideModal from '../BaseRightSideModal';
+import AddressDetail, { NewAddressDetail } from '~/components/partial/AddressDetail';
 import styles from './EditAddressModal.module.scss';
-
+import _ from 'lodash';
 const cb = classNames.bind(styles);
-
 class EditAddressModal extends React.Component {
     state = {
-        address: [
-            {
-                id: 1,
-                name: 'Đồng Quốc Huy',
-                phone: '0985 805 096',
-                address: 'Tổ 4, Phường Tân Thịnh, Thành phố Thái Nguyên',
-                default: false,
-            },
-            {
-                id: 2,
-                name: 'Đồng Quốc Huy',
-                phone: '0985 805 096',
-                address: 'Trường ĐH CNTT, Đường z115, Thành phố Thái Nguyên',
-                default: true,
-            },
-            {
-                id: 3,
-                name: 'Đồng Quốc Huy',
-                phone: '0985 805 096',
-                address: 'Thôn 6, xã Trung Môn, huyện Yên Sơn, tỉnh Tuyên Quang',
-                default: false,
-            },
-        ],
+        listAddress: [],
+        createNewAddress: false,
+        message: '',
     };
 
-    handleSelectAddress = (id) => {
-        // let selectedAddress = this.state.address.filter((item) => item.id === id)[0];
-        // console.log(selectedAddress);
+    componentDidMount = () => {
+        // const listAddressProps = this.props.data.map(
+        //     (item, index) => (item = { ...item, onClick: () => this.handleOnClickSelectAddress(index) }),
+        // );
+        this.setState((prevState) => ({
+            ...prevState,
+            listAddress: this.props.data,
+        }));
+    };
+
+    handleOnClickCreateAddress = (data) => {
+        this.setState((prevState) => ({
+            ...prevState,
+            createNewAddress: !prevState.createNewAddress,
+        }));
+        if (data && !_.isEmpty(data)) {
+            this.props.handleAddNewAddress(data);
+        }
+    };
+
+    handleOnClickSelectAddress = (index) => {
+        let newListAddress = this.state.listAddress;
+        newListAddress.map((address) => (address.selected = false));
+        newListAddress[index].selected = true;
+        this.setState((prevState) => ({
+            ...prevState,
+            listAddress: newListAddress,
+        }));
+    };
+
+    handleSubmit = (event) => {
+        event.preventDefault();
+        this.props.handleUpdateAddress(this.state.listAddress);
     };
 
     render() {
         return (
             <BaseRightSideModal title={'Địa chỉ nhận hàng'} handleCollapseModal={this.props.handleCollapseModal}>
-                <div className={cb('container')}>
+                <form className={cb('container')} onSubmit={this.handleSubmit}>
                     <div className={cb('header')}>
-                        <TransparentButton onClick={() => {}}>
+                        <TransparentButton onClick={() => this.handleOnClickCreateAddress()}>
                             <MdAddLocation />
                             <span>Thêm địa chỉ mới</span>
                         </TransparentButton>
                     </div>
                     <ul className={cb('body')}>
-                        {this.state.address.map((item, index) => (
+                        {this.state.listAddress.map((item, index) => (
                             <li key={index}>
-                                <AddressDetail data={item} handleOnClick={this.handleSelectAddress(item.id)} />
+                                <AddressDetail data={item} />
                             </li>
                         ))}
+                        {this.state.message && <p className={cb('message')}>{this.state.message}</p>}
+                        {this.state.createNewAddress && (
+                            <li>
+                                <NewAddressDetail handleOnClickCreateAddress={this.handleOnClickCreateAddress} />
+                            </li>
+                        )}
                     </ul>
-                </div>
+                    <div className={cb('footer')}>
+                        <label>
+                            <input type={'submit'} hidden />
+                            <Button size={'medium'} shape={'rounded'} color={'info'}>
+                                <span>Xác nhận</span>
+                            </Button>
+                        </label>
+                        <Button size={'medium'} shape={'rounded'} onClick={this.props.handleCollapseModal}>
+                            <span>Hủy</span>
+                        </Button>
+                    </div>
+                </form>
             </BaseRightSideModal>
         );
     }
 }
-
-const AddressDetail = (props) => (
-    <div className={cb('address-detail')} onClick={props.handleOnClick}>
-        <div className={cb('check')}>
-            {props.isChecked ? <MdCheckCircle style={{ color: 'var(--color-green)' }} /> : <MdRadioButtonUnchecked />}
-        </div>
-        <div className={cb('detail')}>
-            <ul>
-                <li>
-                    <p>{props.data.name}</p>
-                </li>
-                <li>
-                    <p>{props.data.phone}</p>
-                </li>
-                <li>
-                    <p>{props.data.address}</p>
-                </li>
-                {props.data.default && (
-                    <li>
-                        <span className={cb('default-address')}>Địa chỉ nhận hàng mặc định</span>
-                    </li>
-                )}
-            </ul>
-        </div>
-    </div>
-);
 
 export default EditAddressModal;

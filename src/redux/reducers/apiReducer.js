@@ -16,7 +16,6 @@ const apiReducer = (state = initState, action) => {
             };
 
         case apiActionTypes.getProducts:
-            console.log(action.payload);
             return {
                 ...state,
                 products: action.payload,

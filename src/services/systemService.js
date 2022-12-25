@@ -25,3 +25,16 @@ export const fetchProductService = async (categoryId) => {
         console.log(error);
     }
 };
+
+export const fetchHistoryOrderService = async (customerId) => {
+    try {
+        const path = 'order/get';
+        const payload = {
+            id: customerId,
+        };
+        const data = await httpsRequest.getApi(path, payload);
+        return data;
+    } catch (error) {
+        console.log(error);
+    }
+};
