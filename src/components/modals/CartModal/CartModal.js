@@ -37,26 +37,24 @@ class CartModal extends React.Component {
                             </li>
                         )}
                     </ul>
-                    <div className={cb('footer')}>
-                        {this.props.cart.items && this.props.cart.items.length > 0 && (
-                            <>
-                                <p className={cb('subtotal')}>
-                                    <span>Tạm tính:</span>
-                                    <span>
-                                        <ItemPrice value={this.props.cart.subtotal} />
-                                    </span>
-                                </p>
-                                <Button
-                                    size={'large'}
-                                    shape={'pill'}
-                                    color={'error'}
-                                    to={this.props.isLoggedIn ? config.routes.checkout : config.routes.login}
-                                >
-                                    Thanh toán
-                                </Button>
-                            </>
-                        )}
-                    </div>
+                    {this.props.cart.items && this.props.cart.items.length > 0 && (
+                        <div className={cb('footer')}>
+                            <p className={cb('subtotal')}>
+                                <span>Tạm tính:</span>
+                                <span>
+                                    <ItemPrice value={this.props.cart.subtotal} />
+                                </span>
+                            </p>
+                            <Button
+                                size={'large'}
+                                shape={'pill'}
+                                color={'error'}
+                                to={this.props.isLoggedIn ? config.routes.checkout : config.routes.login}
+                            >
+                                Thanh toán
+                            </Button>
+                        </div>
+                    )}
                 </div>
             </BaseRightSideModal>
         );

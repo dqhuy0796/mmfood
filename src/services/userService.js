@@ -86,3 +86,16 @@ export const createOrderService = async (customerId, receiverDetails, items, pay
         console.log(error);
     }
 };
+
+export const cancelOrderService = async (uuid) => {
+    const path = 'order/cancel';
+    const payload = {
+        uuid: uuid,
+    };
+    try {
+        const result = await httpsRequest.postApi(path, payload);
+        return result;
+    } catch (error) {
+        console.log(error);
+    }
+};

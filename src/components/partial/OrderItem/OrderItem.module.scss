@@ -1,107 +1,79 @@
 .wrapper {
-    padding: 8px;
-    box-shadow: 0px 3px 4px -1px var(--color-shadow);
+    background-color: var(--color-light);
+    box-shadow: 0px 1px 4px 0 var(--color-shadow);
     border: 1px solid var(--color-border);
     border-radius: 4px;
     overflow: hidden;
+    cursor: pointer;
     .header {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        p {
+        padding: 16px 8px;
+        background-color: var(--color-white);
+        box-shadow: 0 1px 4px 0 var(--color-border);
+        .uuid {
             font-size: 1.4rem;
             font-weight: 600;
-            &:first-child {
-                color: var(--color-blue);
-            }
-            &:last-child {
-                color: var(--color-shadow);
-            }
+            color: var(--color-blue);
         }
     }
     .body {
-        margin: 8px 0;
-        border-top: 1px solid var(--color-border);
-        border-bottom: 1px solid var(--color-border);
-
-        .item + .item {
+        padding: 0 8px;
+        li + li {
             border-top: 1px solid var(--color-border);
         }
-        .item {
-            display: flex;
-            align-items: center;
-            padding: 8px 0;
-            gap: 8px;
-            .image {
-                width: 100px;
-                height: 100px;
-                position: relative;
-                img {
-                    position: absolute;
-                    inset: 0;
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                }
-            }
-            .detail {
-                flex: 1;
-                p {
-                    display: -webkit-box;
-                    -webkit-box-orient: vertical;
-                    line-clamp: 1;
-                    -webkit-line-clamp: 1;
-                    text-overflow: ellipsis;
-                    white-space: normal;
-                    overflow: hidden;
-                    &:nth-child(1) {
-                        font-size: 1.6rem;
-                        font-weight: 600;
-                        color: var(--color-text);
-                    }
-                    &:nth-child(2) {
-                        font-size: 1.4rem;
-                        font-weight: 500;
-                        color: var(--color-shadow);
-                    }
-                    &:nth-child(3) {
-                        font-size: 1.4rem;
-                        font-weight: 600;
-                        color: var(--color-text);
-                    }
-                }
-                p + p {
-                    margin-top: 6px;
-                }
-            }
-            .price {
-                text-align: right;
-                font-size: 1.4rem;
-                font-weight: 600;
-                span {
-                    display: block;
-                    &:nth-child(1) {
-                        text-decoration: line-through;
-                        color: var(--color-border);
-                    }
-                    &:nth-child(2) {
-                        color: var(--color-red);
-                    }
-                }
-            }
+        .hidden-item {
+            padding: 16px 0;
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: var(--color-shadow);
         }
     }
     .footer {
-        display: flex;
-        justify-content: flex-end;
+        padding: 16px 8px;
+        text-align: right;
         p {
-            font-size: 1.6rem;
-            font-weight: 600;
-            color: var(--color-text);
+            margin-bottom: 16px;
             span {
-                margin-left: 16px;
-                color: var(--color-red);
+                font-size: 1.4rem;
+                font-weight: 600;
+                color: var(--color-text);
+                &:last-child {
+                    margin-left: 16px;
+                    font-size: 1.8rem;
+                    color: var(--color-red);
+                }
+            }
+        }
+        .action {
+            display: flex;
+            align-items: baseline;
+            justify-content: flex-end;
+            margin-left: auto;
+            gap: 8px;
+            button {
+                max-width: 120px;
             }
         }
     }
+}
+.status {
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+.status.grey {
+    color: var(--color-shadow);
+}
+.status.warning {
+    color: var(--color-warning);
+}
+.status.blue {
+    color: var(--color-blue);
+}
+.status.green {
+    color: var(--color-green);
+}
+.status.error {
+    color: var(--color-error);
 }

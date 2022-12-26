@@ -1,6 +1,5 @@
 .background {
     display: flex;
-    align-items: center;
     justify-content: center;
     width: 100%;
     min-height: 100vh;
@@ -11,28 +10,27 @@
     .wrapper {
         display: flex;
         flex-direction: column;
-        gap: 16px;
+        padding: 8px;
+        gap: 8px;
         width: 100%;
         max-width: 1200px;
-        height: 100%;
         background-color: transparent;
-        // overflow: hidden;
         .header {
             display: flex;
-            align-items: center;
+            align-items: stretch;
             justify-content: center;
-            padding: 16px;
+            padding: 8px 16px;
             gap: 16px;
             width: 100%;
             background-color: var(--color-white);
-            box-shadow: 0px 2px 4px 1px var(--color-shadow);
+            box-shadow: 0px 1px 4px 0 var(--color-shadow);
             border: 1px solid var(--color-border);
             border-radius: 4px;
             .avatar {
                 flex-shrink: 0;
                 position: relative;
                 width: 100px;
-                padding-top: 100px;
+                height: 100px;
                 background-color: var(--color-shadow);
                 border-radius: 50%;
                 overflow: hidden;
@@ -43,15 +41,15 @@
                     height: 100%;
                     object-fit: cover;
                     background-color: var(--color-shadow);
+                    border: 2px solid var(--color-green);
                     border-radius: 50%;
                 }
             }
             .detail {
                 flex: 1;
-                border-radius: 4px;
-                ul + ul {
-                    margin-top: 12px;
-                }
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
                 ul {
                     list-style: none;
                     &:first-child {
@@ -82,6 +80,8 @@
                         display: flex;
                         align-items: center;
                         justify-content: flex-end;
+                        height: max-content;
+                        margin-top: auto;
                         padding-top: 8px;
                         gap: 8px;
                         border-top: 1px solid var(--color-border);
@@ -98,21 +98,22 @@
             flex-direction: column;
             width: 100%;
             height: 100%;
-            background-color: var(--color-white);
-            box-shadow: 0px 3px 4px 1px var(--color-shadow);
             border-radius: 4px;
-            overflow: hidden;
             .order-nav {
                 display: flex;
-                border-bottom: 1px solid var(--color-border);
+                position: relative;
+                z-index: 2;
+                background-color: var(--color-white);
+                box-shadow: 0px 1px 4px 0 var(--color-shadow);
+                border-top-left-radius: 4px;
+                border-top-right-radius: 4px;
                 li {
                     width: 20%;
                     p {
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
+                        text-align: center;
+                        text-overflow: ellipsis;
                         position: relative;
-                        padding: 16px 0;
+                        padding: 16px;
                         width: 100%;
                         height: 100%;
                         cursor: pointer;
@@ -131,7 +132,7 @@
                             transition: ease-out 0.3s;
                         }
                         &:hover {
-                            background-color: #eeeeee;
+                            background-color: var(--color-light);
                         }
                     }
                     .selected {
@@ -144,7 +145,7 @@
             }
             .list {
                 flex: 1;
-                padding: 8px;
+                padding-top: 8px;
                 width: 100%;
                 height: 100%;
                 max-height: 200vh;
@@ -158,6 +159,7 @@
                     font-size: 1.6rem;
                     font-weight: 600;
                     color: var(--color-shadow);
+                    background-color: var(--color-white);
                 }
                 .order-item + .order-item {
                     margin-top: 8px;
@@ -169,12 +171,11 @@
 
 @media (min-width: 1024px) {
     .background {
-        padding: 16px 0;
         .wrapper {
             .header {
                 .avatar {
-                    width: 200px;
-                    padding-top: 200px;
+                    width: 180px;
+                    height: 180px;
                 }
                 .detail {
                     ul {

@@ -39,14 +39,7 @@ class IconButton extends React.Component {
         }
         this.setState((prevState) => ({
             ...prevState,
-            className: [
-                'wrapper',
-                this.props.className,
-                this.props.size,
-                this.props.shape,
-                this.props.color,
-                this.props.value ? '' : 'overflow-hidden',
-            ],
+            className: ['wrapper', this.props.className, this.props.size, this.props.shape, this.props.color],
             options: {
                 ...prevState.options,
                 onClick: this.props.onClick,
@@ -56,7 +49,11 @@ class IconButton extends React.Component {
 
     render() {
         return (
-            <this.state.element className={cb(...this.state.className)} {...this.state.options}>
+            <this.state.element
+                style={this.props.value && this.props.value > 0 ? {} : { overflow: 'hidden' }}
+                className={cb(...this.state.className)}
+                {...this.state.options}
+            >
                 {this.props.children}
                 {this.props.value > 0 && (
                     <span className={cb('tag')}>{this.props.value < 10 ? this.props.value : '9+'}</span>

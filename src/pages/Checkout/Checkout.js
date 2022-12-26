@@ -35,7 +35,7 @@ class Checkout extends React.Component {
             paymentDetails: {
                 discount: 0,
                 deliveryCharges: 20000,
-                PaymentMethod: 'Thanh toán khi nhận hàng',
+                paymentMethod: 'Thanh toán khi nhận hàng',
                 subtotal: this.props.cart.subtotal,
                 totalPayment: this.props.cart.subtotal + 20000,
             },

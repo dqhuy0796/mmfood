@@ -96,6 +96,8 @@
         position: relative;
         inset: 0;
         height: 100%;
+        animation: none;
+        transition: none;
         ul {
             height: 100%;
             display: flex;

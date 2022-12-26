@@ -19,6 +19,10 @@
     --color-white: #ffffff;
     --color-dark: #393939;
     --color-light: #f6f6f6;
+    --color-info: #3498db;
+    --color-success: #0b990f;
+    --color-warning: #fcc201;
+    --color-error: #db1120;
     /* --color-background: #eaf0f8; */
     --gradient-primary: linear-gradient(to bottom, #ffa534 0%, #ff5221b3 100%);
     --gradient-brown: linear-gradient(to bottom, #c68e39 0%, #fbfbbbb3 100%);
@@ -49,9 +53,9 @@ html {
 body {
     font-family: 'Montserrat', sans-serif;
     font-size: 1.6rem;
-    /* line-height: 1.5; */
     text-rendering: optimizeSpeed;
     overflow-y: overlay;
+    /* overflow-x: hidden; */
 }
 
 /* Scrollbar */
