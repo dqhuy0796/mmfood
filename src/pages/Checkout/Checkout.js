@@ -72,7 +72,7 @@ class Checkout extends React.Component {
                 <div className={cb('background')}>
                     <div className={cb('wrapper')}>
                         <div className={cb('left')}>
-                            <DeliveryAddress data={this.state.receiverDetails} />
+                            <DeliveryAddress data={this.props.currentUser} />
                             <DeliveryMethod />
                             <DeliveryPackage data={this.props.cart.items} />
                         </div>
