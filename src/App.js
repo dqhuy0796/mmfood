@@ -1,8 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { publicRoutes, privateRoutes } from './routes';
+import { privateRoutes, publicRoutes } from './routes';
 // redux and actions
 import { connect } from 'react-redux';
-import { login } from '~/redux/actions/authActions';
 function App({ auth }) {
     return (
         <BrowserRouter>

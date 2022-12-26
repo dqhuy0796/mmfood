@@ -5,6 +5,10 @@ const initState = {
     products: [],
     cart: [],
     historyOrders: [],
+    search: {
+        text: '',
+        products: [],
+    },
 };
 
 const apiReducer = (state = initState, action) => {
@@ -31,6 +35,15 @@ const apiReducer = (state = initState, action) => {
             return {
                 ...state,
                 historyOrders: action.payload,
+            };
+
+        case apiActionTypes.getSearchProducts:
+            return {
+                ...state,
+                search: {
+                    text: action.payload.text,
+                    products: action.payload.products,
+                },
             };
 
         default:

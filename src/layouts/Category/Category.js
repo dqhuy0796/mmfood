@@ -12,13 +12,19 @@ class Category extends React.Component {
         return (
             <div className={cb('background')}>
                 <div className={cb('wrapper')}>
-                    <ul className={cb('list')}>
-                        {this.props.data.map((item, index) => (
-                            <li key={index}>
-                                <ProductItem data={item} />
-                            </li>
-                        ))}
-                    </ul>
+                    {this.props.data.length > 0 ? (
+                        <ul className={cb('list')}>
+                            {this.props.data.map((item, index) => (
+                                <li key={index}>
+                                    <ProductItem data={item} />
+                                </li>
+                            ))}
+                        </ul>
+                    ) : (
+                        <div className={cb('empty')}>
+                            <p>Không có kết quả phù hợp</p>
+                        </div>
+                    )}
                 </div>
             </div>
         );

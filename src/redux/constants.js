@@ -17,4 +17,5 @@ export const apiActionTypes = Object.freeze({
     getPosts: 'GET_POSTS_API',
     getProducts: 'GET_PRODUCTS_API',
     getHistoryOrders: 'GET_HISTORY_ORDERS_API',
+    getSearchProducts: 'GET_SEARCH_PRODUCTS_API',
 });

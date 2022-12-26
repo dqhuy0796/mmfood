@@ -45,6 +45,19 @@ export const updateAddressService = async (phone, addressArray) => {
     }
 };
 
+export const searchService = async (input) => {
+    try {
+        const path = 'search';
+        const payload = {
+            input: input,
+        };
+        const data = await httpsRequest.getApi(path, payload);
+        return data;
+    } catch (error) {
+        console.log(error);
+    }
+};
+
 export const fetchOrderService = async (customerId) => {
     try {
         const path = 'order/get';

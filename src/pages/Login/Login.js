@@ -11,7 +11,7 @@ import { connect } from 'react-redux';
 import { login } from '~/redux/actions/authActions';
 // styles
 import styles from './Login.module.scss';
-import { withRouter } from './withRouter';
+import { withRouter } from '~/hoc/withRouter';
 
 const cb = classNames.bind(styles);
 class Login extends React.Component {

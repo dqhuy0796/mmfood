@@ -1,10 +1,14 @@
-import classNames from 'classnames/bind';
 import React from 'react';
 import { FiSearch } from 'react-icons/fi';
 import config from '~/config';
-import styles from './Navbar.module.scss';
+import { withRouter } from '~/hoc/withRouter';
 import NavbarItem from './NavbarItem';
-
+// redux and actions
+import { connect } from 'react-redux';
+import { fetchSearchProducts } from '~/redux/actions/apiActions';
+//styles
+import classNames from 'classnames/bind';
+import styles from './Navbar.module.scss';
 const cb = classNames.bind(styles);
 
 const menu = [
@@ -21,7 +25,12 @@ class Navbar extends React.Component {
     render() {
         return (
             <div className={cb('navbar', this.props.isCollapsed && 'collapse')}>
-                <NavbarSearchItem />
+                <NavbarSearchItem
+                    navigate={this.props.navigate}
+                    location={this.props.location}
+                    searchProducts={this.props.searchProducts}
+                    searchResult={this.props.searchResult}
+                />
                 <ul>
                     {menu.map((item, index) => (
                         <li key={index}>
@@ -34,13 +43,53 @@ class Navbar extends React.Component {
     }
 }
 
-const NavbarSearchItem = (props) => (
-    <div className={cb('nav-search-item')}>
-        <input type="text" className={cb('search-input')} placeholder="Tìm kiếm..." />
-        <button className={cb('search-btn')}>
-            <FiSearch className={cb('search-icon')} />
-        </button>
-    </div>
-);
+class NavbarSearchItem extends React.Component {
+    state = {
+        text: this.props.text,
+    };
+    handleSubmit = (event) => {
+        event.preventDefault();
+        if (this.state.text && this.state.text.trim().length > 0) {
+            this.handleSearch(this.state.text);
+        }
+    };
+    handleSearch = async (text) => {
+        this.props.searchProducts(text);
+        if (this.props.location.pathname !== config.routes.search) {
+            this.props.navigate(config.routes.search);
+        }
+    };
+    handleOnChange = (event) => {
+        this.setState((prevState) => ({
+            ...prevState,
+            text: event.target.value,
+        }));
+    };
+    render() {
+        return (
+            <form className={cb('nav-search-item')} onSubmit={this.handleSubmit}>
+                <input
+                    type="text"
+                    className={cb('search-input')}
+                    placeholder="Tìm kiếm..."
+                    maxLength={40}
+                    value={this.state.text || ''}
+                    onChange={(e) => this.handleOnChange(e)}
+                />
+                <button className={cb('search-btn')} type={'submit'}>
+                    <FiSearch className={cb('search-icon')} />
+                </button>
+            </form>
+        );
+    }
+}
 
-export default Navbar;
+const mapStateToProps = (state) => ({
+    searchResult: state.api.search,
+});
+
+const mapActionsToProps = (dispatch) => ({
+    searchProducts: (text) => dispatch(fetchSearchProducts(text)),
+});
+
+export default connect(mapStateToProps, mapActionsToProps)(withRouter(Navbar));

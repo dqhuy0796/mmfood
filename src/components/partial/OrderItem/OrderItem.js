@@ -1,8 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { BiPlus } from 'react-icons/bi';
-import { BsHeartFill } from 'react-icons/bs';
-import IconButton from '~/components/shared/buttons/IconButton';
 // redux and action
 import { connect } from 'react-redux';
 // style

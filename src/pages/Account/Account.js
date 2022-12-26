@@ -1,6 +1,6 @@
 import React from 'react';
 import { IoLockClosedSharp, IoSettingsOutline } from 'react-icons/io5';
-import { toast, ToastContainer } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import IconButton from '~/components/shared/buttons/IconButton';
 import Footer from '~/layouts/Footer';
@@ -8,11 +8,10 @@ import Header from '~/layouts/Header';
 // redux and actions
 import { connect } from 'react-redux';
 import { fetchHistoryOrders } from '~/redux/actions/apiActions';
-import { logout } from '~/redux/actions/authActions';
 // style
 import classNames from 'classnames/bind';
-import styles from './Account.module.scss';
 import OrderItem from '../../components/partial/OrderItem/OrderItem';
+import styles from './Account.module.scss';
 
 const css = classNames.bind(styles);
 class Account extends React.Component {
@@ -94,7 +93,7 @@ class Account extends React.Component {
                             <ul className={css('order-nav')}>
                                 {this.state.subnav.map((item, index) => (
                                     <li key={index}>
-                                        <p className={item.selected && css('selected')}>{item.title}</p>
+                                        <p className={item.selected ? css('selected') : ''}>{item.title}</p>
                                     </li>
                                 ))}
                             </ul>

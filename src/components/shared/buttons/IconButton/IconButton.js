@@ -45,7 +45,7 @@ class IconButton extends React.Component {
                 this.props.size,
                 this.props.shape,
                 this.props.color,
-                this.props.value > 0 ? '' : 'overflow-hidden',
+                this.props.value ? '' : 'overflow-hidden',
             ],
             options: {
                 ...prevState.options,
