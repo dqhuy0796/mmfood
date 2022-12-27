@@ -1,11 +1,16 @@
-import classNames from 'classnames/bind';
 import React from 'react';
 import { GiCheckMark } from 'react-icons/gi';
 import RowInput from '~/components/partial/RowInput';
 import Button from '~/components/shared/buttons/Button';
 import TransparentButton from '~/components/shared/buttons/TransparentButton';
 import config from '~/config';
+import { withRouter } from '~/hoc/withRouter';
 import { userService } from '~/services';
+// redux and actions
+import { connect } from 'react-redux';
+import { login } from '~/redux/actions/authActions';
+//styles
+import classNames from 'classnames/bind';
 import styles from './Register.module.scss';
 
 const cb = classNames.bind(styles);
@@ -84,6 +89,10 @@ class Register extends React.Component {
                 ...prevState,
                 message: response.message,
             }));
+        }
+        if (response.code === 0) {
+            this.props.login(data);
+            this.props.navigate(config.routes.home);
         }
     };
     handleShowErrorMessage = (code) => {
@@ -190,4 +199,13 @@ class Register extends React.Component {
     }
 }
 
-export default Register;
+const mapStateToProps = (state) => ({
+    isLoggedIn: state.auth.isLoggedIn,
+    user: state.auth.user,
+});
+
+const mapActionsToProps = (dispatch) => ({
+    login: (user) => dispatch(login(user)),
+});
+
+export default connect(mapStateToProps, mapActionsToProps)(withRouter(Register));

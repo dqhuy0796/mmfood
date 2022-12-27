@@ -4,6 +4,7 @@ import { IoMdLogOut } from 'react-icons/io';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import OrderItem from '~/components/partial/OrderItem';
+import defaultAvatar from '~/assets/images/default-avatar.jpg';
 import IconButton from '~/components/shared/buttons/IconButton';
 import Footer from '~/layouts/Footer';
 import Header from '~/layouts/Header';
@@ -144,24 +145,27 @@ class Account extends React.Component {
                     <div className={css('wrapper')}>
                         <div className={css('header')}>
                             <div className={css('avatar')}>
-                                <img src={currentUser.avatarUrl} alt={currentUser.name} />
+                                <img
+                                    src={currentUser.avatarUrl || defaultAvatar}
+                                    alt={currentUser.name || currentUser.phone}
+                                />
                             </div>
                             <div className={css('detail')}>
                                 <ul>
                                     <li>
-                                        <p>{currentUser.name}</p>
+                                        <p>{currentUser.name || 'chưa cập nhật'}</p>
                                     </li>
                                     <li>
-                                        <p>{currentUser.email}</p>
+                                        <p>{currentUser.email || 'chưa cập nhật'}</p>
                                     </li>
                                     <li>
-                                        <p>{currentUser.phone}</p>
+                                        <p>{currentUser.phone || 'chưa cập nhật'}</p>
                                     </li>
                                     <li>
-                                        <p>{currentUser.birth}</p>
+                                        <p>{currentUser.birth || 'chưa cập nhật'}</p>
                                     </li>
                                     <li>
-                                        <p>{currentUser.address}</p>
+                                        <p>{currentUser.address || 'chưa cập nhật'}</p>
                                     </li>
                                 </ul>
                                 <ul className={css('action')}>
