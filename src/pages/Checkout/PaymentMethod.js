@@ -5,7 +5,7 @@ import SelectPaymentMethodModal from '~/components/modals/SelectPaymentMethodMod
 import TransparentButton from '~/components/shared/buttons/TransparentButton';
 import styles from './PaymentMethod.module.scss';
 
-const cb = classNames.bind(styles);
+const scss = classNames.bind(styles);
 
 const paymentMethods = [
     {
@@ -55,9 +55,9 @@ class PaymentMethod extends React.Component {
     };
     render() {
         return (
-            <div className={cb('payment')}>
-                <div className={cb('header')}>
-                    <p className={cb('title')}>Chọn phương thức thanh toán</p>
+            <div className={scss('payment')}>
+                <div className={scss('header')}>
+                    <p className={scss('title')}>Chọn phương thức thanh toán</p>
 
                     <TransparentButton onClick={this.handleCollapseModal}>
                         <span>Xem tất cả</span>
@@ -67,7 +67,7 @@ class PaymentMethod extends React.Component {
                         <SelectPaymentMethodModal handleCollapseModal={this.handleCollapseModal} />
                     )}
                 </div>
-                <div className={cb('body')}>
+                <div className={scss('body')}>
                     {paymentMethods.map((item, index) => (
                         <PaymentItem key={index} data={item} />
                     ))}
@@ -77,18 +77,18 @@ class PaymentMethod extends React.Component {
     }
 }
 const PaymentItem = (props) => (
-    <div className={cb('payment-item', props.data.selected && 'selected')}>
-        <div className={cb('check')}>
-            {props.data.selected ? <MdCheckCircle className={cb('checked')} /> : <MdRadioButtonUnchecked />}
+    <div className={scss('payment-item', props.data.selected && 'selected')}>
+        <div className={scss('check')}>
+            {props.data.selected ? <MdCheckCircle className={scss('checked')} /> : <MdRadioButtonUnchecked />}
         </div>
-        <div className={cb('content')}>
-            <div className={cb('header')}>
+        <div className={scss('content')}>
+            <div className={scss('header')}>
                 <img src={props.data.imageUrl} alt={props.data.description} />
-                <p className={cb('text')}>{props.data.title}</p>
+                <p className={scss('text')}>{props.data.title}</p>
             </div>
-            <div className={cb('footer')}>
-                <p className={cb('text')}>{props.data.description}</p>
-                <div className={cb('payment-list')}>
+            <div className={scss('footer')}>
+                <p className={scss('text')}>{props.data.description}</p>
+                <div className={scss('payment-list')}>
                     {props.data.methods &&
                         props.data.methods.map((item, index) => (
                             <img key={index} src={item.imageUrl} alt={item.title} />

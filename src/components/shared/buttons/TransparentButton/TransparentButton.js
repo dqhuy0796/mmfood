@@ -3,7 +3,7 @@ import classNames from 'classnames/bind';
 import styles from './TransparentButton.module.scss';
 import { Link } from 'react-router-dom';
 
-const cb = classNames.bind(styles);
+const scss = classNames.bind(styles);
 
 class TransparentButton extends React.Component {
     state = {
@@ -54,7 +54,7 @@ class TransparentButton extends React.Component {
 
     render() {
         return (
-            <this.state.element className={cb(...this.state.className)} {...this.state.options}>
+            <this.state.element className={scss(...this.state.className)} {...this.state.options}>
                 {this.props.children}
             </this.state.element>
         );

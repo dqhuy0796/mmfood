@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import classNames from 'classnames/bind';
 import styles from './PaymentDetail.module.scss';
 
-const cb = classNames.bind(styles);
+const scss = classNames.bind(styles);
 
 class PaymentDetail extends React.Component {
     state = {
@@ -17,14 +17,14 @@ class PaymentDetail extends React.Component {
 
     render() {
         return (
-            <div className={cb('wrapper')}>
-                <div className={cb('voucher')}>
-                    <p className={cb('title')}>Mã giảm giá</p>
-                    <div className={cb('content')}>
-                        <div className={cb('voucher-input')}>
+            <div className={scss('wrapper')}>
+                <div className={scss('voucher')}>
+                    <p className={scss('title')}>Mã giảm giá</p>
+                    <div className={scss('content')}>
+                        <div className={scss('voucher-input')}>
                             <input placeholder="Nhập mã giảm giá..." />
                         </div>
-                        <div className={cb('voucher-btn')}>
+                        <div className={scss('voucher-btn')}>
                             <Button size={'tiny'} shape={'pill'} color={'red'}>
                                 <span>Áp dụng</span>
                             </Button>
@@ -32,9 +32,9 @@ class PaymentDetail extends React.Component {
                     </div>
                 </div>
 
-                <div className={cb('summary')}>
-                    <p className={cb('title')}>Thông tin đơn hàng</p>
-                    <div className={cb('content')}>
+                <div className={scss('summary')}>
+                    <p className={scss('title')}>Thông tin đơn hàng</p>
+                    <div className={scss('content')}>
                         <p>
                             <span>Tạm tính:</span>
                             <span>

@@ -1,28 +1,26 @@
+import _ from 'lodash';
 import React from 'react';
-import { IoLockClosedSharp, IoSettingsOutline } from 'react-icons/io5';
 import { IoMdLogOut } from 'react-icons/io';
+import { IoLockClosedSharp, IoSettingsOutline } from 'react-icons/io5';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import OrderItem from '~/components/partial/OrderItem';
 import defaultAvatar from '~/assets/images/default-avatar.jpg';
+import OrderDetailModal from '~/components/modals/OrderDetailModal';
+import DialogMessage from '~/components/partial/DialogMessage/DialogMessage';
+import OrderItem from '~/components/partial/OrderItem';
 import IconButton from '~/components/shared/buttons/IconButton';
-import Footer from '~/layouts/Footer';
-import Header from '~/layouts/Header';
 import config from '~/config';
 import { withRouter } from '~/hoc/withRouter';
-import DialogMessage from '~/components/partial/DialogMessage/DialogMessage';
-import OrderDetailModal from '~/components/modals/OrderDetailModal';
-import _ from 'lodash';
 import { userService } from '~/services';
 // redux and actions
 import { connect } from 'react-redux';
-import { logout } from '~/redux/actions/authActions';
 import { fetchHistoryOrders } from '~/redux/actions/apiActions';
+import { logout } from '~/redux/actions/authActions';
 // style
 import classNames from 'classnames/bind';
 import styles from './Account.module.scss';
 
-const css = classNames.bind(styles);
+const scss = classNames.bind(styles);
 class Account extends React.Component {
     state = {
         subnav: [
@@ -140,84 +138,81 @@ class Account extends React.Component {
         const currentUser = this.props.currentUser;
         return (
             <>
-                <Header />
-                <div className={css('background')}>
-                    <div className={css('wrapper')}>
-                        <div className={css('header')}>
-                            <div className={css('avatar')}>
-                                <img
-                                    src={currentUser.avatarUrl || defaultAvatar}
-                                    alt={currentUser.name || currentUser.phone}
-                                />
-                            </div>
-                            <div className={css('detail')}>
-                                <ul>
-                                    <li>
-                                        <p>{currentUser.name || 'chưa cập nhật'}</p>
-                                    </li>
-                                    <li>
-                                        <p>{currentUser.email || 'chưa cập nhật'}</p>
-                                    </li>
-                                    <li>
-                                        <p>{currentUser.phone || 'chưa cập nhật'}</p>
-                                    </li>
-                                    <li>
-                                        <p>{currentUser.birth || 'chưa cập nhật'}</p>
-                                    </li>
-                                    <li>
-                                        <p>{currentUser.address || 'chưa cập nhật'}</p>
-                                    </li>
-                                </ul>
-                                <ul className={css('action')}>
-                                    <li>
-                                        <IconButton size={'medium'} shape={'round'} color={'blur'}>
-                                            <IoSettingsOutline />
-                                        </IconButton>
-                                    </li>
-                                    <li>
-                                        <IconButton size={'medium'} shape={'round'} color={'blur'}>
-                                            <IoLockClosedSharp />
-                                        </IconButton>
-                                    </li>
-                                    <li>
-                                        <IconButton
-                                            size={'medium'}
-                                            shape={'round'}
-                                            color={'blur'}
-                                            onClick={this.handleLogOut}
-                                        >
-                                            <IoMdLogOut />
-                                        </IconButton>
-                                    </li>
-                                </ul>
-                            </div>
+                <div className={scss('wrapper')}>
+                    <div className={scss('header')}>
+                        <div className={scss('avatar')}>
+                            <img
+                                src={currentUser.avatarUrl || defaultAvatar}
+                                alt={currentUser.name || currentUser.phone}
+                            />
                         </div>
-                        <div className={css('body')}>
-                            <ul className={css('order-nav')}>
-                                {this.state.subnav.map((item, index) => (
-                                    <li key={index}>
-                                        <p className={item.selected ? css('selected') : ''}>{item.title}</p>
-                                    </li>
-                                ))}
+                        <div className={scss('detail')}>
+                            <ul>
+                                <li>
+                                    <p>{currentUser.name || 'chưa cập nhật'}</p>
+                                </li>
+                                <li>
+                                    <p>{currentUser.email || 'chưa cập nhật'}</p>
+                                </li>
+                                <li>
+                                    <p>{currentUser.phone || 'chưa cập nhật'}</p>
+                                </li>
+                                <li>
+                                    <p>{currentUser.birth || 'chưa cập nhật'}</p>
+                                </li>
+                                <li>
+                                    <p>{currentUser.address || 'chưa cập nhật'}</p>
+                                </li>
                             </ul>
-                            <ul className={css('list')}>
-                                {this.props.historyOrders && this.props.historyOrders.length > 0 ? (
-                                    this.props.historyOrders.map((item, index) => (
-                                        <li key={index} className={css('order-item')}>
-                                            <OrderItem
-                                                data={item}
-                                                handleActiveModal={this.handleActiveModal}
-                                                handleActiveDialog={this.handleActiveDialog}
-                                            />
-                                        </li>
-                                    ))
-                                ) : (
-                                    <div className={css('empty')}>
-                                        <p>Oh! Hình như bạn chưa có đơn hàng nào</p>
-                                    </div>
-                                )}
+                            <ul className={scss('action')}>
+                                <li>
+                                    <IconButton size={'medium'} shape={'round'} color={'blur'}>
+                                        <IoSettingsOutline />
+                                    </IconButton>
+                                </li>
+                                <li>
+                                    <IconButton size={'medium'} shape={'round'} color={'blur'}>
+                                        <IoLockClosedSharp />
+                                    </IconButton>
+                                </li>
+                                <li>
+                                    <IconButton
+                                        size={'medium'}
+                                        shape={'round'}
+                                        color={'blur'}
+                                        onClick={this.handleLogOut}
+                                    >
+                                        <IoMdLogOut />
+                                    </IconButton>
+                                </li>
                             </ul>
                         </div>
+                    </div>
+                    <div className={scss('body')}>
+                        <ul className={scss('order-nav')}>
+                            {this.state.subnav.map((item, index) => (
+                                <li key={index}>
+                                    <p className={item.selected ? scss('selected') : ''}>{item.title}</p>
+                                </li>
+                            ))}
+                        </ul>
+                        <ul className={scss('list')}>
+                            {this.props.historyOrders && this.props.historyOrders.length > 0 ? (
+                                this.props.historyOrders.map((item, index) => (
+                                    <li key={index} className={scss('order-item')}>
+                                        <OrderItem
+                                            data={item}
+                                            handleActiveModal={this.handleActiveModal}
+                                            handleActiveDialog={this.handleActiveDialog}
+                                        />
+                                    </li>
+                                ))
+                            ) : (
+                                <div className={scss('empty')}>
+                                    <p>Oh! Hình như bạn chưa có đơn hàng nào</p>
+                                </div>
+                            )}
+                        </ul>
                     </div>
                 </div>
 
@@ -241,7 +236,6 @@ class Account extends React.Component {
                 {this.state.dialog.active && (
                     <DialogMessage {...this.state.dialog} handleActiveDialog={this.handleActiveDialog} />
                 )}
-                <Footer />
             </>
         );
     }

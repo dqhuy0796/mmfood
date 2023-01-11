@@ -3,7 +3,7 @@ import React from 'react';
 import { RiEye2Line, RiEyeCloseLine, RiUploadCloud2Line } from 'react-icons/ri';
 import styles from './RowInput.module.scss';
 
-const cb = classNames.bind(styles);
+const scss = classNames.bind(styles);
 
 class RowInput extends React.Component {
     constructor(props) {
@@ -110,22 +110,22 @@ class RowInput extends React.Component {
 
     render() {
         return (
-            <div className={cb('row')}>
-                <p className={cb('label')}>
+            <div className={scss('row')}>
+                <p className={scss('label')}>
                     {this.state.option.label}
-                    {this.state.option.required && <span className={cb('required')}>*</span>}
+                    {this.state.option.required && <span className={scss('required')}>*</span>}
                 </p>
-                <div className={cb('input')}>
+                <div className={scss('input')}>
                     {this.props.option.type === 'image' ? (
-                        <div className={cb('image-upload')}>
-                            <div className={cb('image')}>
+                        <div className={scss('image-upload')}>
+                            <div className={scss('image')}>
                                 {this.props.value ? (
                                     <img src={this.props.value} alt={this.state.option.label} />
                                 ) : (
-                                    <RiUploadCloud2Line className={cb('icon')} />
+                                    <RiUploadCloud2Line className={scss('icon')} />
                                 )}
                             </div>
-                            <div className={cb('upload')}>
+                            <div className={scss('upload')}>
                                 <textarea
                                     {...this.state.option}
                                     ref={this.imageUrlRef}
@@ -147,7 +147,7 @@ class RowInput extends React.Component {
                         />
                     )}
                     {this.props.option.type === 'password' && (
-                        <span className={cb('eye-btn')} onClick={this.handleShowPassword}>
+                        <span className={scss('eye-btn')} onClick={this.handleShowPassword}>
                             {this.state.option.type === 'password' ? <RiEyeCloseLine /> : <RiEye2Line />}
                         </span>
                     )}

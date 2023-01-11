@@ -9,7 +9,7 @@ import { fetchSearchProducts } from '~/redux/actions/apiActions';
 //styles
 import classNames from 'classnames/bind';
 import styles from './Navbar.module.scss';
-const cb = classNames.bind(styles);
+const scss = classNames.bind(styles);
 
 const menu = [
     { title: 'đồ ăn', path: config.routes.food },
@@ -24,7 +24,7 @@ class Navbar extends React.Component {
     state = {};
     render() {
         return (
-            <div className={cb('navbar', this.props.isCollapsed && 'collapse')}>
+            <div className={scss('navbar', this.props.isCollapsed && 'collapse')}>
                 <NavbarSearchItem
                     navigate={this.props.navigate}
                     location={this.props.location}
@@ -67,17 +67,17 @@ class NavbarSearchItem extends React.Component {
     };
     render() {
         return (
-            <form className={cb('nav-search-item')} onSubmit={this.handleSubmit}>
+            <form className={scss('nav-search-item')} onSubmit={this.handleSubmit}>
                 <input
                     type="text"
-                    className={cb('search-input')}
+                    className={scss('search-input')}
                     placeholder="Tìm kiếm..."
                     maxLength={40}
                     value={this.state.text || ''}
                     onChange={(e) => this.handleOnChange(e)}
                 />
-                <button className={cb('search-btn')} type={'submit'}>
-                    <FiSearch className={cb('search-icon')} />
+                <button className={scss('search-btn')} type={'submit'}>
+                    <FiSearch className={scss('search-icon')} />
                 </button>
             </form>
         );

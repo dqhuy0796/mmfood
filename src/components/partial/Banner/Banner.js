@@ -7,7 +7,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/autoplay';
 import styles from './Banner.module.scss';
-const cb = classNames.bind(styles);
+const scss = classNames.bind(styles);
 
 SwiperCore.use([Navigation]);
 
@@ -35,7 +35,7 @@ function Banner() {
     const swiperNextRef = useRef(null);
 
     return (
-        <div className={cb('wrapper')}>
+        <div className={scss('wrapper')}>
             <Swiper
                 loop={true}
                 autoplay={true}
@@ -47,7 +47,7 @@ function Banner() {
                     swiper.params.navigation.prevEl = swiperPrevRef.current;
                     swiper.params.navigation.nextEl = swiperNextRef.current;
                 }}
-                className={cb('banner-swiper')}
+                className={scss('banner-swiper')}
             >
                 {banners.map((item, index) => (
                     <SwiperSlide key={index}>
@@ -55,11 +55,11 @@ function Banner() {
                     </SwiperSlide>
                 ))}
 
-                <button ref={swiperPrevRef} className={cb('banner-navigation', 'prev-btn')}>
+                <button ref={swiperPrevRef} className={scss('banner-navigation', 'prev-btn')}>
                     <BsChevronCompactLeft />
                 </button>
 
-                <button ref={swiperNextRef} className={cb('banner-navigation', 'next-btn')}>
+                <button ref={swiperNextRef} className={scss('banner-navigation', 'next-btn')}>
                     <BsChevronCompactRight />
                 </button>
             </Swiper>

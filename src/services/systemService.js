@@ -13,11 +13,11 @@ export const fetchPostsService = async () => {
     }
 };
 
-export const fetchProductService = async (categoryId) => {
+export const fetchProductService = async (CategoryLayoutId) => {
     try {
         const path = 'product/get';
         const payload = {
-            id: categoryId,
+            id: CategoryLayoutId,
         };
         const data = await httpsRequest.getApi(path, payload);
         return data;

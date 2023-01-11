@@ -1,20 +1,20 @@
 import classNames from 'classnames/bind';
 import React from 'react';
 import { MdCheckCircle, MdRadioButtonUnchecked } from 'react-icons/md';
-import Button from '~/components/shared/buttons/Button';
 import RowInput from '~/components/partial/RowInput';
+import Button from '~/components/shared/buttons/Button';
 import styles from './AddressDetail.module.scss';
-const cb = classNames.bind(styles);
+const scss = classNames.bind(styles);
 
 class AddressDetail extends React.Component {
     state = {};
     render() {
         return (
-            <div className={cb('wrapper', this.props.data.selected && 'selected')} onClick={this.props.data.onClick}>
-                <div className={cb('check')}>
+            <div className={scss('wrapper', this.props.data.selected && 'selected')} onClick={this.props.data.onClick}>
+                <div className={scss('check')}>
                     {this.props.data.selected ? <MdCheckCircle /> : <MdRadioButtonUnchecked />}
                 </div>
-                <div className={cb('detail')}>
+                <div className={scss('detail')}>
                     <ul>
                         <li>
                             <p>{this.props.data.name}</p>
@@ -27,7 +27,7 @@ class AddressDetail extends React.Component {
                         </li>
                         {this.props.data.default && (
                             <li>
-                                <span className={cb('default-address')}>Địa chỉ nhận hàng mặc định</span>
+                                <span className={scss('default-address')}>Địa chỉ nhận hàng mặc định</span>
                             </li>
                         )}
                     </ul>
@@ -75,8 +75,8 @@ export class NewAddressDetail extends React.Component {
 
     render() {
         return (
-            <div className={cb('wrapper')}>
-                <div className={cb('detail')}>
+            <div className={scss('wrapper')}>
+                <div className={scss('detail')}>
                     <ul>
                         {this.state.content.map((item, index) => (
                             <li key={index}>

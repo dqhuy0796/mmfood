@@ -1,7 +1,5 @@
 import React from 'react';
-import Category from '~/layouts/Category';
-import Footer from '~/layouts/Footer';
-import Header from '~/layouts/Header';
+import CategoryLayout from '~/layouts/CategoryLayout';
 // redux and actions
 import { connect } from 'react-redux';
 import { fetchProducts } from '~/redux/actions/apiActions';
@@ -12,13 +10,7 @@ class Topping extends React.Component {
         this.props.fetchProducts(4);
     }
     render() {
-        return (
-            <>
-                <Header />
-                <Category data={this.props.products} />
-                <Footer />
-            </>
-        );
+        return <CategoryLayout data={this.props.products} />;
     }
 }
 

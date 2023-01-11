@@ -3,7 +3,7 @@ import classNames from 'classnames/bind';
 import styles from './Button.module.scss';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-const cb = classNames.bind(styles);
+const scss = classNames.bind(styles);
 
 class Button extends React.Component {
     state = {
@@ -13,7 +13,7 @@ class Button extends React.Component {
     };
 
     componentDidMount() {
-        this.handleSetButtonOption(this.props.options);
+        this.handleSetButtonOption();
     }
 
     handleSetButtonOption = () => {
@@ -54,7 +54,10 @@ class Button extends React.Component {
 
     render() {
         return (
-            <this.state.element className={cb(...this.state.className)} {...this.state.options}>
+            <this.state.element
+                {...this.state.options}
+                className={scss(...this.state.className, this.props.widthfull && 'width-full')}
+            >
                 {this.props.children}
             </this.state.element>
         );

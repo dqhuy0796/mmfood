@@ -8,11 +8,31 @@ function App({ auth }) {
             <div className="App">
                 <Routes>
                     {publicRoutes.map((route, index) => {
-                        return <Route key={index} path={route.path} element={<route.Component />} />;
+                        return (
+                            <Route
+                                key={index}
+                                path={route.path}
+                                element={
+                                    <route.Layout>
+                                        <route.Component />
+                                    </route.Layout>
+                                }
+                            />
+                        );
                     })}
                     {auth.isLoggedIn &&
                         privateRoutes.map((route, index) => {
-                            return <Route key={index} path={route.path} element={<route.Component />} />;
+                            return (
+                                <Route
+                                    key={index}
+                                    path={route.path}
+                                    element={
+                                        <route.Layout>
+                                            <route.Component />
+                                        </route.Layout>
+                                    }
+                                />
+                            );
                         })}
                 </Routes>
             </div>

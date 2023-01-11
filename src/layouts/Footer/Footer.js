@@ -6,13 +6,13 @@ import { RiDirectionLine } from 'react-icons/ri';
 import { BsFacebook, BsYoutube, BsTwitter, BsInstagram } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 
-const cb = classNames.bind(styles);
+const scss = classNames.bind(styles);
 
 class Footer extends React.Component {
     render() {
         return (
-            <footer className={cb('footer')}>
-                <div className={cb('wrapper')}>
+            <footer className={scss('footer')}>
+                <div className={scss('wrapper')}>
                     <Directions />
                     <MoreInfomation />
                 </div>
@@ -22,7 +22,7 @@ class Footer extends React.Component {
     }
 }
 const FooterSubtitle = (props) => (
-    <h2 className={cb('title')}>
+    <h2 className={scss('title')}>
         <span>{props.text}</span>
     </h2>
 );
@@ -87,7 +87,7 @@ class Directions extends React.Component {
     };
     render() {
         return (
-            <div className={cb('directions')}>
+            <div className={scss('directions')}>
                 <FooterSubtitle text={'Hệ thống cửa hàng'} />
                 <ul>
                     {this.state.directions.map((item, index) => (
@@ -101,16 +101,16 @@ class Directions extends React.Component {
     }
 }
 const DirectionItem = (props) => (
-    <Link className={cb('direction-item')}>
-        <div className={cb('icon')}>
+    <Link className={scss('direction-item')}>
+        <div className={scss('icon')}>
             <RiDirectionLine />
         </div>
-        <div className={cb('content')}>
-            <p className={cb('address')}>
+        <div className={scss('content')}>
+            <p className={scss('address')}>
                 <span>{props.data.name} - </span>
                 <span>{props.data.address}</span>
             </p>
-            <p className={cb('phone')}>
+            <p className={scss('phone')}>
                 <span>
                     Điện thoại: {props.data.phone} | Ext.{props.data.ext}
                 </span>
@@ -119,13 +119,13 @@ const DirectionItem = (props) => (
     </Link>
 );
 const MoreInfomation = (props) => (
-    <div className={cb('more')}>
-        <ul className={cb('contact')}>
+    <div className={scss('more')}>
+        <ul className={scss('contact')}>
             <li>
                 <FooterSubtitle text={'Đăng ký nhận khuyến mãi'} />
             </li>
             <li>
-                <form className={cb('input')}>
+                <form className={scss('input')}>
                     <input type="text" placeholder="nhập địa chỉ email" />
                     <button type="submit">Gửi</button>
                 </form>
@@ -137,24 +137,24 @@ const MoreInfomation = (props) => (
                 <p>Chính sách thông tin bảo mật</p>
             </li>
         </ul>
-        <ul className={cb('about')}>
+        <ul className={scss('about')}>
             <li>
                 <FooterSubtitle text={'Liên hệ với chúng tôi'} />
             </li>
-            <li className={cb('social-media')}>
-                <BsFacebook className={cb('icon')} />
-                <BsYoutube className={cb('icon')} />
-                <BsTwitter className={cb('icon')} />
-                <BsInstagram className={cb('icon')} />
+            <li className={scss('social-media')}>
+                <BsFacebook className={scss('icon')} />
+                <BsYoutube className={scss('icon')} />
+                <BsTwitter className={scss('icon')} />
+                <BsInstagram className={scss('icon')} />
             </li>
-            <li className={cb('image')}>
+            <li className={scss('image')}>
                 <img src={dathongbao} alt="đã thông báo bộ công thương" />
             </li>
         </ul>
     </div>
 );
 const Copyright = (props) => (
-    <p className={cb('copyright')}>
+    <p className={scss('copyright')}>
         <span>© {new Date().getFullYear()} Copyright MMFood Co., Ltd</span>
     </p>
 );

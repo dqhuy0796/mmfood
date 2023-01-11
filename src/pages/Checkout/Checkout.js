@@ -1,7 +1,5 @@
 import React from 'react';
 import { toast, ToastContainer } from 'react-toastify';
-import Footer from '~/layouts/Footer';
-import Header from '~/layouts/Header';
 import { userService } from '~/services';
 import DeliveryAddress from './DeliveryAddress';
 import DeliveryMethod from './DeliveryMethod';
@@ -14,7 +12,7 @@ import { cartItemRemoveAll } from '~/redux/actions/cartActions';
 //styles
 import classNames from 'classnames/bind';
 import styles from './Checkout.module.scss';
-const cb = classNames.bind(styles);
+const scss = classNames.bind(styles);
 
 class Checkout extends React.Component {
     state = {
@@ -67,35 +65,29 @@ class Checkout extends React.Component {
 
     render() {
         return (
-            <>
-                <Header />
-                <div className={cb('background')}>
-                    <div className={cb('wrapper')}>
-                        <div className={cb('left')}>
-                            <DeliveryAddress data={this.props.currentUser} />
-                            <DeliveryMethod />
-                            <DeliveryPackage data={this.props.cart.items} />
-                        </div>
-                        <div className={cb('right')}>
-                            <PaymentMethod />
-                            <PaymentDetail data={this.state.paymentDetails} handleCheckOut={this.handleCheckOut} />
-                        </div>
-                        <ToastContainer
-                            position="top-right"
-                            autoClose={5000}
-                            hideProgressBar={true}
-                            newestOnTop={false}
-                            closeOnClick={false}
-                            rtl={false}
-                            pauseOnFocusLoss
-                            draggable
-                            pauseOnHover
-                            theme="light"
-                        />
-                    </div>
+            <div className={scss('wrapper')}>
+                <div className={scss('left')}>
+                    <DeliveryAddress data={this.props.currentUser} />
+                    <DeliveryMethod />
+                    <DeliveryPackage data={this.props.cart.items} />
                 </div>
-                <Footer />
-            </>
+                <div className={scss('right')}>
+                    <PaymentMethod />
+                    <PaymentDetail data={this.state.paymentDetails} handleCheckOut={this.handleCheckOut} />
+                </div>
+                <ToastContainer
+                    position="top-right"
+                    autoClose={5000}
+                    hideProgressBar={true}
+                    newestOnTop={false}
+                    closeOnClick={false}
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="light"
+                />
+            </div>
         );
     }
 }

@@ -4,7 +4,7 @@ import { MdCheckCircle, MdRadioButtonUnchecked } from 'react-icons/md';
 import Subtitle from './Subtitle';
 import styles from './DeliveryMethod.module.scss';
 
-const cb = classNames.bind(styles);
+const scss = classNames.bind(styles);
 
 class DeliveryMethod extends React.Component {
     state = {
@@ -27,9 +27,9 @@ class DeliveryMethod extends React.Component {
 
     render() {
         return (
-            <div className={cb('delivery')}>
+            <div className={scss('delivery')}>
                 <Subtitle text={'Tùy chọn giao hàng'} />
-                <div className={cb('container')}>
+                <div className={scss('container')}>
                     <DeliveryServiceItem
                         selected={true}
                         data={{
@@ -52,8 +52,8 @@ class DeliveryMethod extends React.Component {
     }
 }
 const DeliveryServiceItem = (props) => (
-    <div className={cb('delivery-item', props.selected && 'selected')} onClick={props.onClick}>
-        <div className={cb('check')}>{props.selected ? <MdCheckCircle /> : <MdRadioButtonUnchecked />}</div>
+    <div className={scss('delivery-item', props.selected && 'selected')} onClick={props.onClick}>
+        <div className={scss('check')}>{props.selected ? <MdCheckCircle /> : <MdRadioButtonUnchecked />}</div>
         <ul>
             <li>
                 <span>

@@ -4,7 +4,7 @@ import { MdClose } from 'react-icons/md';
 import Button from '~/components/shared/buttons/Button';
 import styles from './DialogMessage.module.scss';
 
-const cb = classNames.bind(styles);
+const scss = classNames.bind(styles);
 
 class DialogMessage extends React.Component {
     state = {
@@ -21,19 +21,19 @@ class DialogMessage extends React.Component {
 
     render() {
         return (
-            <div className={cb('message')}>
-                <div className={cb('overlay')}></div>
-                <div className={cb('wrapper')}>
-                    <div className={cb('header')}>
+            <div className={scss('message')}>
+                <div className={scss('overlay')}></div>
+                <div className={scss('wrapper')}>
+                    <div className={scss('header')}>
                         <p>{this.props.title}</p>
                         <button onClick={this.props.handleActiveDialog}>
                             <MdClose />
                         </button>
                     </div>
-                    <div className={cb('body')}>
+                    <div className={scss('body')}>
                         <p>{this.props.message}</p>
                     </div>
-                    <div className={cb('footer')}>
+                    <div className={scss('footer')}>
                         {this.props.button ? (
                             this.props.button.map((item, index) => (
                                 <Button key={index} size={'tiny'} color={item.color} onClick={item.onClick}>

@@ -1,20 +1,12 @@
 import React from 'react';
-import Category from '~/layouts/Category';
-import Footer from '~/layouts/Footer';
-import Header from '~/layouts/Header';
+import CategoryLayout from '~/layouts/CategoryLayout';
 // redux and actions
 import { connect } from 'react-redux';
 import { fetchSearchProducts } from '~/redux/actions/apiActions';
 
 class Search extends React.Component {
     render() {
-        return (
-            <>
-                <Header />
-                <Category data={this.props.searchResult.products} />
-                <Footer />
-            </>
-        );
+        return <CategoryLayout data={this.props.searchResult.products} />;
     }
 }
 

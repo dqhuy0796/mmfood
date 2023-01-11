@@ -4,7 +4,7 @@ import BaseCenterModal from '~/components/modals/BaseCenterModal';
 import OrderProductItem from '~/components/partial/OrderProductItem';
 import Timeline from '../../partial/Timeline/Timeline';
 import styles from './OrderDetailModal.module.scss';
-const css = classNames.bind(styles);
+const scss = classNames.bind(styles);
 
 class OrderDetailModal extends React.Component {
     state = {};
@@ -21,27 +21,27 @@ class OrderDetailModal extends React.Component {
         const status = JSON.parse(data.state);
         return (
             <BaseCenterModal title={`Đơn hàng #${data.orderUuid}`} handleActiveModal={this.props.handleActiveModal}>
-                <form className={css('container')} onSubmit={this.handleSubmit}>
-                    <div className={css('header')}>
-                        <div className={css('section')}>
-                            <p className={css('title')}>Địa chỉ nhận hàng</p>
-                            <p className={css('name')}>{receiverDetails.name}</p>
-                            <p className={css('phone')}>{receiverDetails.phone}</p>
-                            <p className={css('address')}>{receiverDetails.address}</p>
+                <form className={scss('container')} onSubmit={this.handleSubmit}>
+                    <div className={scss('header')}>
+                        <div className={scss('section')}>
+                            <p className={scss('title')}>Địa chỉ nhận hàng</p>
+                            <p className={scss('name')}>{receiverDetails.name}</p>
+                            <p className={scss('phone')}>{receiverDetails.phone}</p>
+                            <p className={scss('address')}>{receiverDetails.address}</p>
                         </div>
-                        <div className={css('section')}>
-                            <p className={css('title')}>Tình trạng đơn hàng</p>
+                        <div className={scss('section')}>
+                            <p className={scss('title')}>Tình trạng đơn hàng</p>
                             <Timeline data={status} />
                         </div>
                     </div>
-                    <ul className={css('body')}>
+                    <ul className={scss('body')}>
                         {items.map((item, index) => (
-                            <li key={index} className={css('item')}>
+                            <li key={index} className={scss('item')}>
                                 <OrderProductItem data={item} />
                             </li>
                         ))}
                     </ul>
-                    <div className={css('footer')}>
+                    <div className={scss('footer')}>
                         <table>
                             <tbody>
                                 <tr>

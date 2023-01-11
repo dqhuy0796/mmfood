@@ -1,24 +1,15 @@
-.background {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.wrapper {
+    padding: 16px 8px;
+    margin: 0 auto;
     width: 100%;
-    background: var(--gradient-pink),
-        url(https://res.cloudinary.com/dqhuy/image/upload/v1667639893/MMFood/Food/banh-canh-dacbiet_nkjhsy.jpg);
-    background-size: cover;
-    background-position: center;
-    .wrapper {
-        padding: 16px 8px;
-        margin: 0 auto;
-        width: 100%;
-        max-width: 1200px;
-    }
+    max-width: 1200px;
 }
+
 .content-section {
     display: flex;
     align-items: center;
     width: 100%;
-    background-color: #fff;
+    background-color: var(--color-white);
     border-radius: 6px;
     overflow: hidden;
     &:nth-child(even) {

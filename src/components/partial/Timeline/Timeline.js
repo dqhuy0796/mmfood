@@ -1,14 +1,14 @@
 import classNames from 'classnames/bind';
 import React from 'react';
 import styles from './Timeline.module.scss';
-const css = classNames.bind(styles);
+const scss = classNames.bind(styles);
 
 class Timeline extends React.Component {
     state = {};
 
     render() {
         return (
-            <ul className={css('timeline')}>
+            <ul className={scss('timeline')}>
                 {this.props.data.map((item, index) => (
                     <TimeNode key={index} data={item} />
                 ))}
@@ -43,15 +43,15 @@ const TimeNode = (props) => {
     let time = props.data.time.slice(11, 16);
 
     return (
-        <div className={css('time-node')}>
-            <div className={css('description')}>
-                <p className={css('content')}>{content}</p>
-                <p className={css('time')}>
+        <div className={scss('time-node')}>
+            <div className={scss('description')}>
+                <p className={scss('content')}>{content}</p>
+                <p className={scss('time')}>
                     <span>{time}</span>
                     <span>{date}</span>
                 </p>
             </div>
-            <div className={css('icon')}></div>
+            <div className={scss('icon')}></div>
         </div>
     );
 };

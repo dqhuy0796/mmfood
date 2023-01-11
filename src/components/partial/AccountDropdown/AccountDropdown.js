@@ -11,7 +11,7 @@ import { connect } from 'react-redux';
 import classNames from 'classnames/bind';
 import styles from './AccountDropdown.module.scss';
 
-const css = classNames.bind(styles);
+const scss = classNames.bind(styles);
 
 class AccountDropdown extends React.Component {
     state = {};
@@ -29,33 +29,33 @@ class AccountDropdown extends React.Component {
     render() {
         const currentUser = this.props.currentUser;
         return (
-            <div className={css('wrapper')}>
+            <div className={scss('wrapper')}>
                 {this.props.isLoggedIn ? (
-                    <Link className={css('avatar')} to={config.routes.account}>
+                    <Link className={scss('avatar')} to={config.routes.account}>
                         <img src={currentUser.avatarUrl || defaultAvatar} alt={currentUser.name || currentUser.phone} />
                     </Link>
                 ) : (
-                    <div className={css('icon')}>
+                    <div className={scss('icon')}>
                         <BiUser />
                     </div>
                 )}
 
-                <div className={css('dropdown')}>
+                <div className={scss('dropdown')}>
                     <ul>
                         {this.props.isLoggedIn ? (
                             <>
                                 <li>
-                                    <Link className={css('dropdown-link')} to={config.routes.account}>
+                                    <Link className={scss('dropdown-link')} to={config.routes.account}>
                                         Tài khoản
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link className={css('dropdown-link')} to={config.routes.account}>
+                                    <Link className={scss('dropdown-link')} to={config.routes.account}>
                                         Đơn hàng
                                     </Link>
                                 </li>
                                 <li>
-                                    <div className={css('dropdown-link')} onClick={this.handleLogOut}>
+                                    <div className={scss('dropdown-link')} onClick={this.handleLogOut}>
                                         Đăng xuất
                                     </div>
                                 </li>
@@ -63,12 +63,12 @@ class AccountDropdown extends React.Component {
                         ) : (
                             <>
                                 <li>
-                                    <Link className={css('dropdown-link')} to={config.routes.login}>
+                                    <Link className={scss('dropdown-link')} to={config.routes.login}>
                                         Đăng nhập
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link className={css('dropdown-link')} to={config.routes.register}>
+                                    <Link className={scss('dropdown-link')} to={config.routes.register}>
                                         Đăng ký
                                     </Link>
                                 </li>

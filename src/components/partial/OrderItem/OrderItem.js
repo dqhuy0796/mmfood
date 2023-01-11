@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 // style
 import classNames from 'classnames/bind';
 import styles from './OrderItem.module.scss';
-const css = classNames.bind(styles);
+const scss = classNames.bind(styles);
 
 class OrderItem extends React.Component {
     state = {};
@@ -28,12 +28,12 @@ class OrderItem extends React.Component {
         const currentState = orderStates[orderStates.length - 1];
         const paymentDetails = JSON.parse(data.paymentDetails);
         return (
-            <div className={css('wrapper')}>
-                <div className={css('header')}>
-                    <p className={css('uuid')}>{'#' + data.orderUuid}</p>
+            <div className={scss('wrapper')}>
+                <div className={scss('header')}>
+                    <p className={scss('uuid')}>{'#' + data.orderUuid}</p>
                     <Status code={currentState.code} />
                 </div>
-                <ul className={css('body')}>
+                <ul className={scss('body')}>
                     {items.length < 3 ? (
                         items.map((item, index) => (
                             <li key={index}>
@@ -47,18 +47,18 @@ class OrderItem extends React.Component {
                                     <OrderProductItem data={item} />
                                 </li>
                             ))}
-                            <li className={css('hidden-item')}>
+                            <li className={scss('hidden-item')}>
                                 <span>Và {items.length - 3} sản phẩm khác</span>
                             </li>
                         </>
                     )}
                 </ul>
-                <div className={css('footer')}>
+                <div className={scss('footer')}>
                     <p>
                         <span>Thành tiền:</span>
                         <ItemPrice value={paymentDetails.totalPayment} />
                     </p>
-                    <div className={css('action')}>
+                    <div className={scss('action')}>
                         {currentState.code === 0 && (
                             <Button
                                 size={'medium'}
@@ -66,6 +66,15 @@ class OrderItem extends React.Component {
                                 onClick={() => this.props.handleActiveDialog(data.orderUuid)}
                             >
                                 Hủy đơn
+                            </Button>
+                        )}
+                        {currentState.code === 2 && (
+                            <Button
+                                size={'medium'}
+                                color={'success'}
+                                onClick={() => this.props.handleActiveDialog(data.orderUuid)}
+                            >
+                                Đã nhận hàng
                             </Button>
                         )}
                         <Button
@@ -112,7 +121,7 @@ const Status = (props) => {
             break;
     }
     return (
-        <p className={css(classNames)} title="Trạng thái đơn hàng">
+        <p className={scss(classNames)} title="Trạng thái đơn hàng">
             {content}
         </p>
     );

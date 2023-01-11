@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import classNames from 'classnames/bind';
 import styles from './CartModal.module.scss';
 
-const cb = classNames.bind(styles);
+const scss = classNames.bind(styles);
 
 class CartModal extends React.Component {
     state = {};
@@ -20,8 +20,8 @@ class CartModal extends React.Component {
                 title={`Giỏ hàng (${this.props.cart.quantity})`}
                 handleCollapseModal={this.props.handleCollapseModal}
             >
-                <div className={cb('container')}>
-                    <ul className={cb('body')}>
+                <div className={scss('container')}>
+                    <ul className={scss('body')}>
                         {this.props.cart.items && this.props.cart.items.length > 0 ? (
                             this.props.cart.items.map((item, index) => (
                                 <li key={index}>
@@ -29,8 +29,8 @@ class CartModal extends React.Component {
                                 </li>
                             ))
                         ) : (
-                            <li className={cb('empty-cart')}>
-                                <div className={cb('image')}>
+                            <li className={scss('empty-cart')}>
+                                <div className={scss('image')}>
                                     <img src={emptyCartImage} alt={'Chưa có sản phẩm'} />
                                 </div>
                                 <h2>Chưa có sản phẩm</h2>
@@ -38,8 +38,8 @@ class CartModal extends React.Component {
                         )}
                     </ul>
                     {this.props.cart.items && this.props.cart.items.length > 0 && (
-                        <div className={cb('footer')}>
-                            <p className={cb('subtotal')}>
+                        <div className={scss('footer')}>
+                            <p className={scss('subtotal')}>
                                 <span>Tạm tính:</span>
                                 <span>
                                     <ItemPrice value={this.props.cart.subtotal} />

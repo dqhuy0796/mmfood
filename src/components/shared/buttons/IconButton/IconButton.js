@@ -3,7 +3,7 @@ import classNames from 'classnames/bind';
 import styles from './IconButton.module.scss';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-const cb = classNames.bind(styles);
+const scss = classNames.bind(styles);
 
 class IconButton extends React.Component {
     state = {
@@ -51,12 +51,12 @@ class IconButton extends React.Component {
         return (
             <this.state.element
                 style={this.props.value && this.props.value > 0 ? {} : { overflow: 'hidden' }}
-                className={cb(...this.state.className)}
+                className={scss(...this.state.className)}
                 {...this.state.options}
             >
                 {this.props.children}
                 {this.props.value > 0 && (
-                    <span className={cb('tag')}>{this.props.value < 10 ? this.props.value : '9+'}</span>
+                    <span className={scss('tag')}>{this.props.value < 10 ? this.props.value : '9+'}</span>
                 )}
             </this.state.element>
         );

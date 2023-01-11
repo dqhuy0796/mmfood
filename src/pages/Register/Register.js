@@ -13,7 +13,7 @@ import { login } from '~/redux/actions/authActions';
 import classNames from 'classnames/bind';
 import styles from './Register.module.scss';
 
-const cb = classNames.bind(styles);
+const scss = classNames.bind(styles);
 
 class Register extends React.Component {
     state = {
@@ -136,17 +136,17 @@ class Register extends React.Component {
     };
     render() {
         return (
-            <div className={cb('background')}>
-                <form className={cb('wrapper')} onSubmit={this.handleSubmit}>
-                    <ul className={cb('header')}>
+            <div className={scss('background')}>
+                <form className={scss('wrapper')} onSubmit={this.handleSubmit}>
+                    <ul className={scss('header')}>
                         <li>
                             <h2>Đăng ký</h2>
                         </li>
-                        <li className={cb('message')}>
+                        <li className={scss('message')}>
                             <p>{this.state.message}</p>
                         </li>
                     </ul>
-                    <ul className={cb('body')}>
+                    <ul className={scss('body')}>
                         {this.state.content.map((item, index) => (
                             <li key={index}>
                                 <RowInput
@@ -157,9 +157,9 @@ class Register extends React.Component {
                             </li>
                         ))}
 
-                        <li className={cb('condition')}>
+                        <li className={scss('condition')}>
                             <label>
-                                <div className={cb('check')}>
+                                <div className={scss('check')}>
                                     {this.state.agree && (
                                         <span>
                                             <GiCheckMark />
@@ -176,11 +176,11 @@ class Register extends React.Component {
                             <p>Đồng ý với điều khoản và điều kiện sử dụng của MMFood</p>
                         </li>
                     </ul>
-                    <ul className={cb('footer')}>
+                    <ul className={scss('footer')}>
                         <li>
                             <label>
                                 <input type={'submit'} hidden />
-                                <Button size={'large'} shape={'pill'} color={'primary'}>
+                                <Button widthfull size={'large'} shape={'pill'} color={'primary'}>
                                     <span>Đăng ký</span>
                                 </Button>
                             </label>

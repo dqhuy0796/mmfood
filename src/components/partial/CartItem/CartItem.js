@@ -8,31 +8,31 @@ import { cartItemDescrease, cartItemIncrease, cartItemRemove } from '~/redux/act
 import classNames from 'classnames/bind';
 import styles from './CartItem.module.scss';
 
-const cb = classNames.bind(styles);
+const scss = classNames.bind(styles);
 
 class CartItem extends React.Component {
     render() {
         return (
-            <div className={cb('cart-item')}>
-                <div className={cb('image')}>
-                    <div className={cb('image-link')}>
+            <div className={scss('cart-item')}>
+                <div className={scss('image')}>
+                    <div className={scss('image-link')}>
                         <img src={this.props.data.imageUrl} alt={this.props.data.name} />
                     </div>
                 </div>
-                <div className={cb('info')}>
-                    <p className={cb('name')}>
+                <div className={scss('info')}>
+                    <p className={scss('name')}>
                         <span>{this.props.data.name}</span>
                     </p>
-                    <p className={cb('size')}>
+                    <p className={scss('size')}>
                         <span>Kích thước: </span>
                         <span>{this.props.data.size}</span>
                     </p>
-                    <p className={cb('price')}>
+                    <p className={scss('price')}>
                         <ItemPrice value={this.props.data.newPrice} />
                         <ItemPrice value={this.props.data.oldPrice} />
                     </p>
                 </div>
-                <div className={cb('quantity')}>
+                <div className={scss('quantity')}>
                     <span onClick={() => this.props.itemIncrease(this.props.data)}>
                         <BsChevronUp />
                     </span>
@@ -41,7 +41,7 @@ class CartItem extends React.Component {
                         <BsChevronDown />
                     </span>
                 </div>
-                <div className={cb('action')}>
+                <div className={scss('action')}>
                     <span onClick={() => this.props.itemRemove(this.props.data)}>
                         <MdDeleteOutline />
                     </span>

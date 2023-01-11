@@ -13,7 +13,7 @@ import { login } from '~/redux/actions/authActions';
 import styles from './Login.module.scss';
 import { withRouter } from '~/hoc/withRouter';
 
-const cb = classNames.bind(styles);
+const scss = classNames.bind(styles);
 class Login extends React.Component {
     state = {
         content: [
@@ -67,17 +67,17 @@ class Login extends React.Component {
 
     render() {
         return (
-            <div className={cb('background')}>
-                <form className={cb('wrapper')} onSubmit={this.handleSubmit}>
-                    <ul className={cb('header')}>
+            <div className={scss('background')}>
+                <form className={scss('wrapper')} onSubmit={this.handleSubmit}>
+                    <ul className={scss('header')}>
                         <li>
                             <h2>Đăng nhập</h2>
                         </li>
-                        <li className={cb('message')}>
+                        <li className={scss('message')}>
                             <p>{this.state.message}</p>
                         </li>
                     </ul>
-                    <ul className={cb('body')}>
+                    <ul className={scss('body')}>
                         {this.state.content.map((item, index) => (
                             <li key={index}>
                                 <RowInput
@@ -91,11 +91,11 @@ class Login extends React.Component {
                             <TransparentButton>Quên mật khẩu?</TransparentButton>
                         </li>
                     </ul>
-                    <ul className={cb('footer')}>
+                    <ul className={scss('footer')}>
                         <li>
                             <label>
                                 <input type={'submit'} hidden />
-                                <Button size={'large'} shape={'pill'} color={'primary'}>
+                                <Button widthfull size={'large'} shape={'pill'} color={'primary'}>
                                     <span>Đăng nhập</span>
                                 </Button>
                             </label>

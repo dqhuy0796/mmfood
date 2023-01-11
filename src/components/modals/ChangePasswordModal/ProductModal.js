@@ -1,11 +1,12 @@
-import classNames from 'classnames/bind';
-import React from 'react';
-import Button from '~/components/shared/buttons/Button';
-import RowInput from '~/components/partial/RowInput';
-import BaseCenterModal from '~/components/modals/BaseCenterModal';
-import styles from './ProductModal.module.scss';
 import _ from 'lodash';
-const cb = classNames.bind(styles);
+import React from 'react';
+import BaseCenterModal from '~/components/modals/BaseCenterModal';
+import RowInput from '~/components/partial/RowInput';
+import Button from '~/components/shared/buttons/Button';
+//styles
+import classNames from 'classnames/bind';
+import styles from './ProductModal.module.scss';
+const scss = classNames.bind(styles);
 
 class ProductModal extends React.Component {
     state = {
@@ -36,7 +37,7 @@ class ProductModal extends React.Component {
                     required: true,
                 },
                 {
-                    name: 'categoryId',
+                    name: 'CategoryLayoutId',
                     label: 'Phân loại',
                     required: true,
                 },
@@ -94,9 +95,9 @@ class ProductModal extends React.Component {
     render() {
         return (
             <BaseCenterModal title={this.props.title} handleActiveModal={this.props.handleActiveModal}>
-                <form className={cb('container')} onSubmit={this.handleSubmit}>
-                    {this.state.message && <p className={cb('message')}>{this.state.message}</p>}
-                    <ul className={cb('body')}>
+                <form className={scss('container')} onSubmit={this.handleSubmit}>
+                    {this.state.message && <p className={scss('message')}>{this.state.message}</p>}
+                    <ul className={scss('body')}>
                         {this.state.content.map((item, index) => (
                             <li key={index}>
                                 <RowInput
@@ -107,7 +108,7 @@ class ProductModal extends React.Component {
                             </li>
                         ))}
                     </ul>
-                    <div className={cb('footer')}>
+                    <div className={scss('footer')}>
                         <input id="submit-btn" type={'submit'} hidden />
                         <label htmlFor="submit-btn">
                             <Button size={'large'} color={'primary'}>

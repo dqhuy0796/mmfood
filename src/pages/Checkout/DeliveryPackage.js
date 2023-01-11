@@ -6,13 +6,13 @@ import Subtitle from './Subtitle';
 
 import styles from './DeliveryPackage.module.scss';
 
-const cb = classNames.bind(styles);
+const scss = classNames.bind(styles);
 
 class DeliveryPackage extends React.Component {
     state = {};
     render() {
         return (
-            <div className={cb('cart')}>
+            <div className={scss('cart')}>
                 <Subtitle text={'Danh sách sản phẩm'} />
                 <ul>
                     {this.props.data && this.props.data.length > 0 ? (
@@ -22,7 +22,7 @@ class DeliveryPackage extends React.Component {
                             </li>
                         ))
                     ) : (
-                        <li className={cb('empty-cart')}>
+                        <li className={scss('empty-cart')}>
                             <p>Chưa có sản phẩm</p>
                         </li>
                     )}

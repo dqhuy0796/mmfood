@@ -1,13 +1,14 @@
-import classNames from 'classnames/bind';
+import _ from 'lodash';
 import React from 'react';
 import { MdAddLocation } from 'react-icons/md';
+import AddressDetail, { NewAddressDetail } from '~/components/partial/AddressDetail';
 import Button from '~/components/shared/buttons/Button';
 import TransparentButton from '~/components/shared/buttons/TransparentButton';
 import BaseRightSideModal from '../BaseRightSideModal';
-import AddressDetail, { NewAddressDetail } from '~/components/partial/AddressDetail';
+//styles
+import classNames from 'classnames/bind';
 import styles from './EditAddressModal.module.scss';
-import _ from 'lodash';
-const cb = classNames.bind(styles);
+const scss = classNames.bind(styles);
 class EditAddressModal extends React.Component {
     state = {
         listAddress: [],
@@ -53,27 +54,27 @@ class EditAddressModal extends React.Component {
     render() {
         return (
             <BaseRightSideModal title={'Địa chỉ nhận hàng'} handleCollapseModal={this.props.handleCollapseModal}>
-                <form className={cb('container')} onSubmit={this.handleSubmit}>
-                    <div className={cb('header')}>
+                <form className={scss('container')} onSubmit={this.handleSubmit}>
+                    <div className={scss('header')}>
                         <TransparentButton onClick={() => this.handleOnClickCreateAddress()}>
                             <MdAddLocation />
                             <span>Thêm địa chỉ mới</span>
                         </TransparentButton>
                     </div>
-                    <ul className={cb('body')}>
+                    <ul className={scss('body')}>
                         {this.state.listAddress.map((item, index) => (
                             <li key={index}>
                                 <AddressDetail data={item} />
                             </li>
                         ))}
-                        {this.state.message && <p className={cb('message')}>{this.state.message}</p>}
+                        {this.state.message && <p className={scss('message')}>{this.state.message}</p>}
                         {this.state.createNewAddress && (
                             <li>
                                 <NewAddressDetail handleOnClickCreateAddress={this.handleOnClickCreateAddress} />
                             </li>
                         )}
                     </ul>
-                    <div className={cb('footer')}>
+                    <div className={scss('footer')}>
                         <label>
                             <input type={'submit'} hidden />
                             <Button size={'medium'} shape={'rounded'} color={'info'}>

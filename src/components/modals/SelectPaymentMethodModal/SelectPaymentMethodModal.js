@@ -4,7 +4,7 @@ import { BsChevronRight } from 'react-icons/bs';
 import BaseRightSideModal from '../BaseRightSideModal';
 import styles from './SelectPaymentMethodModal.module.scss';
 
-const cb = classNames.bind(styles);
+const scss = classNames.bind(styles);
 
 class SelectPaymentMethodModal extends React.Component {
     state = {
@@ -107,8 +107,8 @@ class SelectPaymentMethodModal extends React.Component {
     render() {
         return (
             <BaseRightSideModal title={'Phương thức thanh toán'} handleCollapseModal={this.props.handleCollapseModal}>
-                <div className={cb('container')}>
-                    <ul className={cb('body')}>
+                <div className={scss('container')}>
+                    <ul className={scss('body')}>
                         <li>
                             <p>Phương thức thanh toán khuyên dùng</p>
                             {this.state.payment_methods.suggestion.map((item, index) => (
@@ -130,22 +130,22 @@ class SelectPaymentMethodModal extends React.Component {
 }
 
 const PaymentMethodItem = (props) => (
-    <div className={cb('method')}>
-        <div className={cb('image')}>
+    <div className={scss('method')}>
+        <div className={scss('image')}>
             <img src={props.data.imageUrl} alt={props.data.title} />
         </div>
-        <div className={cb('text')}>
+        <div className={scss('text')}>
             <p>{props.data.title}</p>
             <p>{props.data.description}</p>
         </div>
         {props.data.popular && (
-            <div className={cb('payment-list')}>
+            <div className={scss('payment-list')}>
                 {props.data.popular.map((item, index) => (
                     <img key={index} src={item.imageUrl} alt={item.title} />
                 ))}
             </div>
         )}
-        <div className={cb('button')}>
+        <div className={scss('button')}>
             <BsChevronRight />
         </div>
     </div>

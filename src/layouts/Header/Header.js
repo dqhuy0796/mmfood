@@ -12,7 +12,7 @@ import { connect } from 'react-redux';
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
 
-const cb = classNames.bind(styles);
+const scss = classNames.bind(styles);
 class Header extends React.Component {
     state = {
         isModalActive: false,
@@ -35,16 +35,16 @@ class Header extends React.Component {
 
     render() {
         return (
-            <header className={cb('header')}>
-                <div className={cb('wrapper')}>
+            <header className={scss('header')}>
+                <div className={scss('wrapper')}>
                     <HamburgerButton
-                        className={cb('hamburger-btn')}
+                        className={scss('hamburger-btn')}
                         onClick={this.handleCollapseMenu}
                         isCollapsed={this.state.isMobileMenuOpening}
                     />
                     <LogoFull />
                     <Navbar isCollapsed={this.state.isMobileMenuOpening} />
-                    <div className={cb('action')}>
+                    <div className={scss('action')}>
                         <AccountDropdown />
                         <IconButton
                             size={'large'}

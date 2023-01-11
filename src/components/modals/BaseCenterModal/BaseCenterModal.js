@@ -4,7 +4,7 @@ import { MdClose } from 'react-icons/md';
 import IconButton from '~/components/shared/buttons/IconButton';
 import styles from './BaseCenterModal.module.scss';
 
-const cb = classNames.bind(styles);
+const scss = classNames.bind(styles);
 
 class BaseCenterModal extends React.Component {
     state = {};
@@ -19,16 +19,16 @@ class BaseCenterModal extends React.Component {
 
     render() {
         return (
-            <div className={cb('modal')}>
-                <div className={cb('overlay')}></div>
-                <div className={cb('wrapper')}>
-                    <div className={cb('header')}>
+            <div className={scss('modal')}>
+                <div className={scss('overlay')}></div>
+                <div className={scss('wrapper')}>
+                    <div className={scss('header')}>
                         <span>{this.props.title}</span>
                         <IconButton size={'tiny'} color={'transparent'} onClick={this.props.handleActiveModal}>
                             <MdClose />
                         </IconButton>
                     </div>
-                    <div className={cb('body')}>{this.props.children}</div>
+                    <div className={scss('body')}>{this.props.children}</div>
                 </div>
             </div>
         );

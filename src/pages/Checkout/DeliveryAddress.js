@@ -9,7 +9,7 @@ import classNames from 'classnames/bind';
 import styles from './DeliveryAddress.module.scss';
 import AddressDetail from '~/components/partial/AddressDetail';
 
-const cb = classNames.bind(styles);
+const scss = classNames.bind(styles);
 
 class DeliveryAddress extends React.Component {
     state = {
@@ -72,8 +72,8 @@ class DeliveryAddress extends React.Component {
 
     render() {
         return (
-            <div className={cb('address')}>
-                <div className={cb('header')}>
+            <div className={scss('address')}>
+                <div className={scss('header')}>
                     <Subtitle text={'Địa chỉ giao hàng'} />
 
                     <TransparentButton onClick={this.handleCollapseModal}>
@@ -89,10 +89,10 @@ class DeliveryAddress extends React.Component {
                         />
                     )}
                 </div>
-                <ul className={cb('body')}>
+                <ul className={scss('body')}>
                     <AddressDetail data={this.state.selectedAddress} />
                 </ul>
-                <div className={cb('footer')}></div>
+                <div className={scss('footer')}></div>
             </div>
         );
     }

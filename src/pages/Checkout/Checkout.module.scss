@@ -1,37 +1,28 @@
-.background {
-    background: var(--gradient-pink),
-        url(https://res.cloudinary.com/dqhuy/image/upload/v1667639893/MMFood/Food/banh-canh-dacbiet_nkjhsy.jpg);
-    background-size: cover;
-    background-position: center;
-    min-height: 100vh;
-    .wrapper {
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1200px;
+    .left,
+    .right {
         margin: 0 auto;
         width: 100%;
-        max-width: 1200px;
-        .left,
-        .right {
-            margin: 0 auto;
-            width: 100%;
-        }
     }
 }
 
 @media (min-width: 1024px) {
-    .background {
-        .wrapper {
-            padding: 12px;
-            gap: 12px;
-            .left {
-                width: calc(60% - 6px);
-                height: 100%;
-            }
-            .right {
-                width: calc(40% - 6px);
-                height: 100%;
-            }
+    .wrapper {
+        padding: 12px;
+        gap: 12px;
+        .left {
+            width: calc(60% - 6px);
+            height: 100%;
+        }
+        .right {
+            width: calc(40% - 6px);
+            height: 100%;
         }
     }
 }
