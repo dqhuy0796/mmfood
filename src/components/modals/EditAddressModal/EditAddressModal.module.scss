@@ -34,9 +34,8 @@
         flex-shrink: 0;
         padding: 16px;
         width: 100%;
-        label {
-            display: block;
-            margin-bottom: 16px;
+        button + button {
+            margin-top: 16px;
         }
     }
 }

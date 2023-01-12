@@ -1,5 +1,6 @@
 .wrapper {
     display: flex;
+    align-items: stretch;
     justify-content: space-between;
     flex-wrap: wrap;
     margin: 0 auto;
@@ -9,6 +10,8 @@
     .right {
         margin: 0 auto;
         width: 100%;
+        background-color: var(--color-white);
+        overflow: hidden;
     }
 }
 
@@ -18,11 +21,11 @@
         gap: 12px;
         .left {
             width: calc(60% - 6px);
-            height: 100%;
+            border-radius: 4px;
         }
         .right {
             width: calc(40% - 6px);
-            height: 100%;
+            border-radius: 4px;
         }
     }
 }

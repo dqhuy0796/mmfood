@@ -75,13 +75,22 @@ class EditAddressModal extends React.Component {
                         )}
                     </ul>
                     <div className={scss('footer')}>
-                        <label>
-                            <input type={'submit'} hidden />
-                            <Button size={'medium'} shape={'rounded'} color={'info'}>
-                                <span>Xác nhận</span>
-                            </Button>
-                        </label>
-                        <Button size={'medium'} shape={'rounded'} onClick={this.props.handleCollapseModal}>
+                        <Button
+                            widthfull
+                            size={'medium'}
+                            shape={'rounded'}
+                            color={'info'}
+                            onClick={this.props.handleCollapseModal}
+                        >
+                            <span>Xác nhận</span>
+                        </Button>
+                        <Button
+                            widthfull
+                            size={'medium'}
+                            shape={'rounded'}
+                            color={'cancel'}
+                            onClick={this.props.handleCollapseModal}
+                        >
                             <span>Hủy</span>
                         </Button>
                     </div>

@@ -1,5 +1,6 @@
 import classNames from 'classnames/bind';
 import React from 'react';
+import { BsCheckLg } from 'react-icons/bs';
 import styles from './Timeline.module.scss';
 const scss = classNames.bind(styles);
 
@@ -44,6 +45,11 @@ const TimeNode = (props) => {
 
     return (
         <div className={scss('time-node')}>
+            <div className={scss('icon')}>
+                <span>
+                    <BsCheckLg />
+                </span>
+            </div>
             <div className={scss('description')}>
                 <p className={scss('content')}>{content}</p>
                 <p className={scss('time')}>
@@ -51,7 +57,6 @@ const TimeNode = (props) => {
                     <span>{date}</span>
                 </p>
             </div>
-            <div className={scss('icon')}></div>
         </div>
     );
 };

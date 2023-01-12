@@ -20,15 +20,16 @@ class BaseCenterModal extends React.Component {
     render() {
         return (
             <div className={scss('modal')}>
-                <div className={scss('overlay')}></div>
-                <div className={scss('wrapper')}>
-                    <div className={scss('header')}>
-                        <span>{this.props.title}</span>
-                        <IconButton size={'tiny'} color={'transparent'} onClick={this.props.handleActiveModal}>
-                            <MdClose />
-                        </IconButton>
+                <div className={scss('overlay')}>
+                    <div className={scss('wrapper')}>
+                        <div className={scss('header')}>
+                            <span>{this.props.title}</span>
+                            <IconButton size={'tiny'} color={'transparent'} onClick={this.props.handleActiveModal}>
+                                <MdClose />
+                            </IconButton>
+                        </div>
+                        <div className={scss('body')}>{this.props.children}</div>
                     </div>
-                    <div className={scss('body')}>{this.props.children}</div>
                 </div>
             </div>
         );

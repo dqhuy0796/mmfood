@@ -57,7 +57,13 @@ class PaymentDetail extends React.Component {
                         </p>
                     </div>
                     {this.props.cart.subtotal > 0 && (
-                        <Button size={'large'} shape={'pill'} color={'red'} onClick={() => this.props.handleCheckOut()}>
+                        <Button
+                            widthfull
+                            size={'large'}
+                            shape={'pill'}
+                            color={'red'}
+                            onClick={() => this.props.handleCheckOut()}
+                        >
                             <span>Đặt hàng</span>
                         </Button>
                     )}

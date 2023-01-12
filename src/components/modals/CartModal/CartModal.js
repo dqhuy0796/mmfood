@@ -3,7 +3,9 @@ import emptyCartImage from '~/assets/images/empty-cart.png';
 import CartItem from '~/components/partial/CartItem';
 import Button from '~/components/shared/buttons/Button';
 import config from '~/config';
+import { withRouter } from '~/hoc/withRouter';
 import BaseRightSideModal from '../BaseRightSideModal';
+
 //redux
 import { connect } from 'react-redux';
 //style
@@ -13,7 +15,15 @@ import styles from './CartModal.module.scss';
 const scss = classNames.bind(styles);
 
 class CartModal extends React.Component {
-    state = {};
+    handleOnClickCheckOut = () => {
+        if (this.props.isLoggedIn) {
+            this.props.navigate(config.routes.checkout);
+        } else {
+            this.props.navigate(config.routes.login);
+        }
+        this.props.handleCollapseModal();
+    };
+
     render() {
         return (
             <BaseRightSideModal
@@ -46,10 +56,11 @@ class CartModal extends React.Component {
                                 </span>
                             </p>
                             <Button
+                                widthfull
                                 size={'large'}
                                 shape={'pill'}
-                                color={'error'}
-                                to={this.props.isLoggedIn ? config.routes.checkout : config.routes.login}
+                                color={'red'}
+                                onClick={this.handleOnClickCheckOut}
                             >
                                 Thanh toán
                             </Button>
@@ -72,4 +83,4 @@ const mapActionsToProps = (dispatch) => ({
     //
 });
 
-export default connect(mapStateToProps, mapActionsToProps)(CartModal);
+export default connect(mapStateToProps, mapActionsToProps)(withRouter(CartModal));

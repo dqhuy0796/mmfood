@@ -8,9 +8,10 @@
 }
 .header {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    padding: 16px;
     gap: 16px 8px;
+    padding: 16px;
     .section {
         p {
             font-size: 1.6rem;
@@ -76,7 +77,15 @@
         }
     }
 }
-@media (min-width: 1024px) {
+@media (min-width: 768px) {
+    .header {
+        flex-direction: row;
+        .section:last-child {
+            .title {
+                text-align: right;
+            }
+        }
+    }
     .footer {
         table {
             tr {

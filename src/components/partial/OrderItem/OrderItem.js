@@ -72,7 +72,7 @@ class OrderItem extends React.Component {
                             <Button
                                 size={'medium'}
                                 color={'success'}
-                                onClick={() => this.props.handleActiveDialog(data.orderUuid)}
+                                onClick={() => this.props.handleFinishedOrder(data.orderUuid)}
                             >
                                 Đã nhận hàng
                             </Button>

@@ -68,6 +68,13 @@ class Account extends React.Component {
             this.props.fetchHistoryOrders(this.props.currentUser.id);
         }
     };
+    handleFinishedOrder = async (uuid) => {
+        let res = await userService.finishedOrderService(uuid);
+        if (res && res.code === 0) {
+            toast.success(`Đã nhận đơn hàng #${uuid}`);
+            this.props.fetchHistoryOrders(this.props.currentUser.id);
+        }
+    };
     handleActiveModal = (data) => {
         // toggle (open/close) only
         this.setState((prevState) => ({
@@ -204,6 +211,7 @@ class Account extends React.Component {
                                             data={item}
                                             handleActiveModal={this.handleActiveModal}
                                             handleActiveDialog={this.handleActiveDialog}
+                                            handleFinishedOrder={this.handleFinishedOrder}
                                         />
                                     </li>
                                 ))

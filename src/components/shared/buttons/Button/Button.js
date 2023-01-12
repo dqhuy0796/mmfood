@@ -21,29 +21,11 @@ class Button extends React.Component {
             this.setState((prevState) => ({
                 ...prevState,
                 element: Link,
-                options: {
-                    ...prevState.options,
-                    to: this.props.to,
-                },
             }));
-        }
-        if (this.props.href) {
+        } else if (this.props.href) {
             this.setState((prevState) => ({
                 ...prevState,
                 element: 'a',
-                options: {
-                    ...prevState.options,
-                    href: this.props.href,
-                },
-            }));
-        }
-        if (this.props.onClick) {
-            this.setState((prevState) => ({
-                ...prevState,
-                options: {
-                    ...prevState.options,
-                    onClick: this.props.onClick,
-                },
             }));
         }
         this.setState((prevState) => ({
@@ -55,7 +37,7 @@ class Button extends React.Component {
     render() {
         return (
             <this.state.element
-                {...this.state.options}
+                {...this.props}
                 className={scss(...this.state.className, this.props.widthfull && 'width-full')}
             >
                 {this.props.children}
@@ -65,7 +47,8 @@ class Button extends React.Component {
 }
 
 Button.propTypes = {
-    size: PropTypes.string.isRequired,
+    size: PropTypes.string,
+    widthfull: PropTypes.bool,
     color: PropTypes.string,
     shape: PropTypes.string,
     to: PropTypes.string,

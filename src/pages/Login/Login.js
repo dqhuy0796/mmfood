@@ -1,17 +1,17 @@
 import classNames from 'classnames/bind';
+import _ from 'lodash';
 import React from 'react';
 import RowInput from '~/components/partial/RowInput';
 import Button from '~/components/shared/buttons/Button';
 import TransparentButton from '~/components/shared/buttons/TransparentButton';
-import { userService } from '~/services';
-import _ from 'lodash';
 import config from '~/config';
+import { withRouter } from '~/hoc/withRouter';
+import { userService } from '~/services';
 // redux and actions
 import { connect } from 'react-redux';
 import { login } from '~/redux/actions/authActions';
 // styles
 import styles from './Login.module.scss';
-import { withRouter } from '~/hoc/withRouter';
 
 const scss = classNames.bind(styles);
 class Login extends React.Component {

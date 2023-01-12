@@ -4,37 +4,46 @@
     width: 100%;
     .time-node {
         display: flex;
-        justify-content: flex-end;
+        justify-content: flex-start;
         gap: 16px;
         .icon {
             position: relative;
             width: 32px;
-            &::before {
-                content: '';
+            span {
                 position: absolute;
-                z-index: 2;
+                z-index: 1;
                 left: 50%;
                 top: 50%;
                 transform: translateX(-50%) translateY(-50%);
-                width: 16px;
-                height: 16px;
-                border-radius: 50%;
-                background: var(--color-white);
-                border: 2px solid var(--color-border);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: var(--color-white);
+                font-size: 1rem;
             }
-            &::after {
+            &::before {
                 content: '';
                 position: absolute;
-                z-index: 1;
                 left: 50%;
                 transform: translateX(-50%);
                 width: 2px;
                 height: 100%;
-                background-color: var(--color-border);
+                background-color: var(--color-shadow);
+            }
+            &::after {
+                content: '';
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translateX(-50%) translateY(-50%);
+                width: 18px;
+                height: 18px;
+                border-radius: 50%;
+                background: var(--color-shadow);
             }
         }
         .description {
-            text-align: right;
+            text-align: left;
             margin: 8px 0;
             .content {
                 font-size: 1.4rem;
@@ -44,7 +53,7 @@
             .time {
                 display: flex;
                 flex-wrap: wrap;
-                justify-content: flex-end;
+                justify-content: flex-start;
                 gap: 4px 12px;
                 span {
                     font-size: 1.4rem;
@@ -55,16 +64,34 @@
         }
         &:last-child {
             .icon {
-                &::before {
-                    width: 24px;
-                    height: 24px;
-                    border-color: var(--color-success);
+                span {
+                    color: var(--color-white);
+                    font-size: 1.4rem;
+                }
+                &::after {
+                    width: 28px;
+                    height: 28px;
+                    background-color: var(--color-success);
                 }
             }
             .description {
                 .content {
                     font-size: 1.8rem;
                     color: var(--color-success);
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    .timeline {
+        .time-node {
+            flex-direction: row-reverse;
+            .description {
+                text-align: right;
+                .time {
+                    justify-content: flex-end;
                 }
             }
         }

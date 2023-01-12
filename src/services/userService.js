@@ -87,6 +87,19 @@ export const createOrderService = async (customerId, receiverDetails, items, pay
     }
 };
 
+export const finishedOrderService = async (uuid) => {
+    const path = 'order/finished';
+    const payload = {
+        uuid: uuid,
+    };
+    try {
+        const result = await httpsRequest.postApi(path, payload);
+        return result;
+    } catch (error) {
+        console.log(error);
+    }
+};
+
 export const cancelOrderService = async (uuid) => {
     const path = 'order/cancel';
     const payload = {
