@@ -15,6 +15,9 @@ import Drink from '~/pages/Category/Drink';
 import Food from '~/pages/Category/Food';
 import Hotpot from '~/pages/Category/Hotpot';
 import Others from '~/pages/Category/Others';
+import ProductDetails from '../pages/ProductDetails';
+import BlogDetails from '../pages/BlogDetails';
+import Blogs from '../pages/Blogs';
 
 //
 import Checkout from '~/pages/Checkout';
@@ -84,6 +87,21 @@ export const publicRouter = [
     {
         path: routes.others,
         Component: Others,
+        Layout: DefaultLayout,
+    },
+    {
+        path: routes.productDetails,
+        Component: ProductDetails,
+        Layout: DefaultLayout,
+    },
+    {
+        path: routes.blog,
+        Component: Blogs,
+        Layout: DefaultLayout,
+    },
+    {
+        path: routes.blogDetails,
+        Component: BlogDetails,
         Layout: DefaultLayout,
     },
 ];

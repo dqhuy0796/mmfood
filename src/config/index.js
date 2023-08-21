@@ -6,20 +6,28 @@ const routes = {
     login: '/login',
     register: '/register',
 
+    blog: '/blog',
+    blogDetails: '/blog/details/:id',
+
     product: '/product',
+    productDetails: '/product/details/:id',
+
     food: '/product/food',
     drink: '/product/drink',
     hotpot: '/product/hotpot',
     others: '/product/others',
 
-    orders: '/order',
-    orderDetails: '/order/details/:id',
-    checkout: '/checkout',
+    profile: '/profile',
+    editProfile: '/profile/edit',
+
     addresses: '/address',
     editAddress: '/address/edit/:id',
     createAddress: '/address/create',
-    profile: '/profile',
-    editProfile: '/profile/edit',
+
+    orders: '/order',
+    orderDetails: '/order/details/:id',
+
+    checkout: '/checkout',
 };
 
 export default routes;

@@ -1,10 +1,9 @@
-import { combineReducers } from 'redux';
 import { configureStore } from '@reduxjs/toolkit';
-import preloadReducer from './reducers/preloadReducer';
-import cartReducer from './reducers/cartReducer';
+import { combineReducers } from 'redux';
 import authReducer from './reducers/authReducer';
-
-import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
+import cartReducer from './reducers/cartReducer';
+import preloadReducer from './reducers/preloadReducer';
+import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE, persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
 const persistConfig = {

@@ -1,5 +1,7 @@
 import React from 'react';
 import { BsBagPlus, BsSuitHeart, BsSuitHeartFill } from 'react-icons/bs';
+import routes from '~/config';
+import { withRouter } from '~/hoc/withRouter';
 import { FaStar } from 'react-icons/fa';
 import IconButton from '~/components/shared/IconButton';
 // redux and action
@@ -7,15 +9,19 @@ import { connect } from 'react-redux';
 import { cartItemAdd } from '~/redux/actions/cartActions';
 // style
 import classNames from 'classnames/bind';
-import styles from './ProductItem.module.scss';
+import styles from './ProductCard.module.scss';
 const scss = classNames.bind(styles);
 
-class ProductItem extends React.Component {
+class ProductCard extends React.Component {
     state = {};
 
     handleAddToFavourite = (data) => {};
 
     handleAddToCart = (data) => {};
+
+    handleOnRedirect = (id) => {
+        this.props.navigate(routes.productDetails.replace(':id', id));
+    };
 
     render() {
         const { data } = this.props;
@@ -35,7 +41,9 @@ class ProductItem extends React.Component {
                                 {<BsSuitHeart /> || <BsSuitHeartFill style={{ color: 'red' }} />}
                             </IconButton>
                         </div>
-                        <h4 className={scss('title')}>{data.name}</h4>
+                        <h4 className={scss('title')} onClick={() => this.handleOnRedirect(data.id)}>
+                            {data.name}
+                        </h4>
                         <Rating stars={5.0} reviews={100} />
                     </div>
                     <div className={scss('bottom')}>
@@ -105,4 +113,4 @@ const mapActionsToProps = (dispatch) => ({
     addToCart: (item) => dispatch(cartItemAdd(item)),
 });
 
-export default connect(mapStateToProps, mapActionsToProps)(ProductItem);
+export default connect(mapStateToProps, mapActionsToProps)(withRouter(ProductCard));

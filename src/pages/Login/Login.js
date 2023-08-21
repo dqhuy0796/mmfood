@@ -3,6 +3,7 @@ import _ from 'lodash';
 import React from 'react';
 import RowInput from '~/components/partial/RowInput';
 import Button from '~/components/shared/Button';
+import Loading from '~/components/partial/Loading';
 import TransparentButton from '~/components/shared/TransparentButton';
 import routes from '~/config';
 import { withRouter } from '~/hoc/withRouter';
@@ -18,6 +19,7 @@ class Login extends React.Component {
     state = {
         data: {},
         message: '',
+        isNowLoading: false,
         content: [
             {
                 key: 'phone',
@@ -45,20 +47,32 @@ class Login extends React.Component {
     };
 
     handleLogin = async (data) => {
-        let response = await userService.loginService(data);
-        if (response) {
+        try {
+            this.setState({ isNowLoading: true });
+            const response = await userService.loginService(data);
+            if (response) {
+                this.setState((prevState) => ({
+                    ...prevState,
+                    isNowLoading: false,
+                    message: response.message,
+                }));
+
+                if (!_.isEmpty(response.result)) {
+                    this.props.login({
+                        user: response.result,
+                        accessToken: response.accessToken,
+                        refreshToken: response.refreshToken,
+                    });
+
+                    this.props.navigate(routes.home);
+                }
+            }
+        } catch (error) {
             this.setState((prevState) => ({
                 ...prevState,
-                message: response.message,
+                isNowLoading: false,
+                message: 'Oops... Có lỗi xảy ra!',
             }));
-            if (!_.isEmpty(response.result)) {
-                this.props.login({
-                    user: response.result,
-                    accessToken: response.accessToken,
-                    refreshToken: response.refreshToken,
-                });
-                this.props.navigate(routes.home);
-            }
         }
     };
 
@@ -110,6 +124,8 @@ class Login extends React.Component {
                         </li>
                     </ul>
                 </form>
+
+                {this.state.isNowLoading && <Loading />}
             </div>
         );
     }

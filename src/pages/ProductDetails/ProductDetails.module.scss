@@ -1,0 +1,30 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 16px 0;
+    gap: 16px;
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    background-color: transparent;
+    .title {
+        padding: 0 16px;
+        font-size: 1.8rem;
+        font-weight: 600;
+        color: var(--color-text);
+    }
+    .subtitle {
+        margin-bottom: 16px;
+        font-size: 1.6rem;
+        font-weight: 600;
+        color: var(--color-text);
+    }
+}
+
+@media (min-width: 768px) {
+    .wrapper {
+        .title {
+            font-size: 2.4rem;
+        }
+    }
+}

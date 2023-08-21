@@ -49,39 +49,6 @@
     }
     .body {
         flex: 1;
-
-        .condition {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            label {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                position: relative;
-                width: 24px;
-                height: 24px;
-                border-radius: 6px;
-                border: 1px solid var(--color-border);
-                flex-shrink: 0;
-                span {
-                    position: absolute;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
-                    font-size: 3rem;
-                    color: var(--color-blue);
-                    background-color: transparent;
-                }
-            }
-            p {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                position: relative;
-                background-color: transparent;
-            }
-        }
     }
     .footer {
         flex-shrink: 0;

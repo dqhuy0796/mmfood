@@ -1,5 +1,6 @@
 import React from 'react';
-import { GiCheckMark } from 'react-icons/gi';
+import Checkbox from '~/components/partial/Checkbox';
+import Loading from '~/components/partial/Loading';
 import RowInput from '~/components/partial/RowInput';
 import Button from '~/components/shared/Button';
 import TransparentButton from '~/components/shared/TransparentButton';
@@ -11,8 +12,8 @@ import { connect } from 'react-redux';
 import { login } from '~/redux/actions/authActions';
 //styles
 import classNames from 'classnames/bind';
-import styles from './Register.module.scss';
 import _ from 'lodash';
+import styles from './Register.module.scss';
 
 const scss = classNames.bind(styles);
 
@@ -20,16 +21,16 @@ class Register extends React.Component {
     state = {
         content: [
             {
-                key: 'phoneNumber',
-                label: 'Số điện thoại',
-                required: true,
-                type: 'tel',
-            },
-            {
                 key: 'email',
                 label: 'Email',
                 required: true,
                 type: 'email',
+            },
+            {
+                key: 'phoneNumber',
+                label: 'Số điện thoại',
+                required: true,
+                type: 'tel',
             },
             {
                 key: 'password',
@@ -54,7 +55,9 @@ class Register extends React.Component {
         ],
         data: {},
         message: '',
-        agree: false,
+        accept: false,
+        isNowLoading: false,
+        isShowDialog: false,
     };
 
     // event handler
@@ -68,42 +71,40 @@ class Register extends React.Component {
         }));
     };
 
-    handleOnChangeConditionState = () => {
+    handleAcceptCondition = () => {
         this.setState((prevState) => ({
-            ...prevState,
-            agree: !prevState.agree,
+            accept: !prevState.accept,
         }));
     };
 
     //process api
     handleRegister = async (data) => {
-        let response = await userService.registerService(data);
-        if (response) {
+        try {
+            this.setState({ isNowLoading: true });
+            const response = await userService.registerService(data);
+            if (response) {
+                this.setState((prevState) => ({
+                    ...prevState,
+                    isNowLoading: false,
+                    message: response.message,
+                }));
+
+                if (response.code === 0) {
+                    this.props.navigate(routes.login);
+                }
+            }
+        } catch (error) {
             this.setState((prevState) => ({
                 ...prevState,
-                message: response.message,
+                isNowLoading: false,
+                message: 'Oops... Có lỗi xảy ra!',
             }));
-        }
-        if (response.code === 0) {
-            this.props.login(data);
-            this.props.navigate(routes.home);
-        }
-    };
-
-    handleShowErrorMessage = (code) => {
-        switch (code) {
-            case 5:
-                return 'Tài khoản hoặc mật khẩu không đúng';
-            case 6:
-                return 'Không để trống tài khoản và mật khẩu';
-            default:
-                return;
         }
     };
 
     handleValidate = () => {
         const { password, confirmPassword } = this.state.data;
-        if (!this.state.agree) {
+        if (!this.state.accept) {
             this.setState((prevState) => ({
                 ...prevState,
                 message: 'Đồng ý với điều khoản và điều kiện',
@@ -132,7 +133,7 @@ class Register extends React.Component {
     };
 
     render() {
-        const { data, content, message } = this.state;
+        const { data, content, message, accept } = this.state;
         return (
             <div className={scss('background')}>
                 <form className={scss('wrapper')} onSubmit={this.handleSubmit}>
@@ -150,24 +151,15 @@ class Register extends React.Component {
                                 <RowInput option={item} value={data[item.key]} onChange={this.handleOnChangeInput} />
                             </li>
                         ))}
-
-                        <li className={scss('condition')}>
-                            <label>
-                                <div className={scss('check')}>
-                                    {this.state.agree && (
-                                        <span>
-                                            <GiCheckMark />
-                                        </span>
-                                    )}
-                                </div>
-                                <input
-                                    hidden
-                                    type={'checkbox'}
-                                    value={this.state.agree}
-                                    onChange={this.handleOnChangeConditionState}
-                                />
-                            </label>
-                            <p>Đồng ý với điều khoản và điều kiện sử dụng của MMFood</p>
+                        <li>
+                            <Checkbox
+                                option={{
+                                    key: 'accept',
+                                    label: 'Đồng ý với điều kiện & điều khoản',
+                                }}
+                                checked={accept}
+                                onChange={this.handleAcceptCondition}
+                            />
                         </li>
                     </ul>
                     <ul className={scss('footer')}>
@@ -188,6 +180,7 @@ class Register extends React.Component {
                         </li>
                     </ul>
                 </form>
+                {this.state.isNowLoading && <Loading />}
             </div>
         );
     }

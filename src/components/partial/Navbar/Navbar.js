@@ -1,15 +1,16 @@
+import _ from 'lodash';
 import React from 'react';
 import { FiSearch } from 'react-icons/fi';
+import Loading from '~/components/partial/Loading';
 import routes from '~/config';
 import { withRouter } from '~/hoc/withRouter';
 import NavbarItem from './NavbarItem';
 // redux and actions
 import { connect } from 'react-redux';
-import { fetchSearchProducts } from '~/redux/actions/preloadActions';
 import { logout } from '~/redux/actions/authActions';
+import { fetchSearchProducts } from '~/redux/actions/preloadActions';
 //styles
 import classNames from 'classnames/bind';
-import _ from 'lodash';
 import styles from './Navbar.module.scss';
 const scss = classNames.bind(styles);
 
@@ -47,11 +48,20 @@ const menu = [
 ];
 
 class Navbar extends React.Component {
-    state = {};
+    state = {
+        isNowLoading: false,
+    };
 
     handleLogOut = () => {
+        this.setState({ isNowLoading: true });
+
         this.props.logout();
-        if (this.props.location.pathname === routes.checkout || this.props.location.pathname === routes.account) {
+
+        setTimeout(() => {
+            this.setState({ isNowLoading: false });
+        }, 1000);
+
+        if (this.props.location.pathname !== routes.home) {
             this.props.navigate(routes.home);
         }
     };
@@ -62,60 +72,65 @@ class Navbar extends React.Component {
     };
 
     render() {
-        const currentUser = this.props.currentUser;
+        const user = this.props.user;
+
         return (
-            <div className={scss('navbar', this.props.isCollapsed && 'collapse')}>
-                <div className={scss('main')}>
-                    <NavbarSearchItem
-                        navigate={this.props.navigate}
-                        location={this.props.location}
-                        searchProducts={this.props.searchProducts}
-                        searchResult={this.props.searchResult}
-                    />
-                    <ul className={scss('menu')}>
-                        {menu.map((item, index) => (
-                            <li key={index} className={scss('item')}>
-                                <NavbarItem data={item} />
+            <>
+                <div className={scss('navbar', this.props.isCollapsed && 'collapse')}>
+                    <div className={scss('main')}>
+                        <NavbarSearchItem
+                            navigate={this.props.navigate}
+                            location={this.props.location}
+                            searchProducts={this.props.searchProducts}
+                            searchResult={this.props.searchResult}
+                        />
+                        <ul className={scss('menu')}>
+                            {menu.map((item, index) => (
+                                <li key={index} className={scss('item')}>
+                                    <NavbarItem data={item} />
+                                </li>
+                            ))}
+                            <li className={scss('item')}>
+                                {this.props.isLogged && !_.isEmpty(user) ? (
+                                    <NavbarItem
+                                        data={{
+                                            title: user.name,
+                                            path: routes.profile,
+                                            menu: [
+                                                {
+                                                    title: 'tài khoản',
+                                                    path: routes.profile,
+                                                },
+                                                {
+                                                    title: 'sổ địa chỉ',
+                                                    path: routes.addresses,
+                                                },
+                                                {
+                                                    title: 'đơn hàng',
+                                                    path: routes.orders,
+                                                },
+                                                {
+                                                    title: 'đăng xuất',
+                                                    onClick: this.handleLogOut,
+                                                },
+                                            ],
+                                        }}
+                                    />
+                                ) : (
+                                    <NavbarItem
+                                        data={{
+                                            title: 'đăng nhập',
+                                            path: routes.login,
+                                        }}
+                                    />
+                                )}
                             </li>
-                        ))}
-                        <li className={scss('item')}>
-                            {this.props.isLogged && !_.isEmpty(currentUser) ? (
-                                <NavbarItem
-                                    data={{
-                                        title: currentUser.name,
-                                        path: routes.profile,
-                                        menu: [
-                                            {
-                                                title: 'tài khoản',
-                                                path: routes.profile,
-                                            },
-                                            {
-                                                title: 'sổ địa chỉ',
-                                                path: routes.addresses,
-                                            },
-                                            {
-                                                title: 'đơn hàng',
-                                                path: routes.orders,
-                                            },
-                                            {
-                                                title: 'đăng xuất',
-                                                path: routes.logout,
-                                            },
-                                        ],
-                                    }}
-                                />
-                            ) : (
-                                <NavbarItem
-                                    data={{
-                                        title: 'đăng nhập',
-                                        path: routes.login,
-                                    }}
-                                />
-                            )}
-                        </li>
-                    </ul>
+                        </ul>
+                    </div>
                 </div>
-            </div>
+
+                {this.state.isNowLoading && <Loading />}
+            </>
         );
     }
 }
@@ -164,7 +179,7 @@ class NavbarSearchItem extends React.Component {
 const mapStateToProps = (state) => ({
     searchResult: state.api.search,
     isLogged: state.auth.isLogged,
-    currentUser: state.auth.user,
+    user: state.auth.user,
 });
 
 const mapActionsToProps = (dispatch) => ({

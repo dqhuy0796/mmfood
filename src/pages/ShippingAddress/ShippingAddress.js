@@ -12,11 +12,11 @@ import Button from '~/components/shared/Button';
 import { withRouter } from '~/hoc/withRouter';
 import { setSelectedAddress } from '~/redux/actions/authActions';
 import { userService } from '~/services';
+import DialogMessage from '~/components/partial/DialogMessage';
 //redux
 //styles
 import classNames from 'classnames/bind';
 import styles from './ShippingAddress.module.scss';
-import DialogMessage from '../../components/partial/DialogMessage/DialogMessage';
 const scss = classNames.bind(styles);
 
 class ShippingAddress extends React.Component {

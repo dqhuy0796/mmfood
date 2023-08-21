@@ -26,9 +26,9 @@ class BlogSection extends React.Component {
                             src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/jese-leos.png"
                             alt="Jese Leos avatar"
                         />
-                        <span className={scss('name')}>MMFOOD professor</span>
+                        <span className={scss('name')}>mmfood</span>
                     </div>
-                    <TransparentButton to={routes.editAddress}>
+                    <TransparentButton to={routes.blogDetails.replace(':id', data.id)}>
                         <span>Xem thêm</span>
                     </TransparentButton>
                 </div>

@@ -4,11 +4,10 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Loading from '~/components/partial/Loading';
 import OrderProductCard from '~/components/partial/OrderCard/OrderProductCard';
-import { withRouter } from '~/hoc/withRouter';
-import AddressCard from '~/components/partial/AddressCard';
 import Timeline from '~/components/partial/Timeline';
+import { withRouter } from '~/hoc/withRouter';
 import { fetchHistoryOrders } from '~/redux/actions/preloadActions';
-import { systemService, userService } from '~/services';
+import { userService } from '~/services';
 // style
 import classNames from 'classnames/bind';
 import styles from './OrderDetails.module.scss';

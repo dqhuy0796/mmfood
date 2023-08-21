@@ -20,9 +20,10 @@ class NavbarItem extends React.Component {
 
     render() {
         const data = this.props.data;
-        return (
-            <div className={scss('nav-item')}>
-                {data.menu ? (
+
+        if (data.menu) {
+            return (
+                <div className={scss('nav-item')}>
                     <div className={scss('menu')}>
                         <div className={scss('collapse')}>
                             <NavLink
@@ -37,28 +38,42 @@ class NavbarItem extends React.Component {
                                 <BsChevronDown />
                             </div>
                         </div>
+
                         <div className={scss('dropdown')}>
-                            {data.menu.map((item, index) => (
-                                <NavLink
-                                    key={index}
-                                    to={item.path}
-                                    className={({ isActive }) =>
-                                        isActive ? scss('nav-link', 'actived') : scss('nav-link')
-                                    }
-                                >
-                                    {item.title}
-                                </NavLink>
-                            ))}
+                            {data.menu.map((item, index) => {
+                                if (item.onClick) {
+                                    return (
+                                        <div key={index} className={scss('nav-link')} onClick={item.onClick}>
+                                            {item.title}
+                                        </div>
+                                    );
+                                }
+
+                                return (
+                                    <NavLink
+                                        key={index}
+                                        to={item.path}
+                                        className={({ isActive }) =>
+                                            isActive ? scss('nav-link', 'actived') : scss('nav-link')
+                                        }
+                                    >
+                                        {item.title}
+                                    </NavLink>
+                                );
+                            })}
                         </div>
                     </div>
-                ) : (
-                    <NavLink
-                        to={data.path}
-                        className={({ isActive }) => (isActive ? scss('nav-link', 'actived') : scss('nav-link'))}
-                    >
-                        {data.title}
-                    </NavLink>
-                )}
+                </div>
+            );
+        }
+        return (
+            <div className={scss('nav-item')}>
+                <NavLink
+                    to={data.path}
+                    className={({ isActive }) => (isActive ? scss('nav-link', 'actived') : scss('nav-link'))}
+                >
+                    {data.title}
+                </NavLink>
             </div>
         );
     }
