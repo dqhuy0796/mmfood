@@ -1,6 +1,12 @@
 export const authActionTypes = Object.freeze({
     login: 'LOG_IN',
     logout: 'LOG_OUT',
+    refresh: 'REFRESH',
+    updateProfile: 'UPDATE_PROFILE',
+
+    getAddresses: 'GET_ADDRESSES',
+    updateDefaultAddress: 'UPDATE_DEFAULT_ADDRESS',
+    setSelectedAddress: 'SET_SELECTED_ADDRESS',
 });
 
 export const cartActionTypes = Object.freeze({
@@ -11,7 +17,7 @@ export const cartActionTypes = Object.freeze({
     removeAll: 'REMOVE_ALL_ITEMS',
 });
 
-export const apiActionTypes = Object.freeze({
+export const preloadActionTypes = Object.freeze({
     updateCartApi: 'UPDATE_CART_API',
     getCart: 'GET_CART_API',
     getPosts: 'GET_POSTS_API',

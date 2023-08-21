@@ -8,7 +8,8 @@
     --color-hover: #ffcc8f80;
     --color-text: #292929;
     --color-border: #dddddd;
-    --color-shadow: #969696;
+    --color-disable: #e0e0e0;
+    --color-shadow: #a3a3a3;
     --color-red: #db1120;
     --color-orange: #f46200;
     --color-gold: #fcc201;
@@ -54,27 +55,26 @@ body {
     font-family: 'Montserrat', sans-serif;
     font-size: 1.6rem;
     text-rendering: optimizeSpeed;
-    overflow-y: overlay;
-    /* overflow-x: hidden; */
 }
 
 /* Scrollbar */
-
-html *::-webkit-scrollbar {
-    border-radius: 0;
-    width: 8px;
-}
-html *::-webkit-scrollbar {
-    border-radius: 0;
-    width: 8px;
-}
-html *::-webkit-scrollbar-thumb {
-    border-radius: 4px;
-    background-color: #00000026;
-}
-html *::-webkit-scrollbar-track {
-    border-radius: 0;
-    background-color: #00000000;
+@media (min-width: 768px) {
+    html *::-webkit-scrollbar {
+        border-radius: 0;
+        width: 8px;
+    }
+    html *::-webkit-scrollbar {
+        border-radius: 0;
+        width: 8px;
+    }
+    html *::-webkit-scrollbar-thumb {
+        border-radius: 4px;
+        background-color: #00000026;
+    }
+    html *::-webkit-scrollbar-track {
+        border-radius: 0;
+        background-color: #00000000;
+    }
 }
 
 /* Placeholder */

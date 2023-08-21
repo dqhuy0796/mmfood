@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind';
 import React from 'react';
-import Button from '~/components/shared/buttons/Button';
-import config from '~/config';
+import Button from '~/components/shared/Button';
+import routes from '~/config';
 import styles from './NotFound.module.scss';
 
 const scss = classNames.bind(styles);
@@ -14,13 +14,7 @@ class NotFound extends React.Component {
                 <div className={scss('content')}>
                     <h1>404</h1>
                     <h3>page not found</h3>
-                    <Button
-                        className={scss('btn')}
-                        size={'large'}
-                        shape={'pill'}
-                        color={'white'}
-                        to={config.routes.home}
-                    >
+                    <Button className={scss('btn')} size={'large'} shape={'pill'} color={'white'} to={routes.home}>
                         Trở về trang chủ
                     </Button>
                 </div>

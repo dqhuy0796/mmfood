@@ -10,11 +10,11 @@ const scss = classNames.bind(styles);
 class DefaultLayout extends React.Component {
     render() {
         return (
-            <>
+            <div className={scss('page-background')}>
                 <Header />
-                <div className={scss('page-background')}>{this.props.children}</div>
+                <div className={scss('page-children')}>{this.props.children}</div>
                 <Footer />
-            </>
+            </div>
         );
     }
 }

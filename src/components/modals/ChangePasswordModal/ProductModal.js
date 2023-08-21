@@ -2,7 +2,7 @@ import _ from 'lodash';
 import React from 'react';
 import BaseCenterModal from '~/components/modals/BaseCenterModal';
 import RowInput from '~/components/partial/RowInput';
-import Button from '~/components/shared/buttons/Button';
+import Button from '~/components/shared/Button';
 //styles
 import classNames from 'classnames/bind';
 import styles from './ProductModal.module.scss';

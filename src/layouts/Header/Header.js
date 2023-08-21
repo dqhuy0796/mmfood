@@ -1,10 +1,9 @@
 import React from 'react';
-import { HiOutlineShoppingBag } from 'react-icons/hi';
+import { BsBag } from 'react-icons/bs';
 import CartModal from '~/components/modals/CartModal';
-import AccountDropdown from '~/components/partial/AccountDropdown/AccountDropdown';
 import Navbar from '~/components/partial/Navbar';
-import HamburgerButton from '~/components/shared/buttons/HamburgerButton';
-import IconButton from '~/components/shared/buttons/IconButton';
+import HamburgerButton from '~/components/shared/HamburgerButton';
+import IconButton from '~/components/shared/IconButton';
 import LogoFull from '~/components/shared/Logo/LogoFull';
 //redux
 import { connect } from 'react-redux';
@@ -42,20 +41,21 @@ class Header extends React.Component {
                         onClick={this.handleCollapseMenu}
                         isCollapsed={this.state.isMobileMenuOpening}
                     />
+
                     <LogoFull />
+
                     <Navbar isCollapsed={this.state.isMobileMenuOpening} />
-                    <div className={scss('action')}>
-                        <AccountDropdown />
-                        <IconButton
-                            size={'large'}
-                            shape={'round'}
-                            color={'transparent'}
-                            onClick={this.handleCollapseModal}
-                            value={this.props.cart.quantity}
-                        >
-                            <HiOutlineShoppingBag />
-                        </IconButton>
-                    </div>
+
+                    <IconButton
+                        size={'large'}
+                        shape={'round'}
+                        color={'transparent'}
+                        onClick={this.handleCollapseModal}
+                        value={this.props.cart.quantity}
+                    >
+                        <BsBag />
+                    </IconButton>
+
                     {this.state.isModalActive && <CartModal handleCollapseModal={this.handleCollapseModal} />}
                 </div>
             </header>

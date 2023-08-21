@@ -1,11 +1,11 @@
 import React from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import { userService } from '~/services';
-import DeliveryAddress from './DeliveryAddress';
-import DeliveryMethod from './DeliveryMethod';
-import DeliveryPackage from './DeliveryPackage';
-import PaymentDetail from './PaymentDetail';
-import PaymentMethod from './PaymentMethod';
+import CheckoutAddressSelection from './CheckoutAddressSelection';
+import CheckoutDeliveryMethod from './CheckoutDeliveryMethod';
+import CheckoutDeliveryPackage from './CheckoutDeliveryPackage';
+import CheckoutPaymentDetail from './CheckoutPaymentDetail';
+import CheckoutPaymentMethod from './CheckoutPaymentMethod';
 //redux
 import { connect } from 'react-redux';
 import { cartItemRemoveAll } from '~/redux/actions/cartActions';
@@ -16,33 +16,33 @@ const scss = classNames.bind(styles);
 
 class Checkout extends React.Component {
     state = {
-        receiverDetails: {},
-        paymentDetails: {},
         items: [],
+        selectedAddress: {},
+        paymentDetails: {},
     };
 
     componentDidMount() {
+        const { user, cart } = this.props;
         this.setState((prevState) => ({
             ...prevState,
-            receiverDetails: {
-                name: this.props.currentUser.name,
-                phone: this.props.currentUser.phone,
-                address: this.props.currentUser.address,
-                note: 'ahihi',
-            },
+            items: cart.items,
+            selectedAddress: user.defaultDeliveryAddress,
             paymentDetails: {
                 discount: 0,
                 deliveryCharges: 20000,
                 paymentMethod: 'Thanh toán khi nhận hàng',
-                subtotal: this.props.cart.subtotal,
-                totalPayment: this.props.cart.subtotal + 20000,
+                subtotal: cart.subtotal,
             },
-            items: this.props.cart.items,
         }));
     }
 
-    handleCheckOut = async () => {
-        // need to improve this solution
+    handleSelectAddress = (address) => {
+        if (address !== this.state.selectedAddress) {
+            this.setState({ selectedAddress: address });
+        }
+    };
+
+    handleCheckOut = () => {
         this.setState((prevState) => ({
             ...prevState,
             paymentDetails: {
@@ -51,29 +51,55 @@ class Checkout extends React.Component {
                 totalPayment: this.props.cart.subtotal + 20000,
             },
         }));
-        let res = await userService.createOrderService(
-            this.props.currentUser.id,
-            this.state.receiverDetails,
-            this.props.cart.items,
-            this.state.paymentDetails,
-        );
-        if (res && res.code === 0) {
-            this.props.removeAll();
-            toast.success('Đặt hàng thành công');
-        }
+
+        const orderPromise = new Promise(async (resolve, reject) => {
+            try {
+                const res = await userService.createOrderService(
+                    this.props.user.id,
+                    this.state.selectedAddress.id,
+                    this.props.cart.items,
+                    this.state.paymentDetails,
+                );
+
+                if (res) {
+                    resolve(res);
+                } else {
+                    reject(new Error('Order creation failed'));
+                }
+            } catch (error) {
+                reject(error);
+            }
+        });
+
+        toast.promise(orderPromise, {
+            pending: 'Đang xử lý đơn hàng...',
+            success: 'Đặt hàng thành công',
+            error: 'Đặt hàng thất bại',
+        });
+
+        orderPromise
+            .then(() => {
+                this.props.removeAll();
+            })
+            .catch((error) => {
+                // Handle error, if needed
+            });
     };
 
     render() {
+        const { cart } = this.props;
+        const { selectedAddress, paymentDetails } = this.state;
         return (
             <div className={scss('wrapper')}>
                 <div className={scss('left')}>
-                    <DeliveryAddress data={this.props.currentUser} />
-                    <DeliveryMethod />
-                    <DeliveryPackage data={this.props.cart.items} />
+                    <CheckoutAddressSelection data={selectedAddress} onSelectAddress={this.handleSelectAddress} />
+                    <CheckoutDeliveryPackage data={cart.items} />
                 </div>
+
                 <div className={scss('right')}>
-                    <PaymentMethod />
-                    <PaymentDetail data={this.state.paymentDetails} handleCheckOut={this.handleCheckOut} />
+                    <CheckoutPaymentMethod />
+                    <CheckoutDeliveryMethod />
+                    <CheckoutPaymentDetail data={paymentDetails} handleCheckOut={this.handleCheckOut} />
                 </div>
                 <ToastContainer
                     position="top-right"
@@ -81,6 +107,7 @@ class Checkout extends React.Component {
                     hideProgressBar={true}
                     newestOnTop={false}
                     closeOnClick={false}
+                    closeButton={false}
                     rtl={false}
                     pauseOnFocusLoss
                     draggable
@@ -94,7 +121,7 @@ class Checkout extends React.Component {
 
 const mapStateToProps = (state) => ({
     cart: state.cart,
-    currentUser: state.auth.user,
+    user: state.auth.user,
 });
 
 const mapActionsToProps = (dispatch) => ({

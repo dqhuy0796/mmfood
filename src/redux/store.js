@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import { configureStore } from '@reduxjs/toolkit';
-import apiReducer from './reducers/apiReducer';
+import preloadReducer from './reducers/preloadReducer';
 import cartReducer from './reducers/cartReducer';
 import authReducer from './reducers/authReducer';
 
@@ -16,7 +16,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
     cart: cartReducer,
-    api: apiReducer,
+    api: preloadReducer,
     auth: authReducer,
 });
 

@@ -1,16 +1,12 @@
 import classNames from 'classnames/bind';
 import React from 'react';
-import { RiEye2Line, RiEyeCloseLine, RiUploadCloud2Line } from 'react-icons/ri';
+import { RiEye2Line, RiEyeCloseLine } from 'react-icons/ri';
 import styles from './RowInput.module.scss';
+import _ from 'lodash';
 
 const scss = classNames.bind(styles);
 
 class RowInput extends React.Component {
-    constructor(props) {
-        super(props);
-        this.imageUrlRef = React.createRef();
-    }
-
     state = {
         option: {},
     };
@@ -59,25 +55,6 @@ class RowInput extends React.Component {
                     },
                 }));
                 break;
-            case 'address':
-                this.setState((prevState) => ({
-                    ...prevState,
-                    option: {
-                        ...this.props.option,
-                        title: 'Nhập địa chỉ phù hợp với đơn vị hành chính.',
-                    },
-                }));
-                break;
-            case 'image':
-                this.setState((prevState) => ({
-                    ...prevState,
-                    option: {
-                        ...this.props.option,
-                        type: 'text',
-                        title: 'Dán vào url của ảnh.',
-                    },
-                }));
-                break;
             case 'date':
                 this.setState((prevState) => ({
                     ...prevState,
@@ -99,57 +76,25 @@ class RowInput extends React.Component {
         }
     };
 
-    handlePreviewImage = () => {
-        if (this.props.option.type === 'image') {
-            this.setState((prevState) => ({
-                ...prevState,
-                value: this.imageUrlRef.value,
-            }));
-        }
+    handleOnChange = (key, e) => {
+        this.props.onChange(key, e.target.value);
     };
 
     render() {
+        const { option } = this.state;
+        const { value } = this.props;
         return (
             <div className={scss('row')}>
-                <p className={scss('label')}>
-                    {this.state.option.label}
-                    {this.state.option.required && <span className={scss('required')}>*</span>}
-                </p>
                 <div className={scss('input')}>
-                    {this.props.option.type === 'image' ? (
-                        <div className={scss('image-upload')}>
-                            <div className={scss('image')}>
-                                {this.props.value ? (
-                                    <img src={this.props.value} alt={this.state.option.label} />
-                                ) : (
-                                    <RiUploadCloud2Line className={scss('icon')} />
-                                )}
-                            </div>
-                            <div className={scss('upload')}>
-                                <textarea
-                                    {...this.state.option}
-                                    ref={this.imageUrlRef}
-                                    value={this.props.value}
-                                    placeholder={'Dán URL hình ảnh...'}
-                                    onChange={this.props.onChange}
-                                    onFocus={this.props.onChange}
-                                    onBlur={this.props.onChange}
-                                />
-                            </div>
-                        </div>
-                    ) : (
-                        <input
-                            {...this.state.option}
-                            value={this.props.value || ''}
-                            onChange={this.props.onChange}
-                            onFocus={this.props.onChange}
-                            onBlur={this.props.onChange}
-                        />
-                    )}
+                    <input {...option} value={value || ''} onChange={(e) => this.handleOnChange(option.key, e)} />
+                    <p className={scss('label', !_.isEmpty(value) || option.type === 'date' ? 'minimize' : null)}>
+                        <span>{option.label}</span>
+                        {option.required && <span className={scss('required')}>*</span>}
+                    </p>
                     {this.props.option.type === 'password' && (
-                        <span className={scss('eye-btn')} onClick={this.handleShowPassword}>
-                            {this.state.option.type === 'password' ? <RiEyeCloseLine /> : <RiEye2Line />}
-                        </span>
+                        <div className={scss('btn')} onClick={this.handleShowPassword}>
+                            {option.type === 'password' ? <RiEyeCloseLine /> : <RiEye2Line />}
+                        </div>
                     )}
                 </div>
             </div>
@@ -158,3 +103,5 @@ class RowInput extends React.Component {
 }
 
 export default RowInput;
+
+// === 'password'

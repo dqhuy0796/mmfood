@@ -1,8 +1,8 @@
 import React from 'react';
 import emptyCartImage from '~/assets/images/empty-cart.png';
 import CartItem from '~/components/partial/CartItem';
-import Button from '~/components/shared/buttons/Button';
-import config from '~/config';
+import Button from '~/components/shared/Button';
+import routes from '~/config';
 import { withRouter } from '~/hoc/withRouter';
 import BaseRightSideModal from '../BaseRightSideModal';
 
@@ -16,10 +16,10 @@ const scss = classNames.bind(styles);
 
 class CartModal extends React.Component {
     handleOnClickCheckOut = () => {
-        if (this.props.isLoggedIn) {
-            this.props.navigate(config.routes.checkout);
+        if (this.props.isLogged) {
+            this.props.navigate(routes.checkout);
         } else {
-            this.props.navigate(config.routes.login);
+            this.props.navigate(routes.login);
         }
         this.props.handleCollapseModal();
     };
@@ -55,13 +55,7 @@ class CartModal extends React.Component {
                                     <ItemPrice value={this.props.cart.subtotal} />
                                 </span>
                             </p>
-                            <Button
-                                widthfull
-                                size={'large'}
-                                shape={'pill'}
-                                color={'red'}
-                                onClick={this.handleOnClickCheckOut}
-                            >
+                            <Button size={'full'} shape={'pill'} color={'red'} onClick={this.handleOnClickCheckOut}>
                                 Thanh toán
                             </Button>
                         </div>
@@ -76,7 +70,7 @@ const ItemPrice = (props) => <span>{props.value.toLocaleString('vn-VI', { style:
 
 const mapStateToProps = (state) => ({
     cart: state.cart,
-    isLoggedIn: state.auth.isLoggedIn,
+    isLogged: state.auth.isLogged,
 });
 
 const mapActionsToProps = (dispatch) => ({

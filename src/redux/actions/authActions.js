@@ -1,28 +1,59 @@
-import _ from 'lodash';
+import { userService } from '~/services';
 import { authActionTypes } from '../constants';
 
-export const setLoggedIn = (data) => ({
+export const login = (data) => ({
     type: authActionTypes.login,
-    payload: data,
+    payload: {
+        user: data.user,
+        accessToken: data.accessToken,
+        refreshToken: data.refreshToken,
+    },
 });
 
-export const login = (user) => async (dispatch) => {
-    let payload = {
-        isLoggedIn: false,
-        user: {},
-    };
-    if (!_.isEmpty(user)) {
-        payload = {
-            isLoggedIn: true,
-            user: user,
-        };
-    }
-    dispatch(setLoggedIn(payload));
+export const logout = () => ({
+    type: authActionTypes.logout,
+});
+
+export const mapTokens = (newAccessToken, newRefreshToken) => ({
+    type: authActionTypes.refresh,
+    payload: {
+        accessToken: newAccessToken,
+        refreshToken: newRefreshToken,
+    },
+});
+
+export const refreshTokens = () => async (dispatch) => {
+    const response = await userService.refreshTokensService();
+    dispatch(mapTokens(response.accessToken, response.refreshToken));
 };
 
-export const logout = () => async (dispatch) => {
-    let payload = {
-        isLoggedIn: false,
-    };
-    dispatch(setLoggedIn(payload));
+// PROFILE
+
+export const updateProfile = (newProfile) => ({
+    type: authActionTypes.updateProfile,
+    payload: newProfile,
+});
+
+// ADDRESS
+
+export const mapAddresses = (addresses) => ({
+    type: authActionTypes.getAddresses,
+    payload: {
+        addresses: addresses,
+    },
+});
+
+export const fetchAddresses = () => async (dispatch) => {
+    const response = await userService.fetchAddressesService();
+    dispatch(mapAddresses(response.result));
 };
+
+export const setSelectedAddress = (address) => ({
+    type: authActionTypes.setSelectedAddress,
+    payload: address,
+});
+
+export const updateDefaultAddress = (newDefaultAddress) => ({
+    type: authActionTypes.updateDefaultAddress,
+    payload: newDefaultAddress,
+});

@@ -1,0 +1,24 @@
+.cart {
+    padding: 16px;
+    background-color: var(--color-white);
+    .title {
+        margin-bottom: 16px;
+        font-weight: 600;
+        color: var(--color-text);
+    }
+    ul {
+        list-style: none;
+        max-height: 640px;
+        overflow-y: overlay;
+        li {
+            width: 100%;
+            overflow: hidden;
+            hr {
+                border-color: transparent !important;
+            }
+        }
+        li + li {
+            border-top: 1px solid var(--color-border);
+        }
+    }
+}

@@ -1,0 +1,96 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 16px 0;
+    gap: 16px;
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    background-color: transparent;
+    .title {
+        padding: 0 16px;
+        font-size: 1.8rem;
+        font-weight: 600;
+        color: var(--color-text);
+    }
+    .subtitle {
+        margin-bottom: 16px;
+        font-size: 1.6rem;
+        font-weight: 600;
+        color: var(--color-text);
+    }
+    .container {
+        background-color: transparent;
+        .header {
+            padding: 16px;
+            background-color: var(--color-white);
+        }
+        .body {
+            padding: 16px;
+            margin-top: 16px;
+            margin-bottom: 16px;
+            background-color: var(--color-white);
+        }
+        .footer {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            .section {
+                padding: 16px;
+                width: 100%;
+                background-color: var(--color-white);
+            }
+            .address,
+            .payment-details {
+                li {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    font-size: 14px;
+                    font-weight: 400;
+                    text-align: justify;
+                    color: var(--color-text);
+                }
+                li + li {
+                    margin-top: 8px;
+                }
+            }
+            .address {
+                li {
+                    &:first-child {
+                        color: var(--color-text);
+                        font-weight: 600;
+                    }
+                }
+            }
+            .payment-details {
+                li {
+                    &:last-child {
+                        color: var(--color-text);
+                        font-weight: 600;
+                        span {
+                            &:last-child {
+                                color: var(--color-red);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    .wrapper {
+        .title {
+            font-size: 2.4rem;
+        }
+        .container {
+            .footer {
+                .section {
+                    width: calc(50% - 8px);
+                }
+            }
+        }
+    }
+}

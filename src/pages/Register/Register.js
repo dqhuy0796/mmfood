@@ -1,9 +1,9 @@
 import React from 'react';
 import { GiCheckMark } from 'react-icons/gi';
 import RowInput from '~/components/partial/RowInput';
-import Button from '~/components/shared/buttons/Button';
-import TransparentButton from '~/components/shared/buttons/TransparentButton';
-import config from '~/config';
+import Button from '~/components/shared/Button';
+import TransparentButton from '~/components/shared/TransparentButton';
+import routes from '~/config';
 import { withRouter } from '~/hoc/withRouter';
 import { userService } from '~/services';
 // redux and actions
@@ -12,6 +12,7 @@ import { login } from '~/redux/actions/authActions';
 //styles
 import classNames from 'classnames/bind';
 import styles from './Register.module.scss';
+import _ from 'lodash';
 
 const scss = classNames.bind(styles);
 
@@ -19,44 +20,36 @@ class Register extends React.Component {
     state = {
         content: [
             {
-                name: 'phone',
+                key: 'phoneNumber',
                 label: 'Số điện thoại',
-                placeholder: '09xx xxx xxx',
                 required: true,
                 type: 'tel',
             },
             {
-                name: 'email',
+                key: 'email',
                 label: 'Email',
-                placeholder: 'example@email.com',
                 required: true,
                 type: 'email',
             },
             {
-                name: 'password',
+                key: 'password',
                 label: 'Mật khẩu',
                 required: true,
                 pattern: '(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}',
                 type: 'password',
             },
             {
-                name: 'confirmPassword',
+                key: 'confirmPassword',
                 label: 'Xác nhận mật khẩu',
                 required: true,
                 pattern: '(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}',
                 type: 'password',
             },
             {
-                name: 'name',
+                key: 'name',
                 label: 'Họ và tên',
-                placeholder: 'Nguyễn Văn A',
                 required: true,
-            },
-            {
-                name: 'address',
-                label: 'Địa chỉ',
-                required: true,
-                type: 'address',
+                type: 'text',
             },
         ],
         data: {},
@@ -65,15 +58,16 @@ class Register extends React.Component {
     };
 
     // event handler
-    handleOnChangeInput = (event, id) => {
+    handleOnChangeInput = (key, value) => {
         this.setState((prevState) => ({
             ...prevState,
             data: {
                 ...prevState.data,
-                [id]: event.target.value,
+                [key]: value,
             },
         }));
     };
+
     handleOnChangeConditionState = () => {
         this.setState((prevState) => ({
             ...prevState,
@@ -92,22 +86,23 @@ class Register extends React.Component {
         }
         if (response.code === 0) {
             this.props.login(data);
-            this.props.navigate(config.routes.home);
+            this.props.navigate(routes.home);
         }
     };
+
     handleShowErrorMessage = (code) => {
         switch (code) {
-            case 1:
+            case 5:
                 return 'Tài khoản hoặc mật khẩu không đúng';
-            case 2:
-                return 'Tài khoản không hợp lệ';
-            case 3:
+            case 6:
                 return 'Không để trống tài khoản và mật khẩu';
             default:
                 return;
         }
     };
+
     handleValidate = () => {
+        const { password, confirmPassword } = this.state.data;
         if (!this.state.agree) {
             this.setState((prevState) => ({
                 ...prevState,
@@ -115,8 +110,8 @@ class Register extends React.Component {
             }));
             return false;
         }
-        if (this.state.data.password && this.state.data.confirmPassword) {
-            if (this.state.data.password === this.state.data.confirmPassword) {
+        if (!_.isEmpty(password) && !_.isEmpty(confirmPassword)) {
+            if (password === confirmPassword) {
                 return true;
             } else {
                 this.setState((prevState) => ({
@@ -128,13 +123,16 @@ class Register extends React.Component {
         }
         return false;
     };
+
     handleSubmit = (event) => {
         event.preventDefault();
         if (this.handleValidate()) {
             this.handleRegister(this.state.data);
         }
     };
+
     render() {
+        const { data, content, message } = this.state;
         return (
             <div className={scss('background')}>
                 <form className={scss('wrapper')} onSubmit={this.handleSubmit}>
@@ -143,17 +141,13 @@ class Register extends React.Component {
                             <h2>Đăng ký</h2>
                         </li>
                         <li className={scss('message')}>
-                            <p>{this.state.message}</p>
+                            <p>{message}</p>
                         </li>
                     </ul>
                     <ul className={scss('body')}>
-                        {this.state.content.map((item, index) => (
+                        {content.map((item, index) => (
                             <li key={index}>
-                                <RowInput
-                                    option={item}
-                                    value={this.state.data[item.name]}
-                                    onChange={(e) => this.handleOnChangeInput(e, item.name)}
-                                />
+                                <RowInput option={item} value={data[item.key]} onChange={this.handleOnChangeInput} />
                             </li>
                         ))}
 
@@ -180,7 +174,7 @@ class Register extends React.Component {
                         <li>
                             <label>
                                 <input type={'submit'} hidden />
-                                <Button widthfull size={'large'} shape={'pill'} color={'primary'}>
+                                <Button size={'full'} shape={'pill'} color={'primary'}>
                                     <span>Đăng ký</span>
                                 </Button>
                             </label>
@@ -189,7 +183,7 @@ class Register extends React.Component {
                         <li>
                             <p>
                                 <span>Đã có tài khoản?</span>
-                                <TransparentButton to={config.routes.login}>Đăng nhập</TransparentButton>
+                                <TransparentButton to={routes.login}>Đăng nhập</TransparentButton>
                             </p>
                         </li>
                     </ul>
@@ -200,7 +194,7 @@ class Register extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    isLoggedIn: state.auth.isLoggedIn,
+    isLogged: state.auth.isLogged,
     user: state.auth.user,
 });
 

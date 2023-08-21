@@ -11,13 +11,13 @@ const scss = classNames.bind(styles);
 class Footer extends React.Component {
     render() {
         return (
-            <footer className={scss('footer')}>
+            <div className={scss('footer')}>
                 <div className={scss('wrapper')}>
                     <Directions />
                     <MoreInfomation />
                 </div>
                 <Copyright />
-            </footer>
+            </div>
         );
     }
 }

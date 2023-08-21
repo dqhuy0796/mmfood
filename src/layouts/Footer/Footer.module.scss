@@ -1,9 +1,13 @@
+.footer {
+    margin-top: auto;
+    background-color: var(--color-white);
+}
 .wrapper {
     display: flex;
     flex-wrap: wrap;
     margin: 0 auto;
     width: 100%;
-    max-width: 1200px;
+    max-width: 1280px;
     gap: 32px;
     .directions {
         padding: 16px;
@@ -19,8 +23,8 @@
     }
     ul {
         list-style: none;
-        height: 240px;
-        overflow-y: scroll;
+        // height: 240px;
+        //
         li + li {
             margin-top: 12px;
         }

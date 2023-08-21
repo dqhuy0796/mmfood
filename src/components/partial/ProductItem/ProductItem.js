@@ -1,8 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { BiPlus } from 'react-icons/bi';
-import { BsHeartFill } from 'react-icons/bs';
-import IconButton from '~/components/shared/buttons/IconButton';
+import { BsBagPlus, BsSuitHeart, BsSuitHeartFill } from 'react-icons/bs';
+import { FaStar } from 'react-icons/fa';
+import IconButton from '~/components/shared/IconButton';
 // redux and action
 import { connect } from 'react-redux';
 import { cartItemAdd } from '~/redux/actions/cartActions';
@@ -11,69 +10,99 @@ import classNames from 'classnames/bind';
 import styles from './ProductItem.module.scss';
 const scss = classNames.bind(styles);
 
-const calcDiscount = (newPrice, oldPrice) => Math.round(((newPrice - oldPrice) / oldPrice) * 100);
-
 class ProductItem extends React.Component {
     state = {};
 
+    handleAddToFavourite = (data) => {};
+
+    handleAddToCart = (data) => {};
+
     render() {
+        const { data } = this.props;
+
         return (
-            <Link className={scss('product-item')} title={this.props.name}>
-                {this.props.data.oldPrice > this.props.data.newPrice && (
-                    <div className={scss('discount')}>
-                        <p>
-                            <span>{calcDiscount(this.props.data.newPrice, this.props.data.oldPrice)}</span>
-                            <span>%</span>
-                        </p>
+            <div className={scss('product-item')} title={data.name}>
+                {data.oldPrice > data.newPrice && <DiscountPercent before={data.oldPrice} current={data.newPrice} />}
+                <div className={scss('image')}>
+                    <img src={data.imageUrl} alt={data.name} />
+                </div>
+                <div className={scss('content')}>
+                    <div className={scss('top')}>
+                        <div className={scss('subtitle')}>
+                            <div className={scss('category')}>{data.category || 'Đồ ăn'}</div>
+
+                            <IconButton size={'medium'} title={'Yêu thích'}>
+                                {<BsSuitHeart /> || <BsSuitHeartFill style={{ color: 'red' }} />}
+                            </IconButton>
+                        </div>
+                        <h4 className={scss('title')}>{data.name}</h4>
+                        <Rating stars={5.0} reviews={100} />
                     </div>
-                )}
-                <div className={scss('header')}>
-                    <IconButton
-                        className={scss('favourite')}
-                        size={'medium'}
-                        shape={'rect'}
-                        color={'blur'}
-                        onClick={() => this.props.handleActiveDialog(this.props.data)}
-                    >
-                        <BsHeartFill />
-                    </IconButton>
-                    <IconButton
-                        className={scss('add-to-cart')}
-                        size={'medium'}
-                        shape={'rect'}
-                        color={'blur'}
-                        onClick={() => this.props.itemAdd(this.props.data)}
-                    >
-                        <BiPlus />
-                    </IconButton>
-                    <img src={this.props.data.imageUrl} alt={this.props.data.name} />
+                    <div className={scss('bottom')}>
+                        <div className={scss('action')}>
+                            <Price before={data.oldPrice} current={data.newPrice} />
+                            <IconButton
+                                color={'error'}
+                                size={'medium'}
+                                title={'thêm vào giỏ hàng'}
+                                onClick={() => this.props.addToCart(data)}
+                            >
+                                <BsBagPlus />
+                            </IconButton>
+                        </div>
+                    </div>
                 </div>
-                <div className={scss('body')}>
-                    <p className={scss('name')}>
-                        <span>{this.props.data.name}</span>
-                    </p>
-                    <p className={scss('size')}>
-                        <span>Kích thước: </span>
-                        <span>{this.props.data.size}</span>
-                    </p>
-                    <p className={scss('price')}>
-                        <ItemPrice value={this.props.data.newPrice} />
-                        <ItemPrice value={this.props.data.oldPrice} />
-                    </p>
-                </div>
-            </Link>
+            </div>
         );
     }
 }
 
-const ItemPrice = (props) => <span>{props.value.toLocaleString('vn-VI', { style: 'currency', currency: 'VND' })}</span>;
+const DiscountPercent = (props) => {
+    const calcDiscount = Math.round(((props.current - props.before) / props.before) * 100);
+
+    return (
+        <div className={scss('discount')}>
+            <p>
+                <span>{calcDiscount}</span>
+                <span>%</span>
+            </p>
+        </div>
+    );
+};
+
+const Rating = (props) => (
+    <div className={scss('rating')}>
+        <div className={scss('rate')}>
+            <FaStar />
+            <FaStar />
+            <FaStar />
+            <FaStar />
+            <FaStar />
+        </div>
+        <div className={scss('count')}>
+            <span>{props.reviews}</span>
+            <span>reviews</span>
+        </div>
+    </div>
+);
+
+const Price = (props) => {
+    const before = props.before?.toLocaleString('vn-VI', { style: 'currency', currency: 'VND' });
+    const current = props.current?.toLocaleString('vn-VI', { style: 'currency', currency: 'VND' });
+    return (
+        <div className={scss('price')}>
+            <p>{current}</p>
+            <p>{before}</p>
+        </div>
+    );
+};
 
 const mapStateToProps = (state) => ({
     cart: state.cart,
 });
 
 const mapActionsToProps = (dispatch) => ({
-    itemAdd: (item) => dispatch(cartItemAdd(item)),
+    addToCart: (item) => dispatch(cartItemAdd(item)),
 });
 
 export default connect(mapStateToProps, mapActionsToProps)(ProductItem);

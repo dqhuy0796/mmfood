@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind';
 import React from 'react';
 import { MdClose } from 'react-icons/md';
-import IconButton from '~/components/shared/buttons/IconButton';
+import IconButton from '~/components/shared/IconButton';
 import styles from './BaseRightSideModal.module.scss';
 
 const scss = classNames.bind(styles);

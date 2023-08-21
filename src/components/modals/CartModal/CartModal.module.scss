@@ -3,11 +3,12 @@
     flex-direction: column;
     width: 100%;
     height: 100%;
+    user-select: none;
     .body {
         flex: 1;
         padding: 16px;
-        overflow-y: overlay;
         list-style: none;
+        overflow-y: overlay;
         background-color: var(--color-light);
         li {
             width: 100%;

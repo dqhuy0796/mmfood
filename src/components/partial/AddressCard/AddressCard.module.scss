@@ -1,0 +1,60 @@
+.wrapper {
+    display: block;
+    position: relative;
+    padding: 12px;
+    width: 100%;
+    border: 1.5px solid var(--color-border);
+    box-shadow: 0 4px 6px -1px var(--color-border);
+    border-radius: 4px;
+    user-select: none;
+    cursor: pointer;
+    animation: PopUp ease 0.3s;
+    .check {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        color: var(--color-shadow);
+    }
+    .detail {
+        li {
+            font-size: 14px;
+            font-weight: 400;
+            text-align: justify;
+            color: var(--color-text);
+            &:first-child {
+                color: var(--color-text);
+                font-weight: 600;
+            }
+            .default-address {
+                font-size: 1.2rem;
+                font-weight: 500;
+                color: var(--color-blue);
+                padding: 2px 4px;
+                border-radius: 4px;
+                background-color: var(--color-white);
+                border: 1px solid var(--color-blue);
+            }
+        }
+        li + li {
+            margin-top: 8px;
+        }
+    }
+}
+
+.wrapper.selected {
+    border-color: var(--color-blue);
+    .check {
+        color: var(--color-blue);
+    }
+}
+
+@keyframes PopUp {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}

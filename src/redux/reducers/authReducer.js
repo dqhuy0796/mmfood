@@ -1,8 +1,12 @@
 import { authActionTypes } from '../constants';
 
 const initState = {
-    isLoggedIn: false,
+    isLogged: false,
     user: {},
+    addresses: [],
+    selectedAddress: {},
+    accessToken: null,
+    refreshToken: null,
 };
 
 const authReducer = (state = initState, action) => {
@@ -10,15 +14,46 @@ const authReducer = (state = initState, action) => {
         case authActionTypes.login:
             return {
                 ...state,
-                isLoggedIn: action.payload.isLoggedIn,
-                user: action.payload.user,
+                isLogged: true,
+                ...action.payload,
             };
 
         case authActionTypes.logout:
             return {
                 ...state,
-                isLoggedIn: action.payload.isLoggedIn,
+                isLogged: false,
                 user: {},
+                addresses: [],
+                selectedAddress: {},
+                accessToken: null,
+                refreshToken: null,
+            };
+
+        case authActionTypes.refresh:
+            return {
+                ...state,
+                ...action.payload,
+            };
+
+        case authActionTypes.updateProfile:
+            return {
+                ...state,
+                user: {
+                    ...state.user,
+                    ...action.payload,
+                },
+            };
+
+        case authActionTypes.getAddresses:
+            return {
+                ...state,
+                addresses: action.payload.addresses,
+            };
+
+        case authActionTypes.setSelectedAddress:
+            return {
+                ...state,
+                selectedAddress: action.payload,
             };
 
         default:

@@ -1,0 +1,100 @@
+.wrapper {
+    display: block;
+    position: relative;
+    padding: 12px;
+    font-size: 1.4rem;
+    .detail {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        .icon {
+            position: relative;
+            padding-top: 12px;
+            margin-right: 12px;
+            font-size: 3.2rem;
+            user-select: none;
+            span {
+                &:first-child {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    color: var(--color-red);
+                    animation: growUp 0.5s ease-in-out;
+                }
+                &:last-child {
+                    color: var(--color-border);
+                }
+            }
+        }
+        .content {
+            flex: 1;
+            .top {
+                display: flex;
+                align-items: baseline;
+                justify-content: space-between;
+                gap: 8px;
+                .info {
+                    display: flex;
+                    align-items: baseline;
+                    font-size: 1.5rem;
+                    gap: 8px 16px;
+                    p {
+                        &:first-child {
+                            font-weight: 600;
+                            color: var(--color-text);
+                        }
+                        &:last-child {
+                            font-weight: 500;
+                            color: var(--color-shadow);
+                        }
+                    }
+                }
+            }
+            .address {
+                margin-top: 8px;
+                p {
+                    line-height: 2rem;
+                }
+            }
+            .default-address {
+                margin-top: 12px;
+                max-width: max-content;
+                font-size: 1.2rem;
+                font-weight: 400;
+                color: var(--color-blue);
+                padding: 2px 4px;
+                border-radius: 4px;
+                background-color: var(--color-white);
+                border: 1px solid var(--color-blue);
+            }
+        }
+    }
+}
+.wrapper.selected {
+    border-color: var(--color-blue);
+    .check {
+        color: var(--color-blue);
+    }
+}
+
+@keyframes raise {
+    0% {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes growUp {
+    0% {
+        opacity: 0.5;
+        transform: scale(0.5);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}

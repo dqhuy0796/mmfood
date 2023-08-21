@@ -1,0 +1,15 @@
+.address {
+    padding: 16px;
+    background-color: var(--color-white);
+    border: none;
+    .header {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+    }
+    .body {
+        padding: 0;
+        background-color: var(--color-white);
+        max-height: 240px;
+    }
+}

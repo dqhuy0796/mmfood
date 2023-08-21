@@ -1,12 +1,12 @@
 import React from 'react';
-import CategoryLayout from '~/layouts/CategoryLayout';
+import GridProductsLayout from '~/layouts/GridProductsLayout';
 // redux and actions
 import { connect } from 'react-redux';
-import { fetchSearchProducts } from '~/redux/actions/apiActions';
+import { fetchSearchProducts } from '~/redux/actions/preloadActions';
 
 class Search extends React.Component {
     render() {
-        return <CategoryLayout data={this.props.searchResult.products} />;
+        return <GridProductsLayout data={this.props.searchResult.products} />;
     }
 }
 

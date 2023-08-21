@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind';
 import React from 'react';
 import { MdClose } from 'react-icons/md';
-import Button from '~/components/shared/buttons/Button';
+import Button from '~/components/shared/Button';
 import styles from './DialogMessage.module.scss';
 
 const scss = classNames.bind(styles);
@@ -20,29 +20,28 @@ class DialogMessage extends React.Component {
     }
 
     render() {
+        const { title, message, onConfirm, onCancel, onToggle } = this.props;
         return (
-            <div className={scss('message')}>
-                <div className={scss('overlay')}></div>
+            <div className={scss('dialog', 'overlay')}>
                 <div className={scss('wrapper')}>
                     <div className={scss('header')}>
-                        <p>{this.props.title}</p>
-                        <button onClick={this.props.handleActiveDialog}>
+                        <p className={scss('title')}>{title}</p>
+                        <button onClick={onToggle}>
                             <MdClose />
                         </button>
                     </div>
                     <div className={scss('body')}>
-                        <p>{this.props.message}</p>
+                        <p>{message}</p>
                     </div>
                     <div className={scss('footer')}>
-                        {this.props.button ? (
-                            this.props.button.map((item, index) => (
-                                <Button key={index} size={'tiny'} color={item.color} onClick={item.onClick}>
-                                    {item.title}
-                                </Button>
-                            ))
-                        ) : (
-                            <Button size={'tiny'} color={'info'} onClick={this.props.handleActiveDialog}>
-                                OK
+                        {onCancel && (
+                            <Button size={'tiny'} onClick={onCancel}>
+                                Hủy
+                            </Button>
+                        )}
+                        {onConfirm && (
+                            <Button size={'tiny'} color={'red'} onClick={onConfirm}>
+                                Xác nhận
                             </Button>
                         )}
                     </div>

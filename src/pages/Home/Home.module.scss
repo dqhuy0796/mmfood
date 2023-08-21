@@ -1,100 +1,21 @@
 .wrapper {
+    display: flex;
+    flex-wrap: wrap;
     padding: 16px 8px;
     margin: 0 auto;
     width: 100%;
-    max-width: 1200px;
-}
-
-.content-section {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    background-color: var(--color-white);
-    border-radius: 6px;
-    overflow: hidden;
-    &:nth-child(even) {
-        flex-direction: row-reverse;
-    }
-    .image {
-        width: 50%;
-        flex-shrink: 0;
-    }
-    .contents {
-        flex-grow: 1;
-        flex-shrink: 1;
-    }
-}
-.content-section + .content-section {
-    margin-top: 16px;
-}
-.image {
-    div {
-        position: relative;
-        padding-top: 100%;
-        width: 100%;
-        overflow: hidden;
-    }
-    img {
-        position: absolute;
-        inset: 0;
-        height: 100%;
-        width: 100%;
-        object-fit: cover;
-    }
-}
-.contents {
-    display: flex;
-    flex-direction: column;
-    padding: 16px;
+    max-width: 1280px;
+    list-style: none;
     gap: 16px;
-    .title {
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 2;
-        overflow: hidden;
-        font-size: 1.6rem;
-        color: #0c713d;
-        font-weight: 500;
-    }
-    .text {
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 5;
-        overflow: hidden;
-        text-align: justify;
-        font-size: 1.2rem;
-        color: #333;
+    li {
+        width: (100%);
     }
 }
 
 @media (min-width: 1024px) {
-    .content-section {
-        &:hover {
-            cursor: pointer;
-            .image {
-                img {
-                    transform: scale(111%);
-                    -webkit-transition: ease-out 0.5s;
-                    -moz-transition: ease-out 0.5s;
-                    -ms-transition: ease-out 0.5s;
-                    -o-transition: ease-out 0.5s;
-                    transition: ease-out 0.5s;
-                }
-            }
-        }
-        .image {
-            width: 45%;
-        }
-        .contents {
-            padding: 16px 48px;
-            .title {
-                -webkit-line-clamp: 3;
-                font-size: 2.4rem;
-            }
-            .text {
-                -webkit-line-clamp: 10;
-                font-size: 1.4rem;
-            }
+    .wrapper {
+        li {
+            width: calc(50% - 8px);
         }
     }
 }

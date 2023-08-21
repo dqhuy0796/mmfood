@@ -14,19 +14,19 @@ SwiperCore.use([Navigation]);
 function Banner() {
     const banners = [
         {
-            imageUrl: 'https://banhcanhghemuoiotxanh.com/wp-content/uploads/2021/06/banner-banh-canh-ghe.jpg',
+            imageUrl: 'https://baobariavungtau.com.vn/dataimages/202301/original/images1783236_11m1.jpg',
             text: 'banh canh banh canh banh canh',
         },
         {
-            imageUrl: 'https://banhcanhghemuoiotxanh.com/wp-content/uploads/2021/06/banner-banh-canh-ghe.jpg',
+            imageUrl: 'https://baobariavungtau.com.vn/dataimages/202301/original/images1783236_11m1.jpg',
             text: 'banh canh banh canh banh canh',
         },
         {
-            imageUrl: 'https://banhcanhghemuoiotxanh.com/wp-content/uploads/2021/06/banner-banh-canh-ghe.jpg',
+            imageUrl: 'https://baobariavungtau.com.vn/dataimages/202301/original/images1783236_11m1.jpg',
             text: 'banh canh banh canh banh canh',
         },
         {
-            imageUrl: 'https://banhcanhghemuoiotxanh.com/wp-content/uploads/2021/06/banner-banh-canh-ghe.jpg',
+            imageUrl: 'https://baobariavungtau.com.vn/dataimages/202301/original/images1783236_11m1.jpg',
             text: 'banh canh banh canh banh canh',
         },
     ];

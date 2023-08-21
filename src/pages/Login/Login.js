@@ -2,9 +2,9 @@ import classNames from 'classnames/bind';
 import _ from 'lodash';
 import React from 'react';
 import RowInput from '~/components/partial/RowInput';
-import Button from '~/components/shared/buttons/Button';
-import TransparentButton from '~/components/shared/buttons/TransparentButton';
-import config from '~/config';
+import Button from '~/components/shared/Button';
+import TransparentButton from '~/components/shared/TransparentButton';
+import routes from '~/config';
 import { withRouter } from '~/hoc/withRouter';
 import { userService } from '~/services';
 // redux and actions
@@ -16,30 +16,30 @@ import styles from './Login.module.scss';
 const scss = classNames.bind(styles);
 class Login extends React.Component {
     state = {
+        data: {},
+        message: '',
         content: [
             {
-                name: 'phone',
+                key: 'phone',
                 label: 'Số điện thoại',
                 required: true,
                 type: 'tel',
             },
             {
-                name: 'password',
+                key: 'password',
                 label: 'Mật khẩu',
                 required: true,
                 type: 'password',
             },
         ],
-        data: {},
-        message: '',
     };
 
-    handleOnChangeInput = (event, id) => {
+    handleOnChangeInput = (key, value) => {
         this.setState((prevState) => ({
             ...prevState,
             data: {
                 ...prevState.data,
-                [id]: event.target.value,
+                [key]: value,
             },
         }));
     };
@@ -52,8 +52,12 @@ class Login extends React.Component {
                 message: response.message,
             }));
             if (!_.isEmpty(response.result)) {
-                this.props.login(response.result);
-                this.props.navigate(config.routes.home);
+                this.props.login({
+                    user: response.result,
+                    accessToken: response.accessToken,
+                    refreshToken: response.refreshToken,
+                });
+                this.props.navigate(routes.home);
             }
         }
     };
@@ -66,6 +70,7 @@ class Login extends React.Component {
     };
 
     render() {
+        const { content, data, message } = this.state;
         return (
             <div className={scss('background')}>
                 <form className={scss('wrapper')} onSubmit={this.handleSubmit}>
@@ -74,19 +79,16 @@ class Login extends React.Component {
                             <h2>Đăng nhập</h2>
                         </li>
                         <li className={scss('message')}>
-                            <p>{this.state.message}</p>
+                            <p>{message}</p>
                         </li>
                     </ul>
                     <ul className={scss('body')}>
-                        {this.state.content.map((item, index) => (
+                        {content.map((item, index) => (
                             <li key={index}>
-                                <RowInput
-                                    option={item}
-                                    value={this.state.data[item.name]}
-                                    onChange={(e) => this.handleOnChangeInput(e, item.name)}
-                                />
+                                <RowInput option={item} value={data[item.key]} onChange={this.handleOnChangeInput} />
                             </li>
                         ))}
+
                         <li>
                             <TransparentButton>Quên mật khẩu?</TransparentButton>
                         </li>
@@ -95,7 +97,7 @@ class Login extends React.Component {
                         <li>
                             <label>
                                 <input type={'submit'} hidden />
-                                <Button widthfull size={'large'} shape={'pill'} color={'primary'}>
+                                <Button size={'full'} shape={'pill'} color={'primary'}>
                                     <span>Đăng nhập</span>
                                 </Button>
                             </label>
@@ -103,7 +105,7 @@ class Login extends React.Component {
                         <li>
                             <p>
                                 <span>Chưa có tài khoản?</span>
-                                <TransparentButton to={config.routes.register}>Đăng ký ngay</TransparentButton>
+                                <TransparentButton to={routes.register}>Đăng ký ngay</TransparentButton>
                             </p>
                         </li>
                     </ul>
@@ -114,7 +116,7 @@ class Login extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    isLoggedIn: state.auth.isLoggedIn,
+    isLogged: state.auth.isLogged,
     user: state.auth.user,
 });
 

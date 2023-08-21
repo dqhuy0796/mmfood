@@ -1,0 +1,75 @@
+.wrapper {
+    padding: 16px;
+    background-color: var(--color-white);
+    box-shadow: 0 0 4px 1px var(--color-border);
+    border-radius: 4px;
+    .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .uuid {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--color-blue);
+        }
+    }
+    .body {
+        margin-top: 16px;
+        margin-bottom: 16px;
+        border-top: 1px solid var(--color-border);
+        border-bottom: 1px solid var(--color-border);
+        .item {
+            width: 100%;
+            flex-shrink: 0;
+        }
+        .item + .item {
+            border-top: 1px solid var(--color-border);
+        }
+        .hidden {
+            padding: 16px 0;
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: var(--color-shadow);
+        }
+    }
+    .footer {
+        text-align: right;
+        .total-payment {
+            margin-bottom: 16px;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--color-text);
+            .total {
+                margin-left: 16px;
+                font-size: 1.8rem;
+                color: var(--color-red);
+            }
+        }
+        .action {
+            display: flex;
+            align-items: baseline;
+            justify-content: flex-end;
+            margin-left: auto;
+            column-gap: 8px;
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    .wrapper {
+        .body {
+            display: flex;
+            flex-wrap: wrap;
+            column-gap: 12px;
+            .item {
+                width: calc(100% / 3 - 8px);
+            }
+            .item + .item {
+                border: none;
+            }
+            .hidden {
+                width: 100%;
+            }
+        }
+    }
+}

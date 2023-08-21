@@ -5,12 +5,11 @@
     flex-wrap: wrap;
     margin: 0 auto;
     width: 100%;
-    max-width: 1200px;
+    max-width: 1280px;
     .left,
     .right {
         margin: 0 auto;
         width: 100%;
-        background-color: var(--color-white);
         overflow: hidden;
     }
 }
